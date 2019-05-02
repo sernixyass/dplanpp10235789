@@ -2,6 +2,7 @@ package com.example.carpoolingappv1;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -92,14 +93,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }else {
-                        Toast.makeText(getApplicationContext(), "email not verified", Toast.LENGTH_SHORT).show();
+                        showErrorDialog("email not verified");
                     }
 
 
                 }else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    showErrorDialog(task.getException().getMessage());
                 }
             }
         });
+    }
+    private void showErrorDialog(String message)
+    {
+       new AlertDialog.Builder(this)
+               .setTitle("Oops")
+               .setMessage( message)
+               .setPositiveButton(android.R.string.ok,null)
+               .setIcon(android.R.drawable.ic_dialog_alert)
+               .show();
     }
 }
