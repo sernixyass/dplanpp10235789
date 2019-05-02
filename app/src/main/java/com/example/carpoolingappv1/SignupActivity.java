@@ -1,5 +1,6 @@
 package com.example.carpoolingappv1;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -91,7 +92,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
 
-                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
+                                               // Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
+                                                showErrorDialog("Please verify your email address to complete registration");
 
                                             }else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -107,5 +109,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 });
 
+    }
+    private void showErrorDialog(String message){
+        new AlertDialog.Builder(this)
+                .setTitle("Oops")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok   , null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+                
     }
 }

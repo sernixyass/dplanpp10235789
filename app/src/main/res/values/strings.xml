@@ -10,6 +10,7 @@
     <string name="signup_txt">Sign Up</string>
     <string name="homeHello">HNA NDIRO LHOME TE3NA w LKHEDMAT LOKHRIN</string>
     <string name="logoutTxtBtn">Logout</string>
+    <string name="ok">OK</string>
 
     <string name="title_activity_navigation">navigationActivity</string>
     <string name="title_home">Home</string>
