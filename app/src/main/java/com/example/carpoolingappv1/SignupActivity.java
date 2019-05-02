@@ -1,13 +1,19 @@
 package com.example.carpoolingappv1;
 
-import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,9 +21,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
     public EditText emailSignup,passwordSignup;
+
+    //date
+    public TextView bdateSignup;
+    private DatePickerDialog.OnDateSetListener bdateSetListener;
 
     private FirebaseAuth mAuth;
 
@@ -26,14 +38,53 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
         findViewById(R.id.SignUpBtnId).setOnClickListener(this);
         findViewById(R.id.LogInTxtBtnId).setOnClickListener(this);
 
         emailSignup = findViewById(R.id.emailSignupId);
         passwordSignup = findViewById(R.id.passwordSignupId);
+        bdateSignup = (TextView) findViewById(R.id.birthdateSignupId);
 
 
-        mAuth = FirebaseAuth.getInstance();
+        //date displays widget
+        bdateSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        SignupActivity.this,
+                        android.R.style.Theme_DeviceDefault_Dialog_NoActionBar_MinWidth,
+                        bdateSetListener,
+                        year,month,day);
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+
+        //get the date and put it in the textField
+        bdateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                //
+                //Log.d("onDate set: mm/dd/yy" + month + "/" + dayOfMonth + "/" + year);
+
+                String date = month + "/" + dayOfMonth + "/" + year;
+                bdateSignup.setText(date);
+
+            }
+        };
+        //
+
+
     }
 
     @Override
@@ -92,8 +143,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
 
-                                               // Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
-                                                showErrorDialog("Please verify your email address to complete registration");
+                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
 
                                             }else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -109,14 +159,5 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 });
 
-    }
-    private void showErrorDialog(String message){
-        new AlertDialog.Builder(this)
-                .setTitle("Oops")
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok   , null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-                
     }
 }
