@@ -46,6 +46,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.LogInTxtBtnId:
                 Intent intent2 = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent2);
+                finish();
                 break;
 
 

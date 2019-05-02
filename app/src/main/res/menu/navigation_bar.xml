@@ -7,18 +7,18 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/nav_favorites"
+        android:id="@+id/nav_chat"
         android:icon="@drawable/ic_chat_black_24dp"
-        android:title="Favorites" />
+        android:title="Chat" />
 
     <item
-        android:id="@+id/nav_calender"
-        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
-        android:title="Search" />
+        android:id="@+id/nav_carte"
+        android:icon="@drawable/ic_map_black_24dp"
+        android:title="carte" />
 
     <item
-        android:id="@+id/nav_search"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Search" />
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_account_box_black_24dp"
+        android:title="Profile" />
 
 </menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red">
+
+    <TextView
+        android:id="@+id/homeTxtC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME"
+        android:textSize="40dp"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/logoutBtnId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeTxtC"
+        android:text="@string/logout"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
