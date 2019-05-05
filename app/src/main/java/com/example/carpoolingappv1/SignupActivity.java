@@ -20,12 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public EditText emailSignup,passwordSignup;
+    public EditText emailSignup,passwordSignup,firstName,lastName;
 
     //date
     public TextView bdateSignup;
@@ -47,6 +48,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         emailSignup = findViewById(R.id.emailSignupId);
         passwordSignup = findViewById(R.id.passwordSignupId);
         bdateSignup = (TextView) findViewById(R.id.birthdateSignupId);
+        firstName = findViewById(R.id.firstNameSignupId);
+        lastName = findViewById(R.id.lastNameSignupId);
 
 
         //date displays widget
@@ -106,9 +109,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerUser() {
-        String emailS = emailSignup.getText().toString().trim();
+        final String emailS = emailSignup.getText().toString().trim();
         String passwordS = passwordSignup.getText().toString().trim();
+        final String lastNameS = lastName.getText().toString().trim();
+        final String firstNameS = firstName.getText().toString().trim();
 
+
+
+        //email check
         if(emailS.isEmpty()){
             emailSignup.setError("email required");
             emailSignup.requestFocus();
@@ -119,6 +127,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             emailSignup.requestFocus();
             return;
         }
+        //password check
         if(passwordS.isEmpty()){
             passwordSignup.setError("password required");
             passwordSignup.requestFocus();
@@ -129,6 +138,17 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             passwordSignup.requestFocus();
             return;
         }
+        //last name and first name check
+        if(lastNameS.isEmpty()){
+            lastName.setError("password required");
+            lastName.requestFocus();
+            return;
+        }
+        if(firstNameS.isEmpty()){
+            firstName.setError("password required");
+            firstName.requestFocus();
+            return;
+        }
 
         //CREATING USER
         mAuth.createUserWithEmailAndPassword(emailS, passwordS)
@@ -136,6 +156,20 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            User user = new User(firstNameS,lastNameS,emailS);
+
+                            //put the account's data into (database) Users > "userID" > {}
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (!task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                             //SEND EMAIL VERIFICATION
                             mAuth.getCurrentUser().sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {

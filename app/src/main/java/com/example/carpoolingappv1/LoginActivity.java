@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //EMAIL SHOULD BE VERIFIED
                     if (mAuth.getCurrentUser().isEmailVerified()) {
 
-                        //save or dont save the information tayped in
+                        //save or don't save the information tayped in
                         if (mCheckBox.isChecked()) {
 
                             mEditor.putString(getString(R.string.checkBoxSH), "True");

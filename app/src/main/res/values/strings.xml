@@ -25,5 +25,6 @@
     <string name="emailSH">com.example.carpoolingappv1.email</string>
     <string name="passwordSH">com.example.carpoolingappv1.password</string>
     <string name="checkBoxSH">com.example.carpoolingappv1.checkbox</string>
+    <string name="next">NEXT</string>
 
 </resources>
