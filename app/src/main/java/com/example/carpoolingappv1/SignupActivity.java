@@ -26,7 +26,7 @@ import java.util.Calendar;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public EditText emailSignup,passwordSignup,firstName,lastName;
+    public EditText emailSignup,passwordSignup,firstName,lastName,phone,address;
 
     //date
     public TextView bdateSignup;
@@ -50,6 +50,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         bdateSignup = (TextView) findViewById(R.id.birthdateSignupId);
         firstName = findViewById(R.id.firstNameSignupId);
         lastName = findViewById(R.id.lastNameSignupId);
+        phone = findViewById(R.id.phoneSignupId);
+        address = findViewById(R.id.addressSignupId);
 
 
         //date displays widget
@@ -114,6 +116,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         final String lastNameS = lastName.getText().toString().trim();
         final String firstNameS = firstName.getText().toString().trim();
 
+        final int phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+        final String addressS = address.getText().toString().trim();
+        final String bDateS = bdateSignup.getText().toString().trim();
+
+
 
 
         //email check
@@ -156,7 +163,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(firstNameS,lastNameS,emailS);
+                            User user = new User(firstNameS,lastNameS,emailS,bDateS,phoneS,addressS);
 
                             //put the account's data into (database) Users > "userID" > {}
                             FirebaseDatabase.getInstance().getReference("Users")
