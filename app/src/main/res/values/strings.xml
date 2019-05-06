@@ -5,7 +5,7 @@
     <string name="loginTxt">Login</string>
     <string name="emailTxt">email/username</string>
     <string name="passwordTxt">password</string>
-    <string name="sign_up_txt_btn">You don\'t have an Account? Sign Up</string>
+    <string name="sign_up_txt_btn">New user ? Sign Up</string>
     <string name="login_txt_btn">You already have an account? Login</string>
     <string name="signup_txt">Sign Up</string>
     <string name="homeHello">HNA NDIRO LHOME TE3NA w LKHEDMAT LOKHRIN</string>

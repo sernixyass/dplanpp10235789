@@ -1,77 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:gravity="center"
+    android:background="@drawable/backgroung_login"
+    android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/LoginBtnId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="412dp"
-        android:text="@string/loginTxt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/emailLoginId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
+        android:layout_margin="15dp"
+        android:drawableLeft="@drawable/ic_mai_24dp"
+        android:drawablePadding="5dp"
         android:hint="@string/emailTxt"
+
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passwordLoginId"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/passwordLoginId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="524dp"
-        android:ems="10"
+        android:layout_margin="15dp"
         android:hint="@string/passwordTxt"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/emailLoginId"
+        android:drawableLeft="@drawable/ic_lock_black_24dp"
+        android:drawablePadding="5dp"
         tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/LoginBtnId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_bg"
+        android:text="@string/loginTxt" />
 
     <TextView
         android:id="@+id/SignUpTxtBtnId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_margin="15dp"
+        android:gravity="center"
         android:text="@string/sign_up_txt_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginBtnId" />
+        android:textAppearance="@android:style/TextAppearance.Medium"/>
 
     <CheckBox
         android:id="@+id/remember_email_pass"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="@string/remember"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUpTxtBtnId"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintTop_toBottomOf="@+id/SignUpTxtBtnId" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
