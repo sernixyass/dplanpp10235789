@@ -21,7 +21,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
 
-
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         view.findViewById(R.id.logoutBtnId).setOnClickListener(this);
@@ -40,7 +39,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
 
     private void logout() {
         mAuth.getInstance().signOut();

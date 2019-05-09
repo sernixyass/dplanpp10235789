@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
 
+        //shared preference
         mCheckBox = (CheckBox) findViewById(R.id.remember_email_pass);
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
@@ -47,7 +48,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -63,8 +63,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 //startActivity(intent);
                 break;
-
-
         }
     }
 
@@ -111,6 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             mEditor.commit();
                             mEditor.putString(getString(R.string.passwordSH), passwordL);
                             mEditor.commit();
+
                         } else {
                             mEditor.putString(getString(R.string.checkBoxSH), "false");
                             mEditor.commit();

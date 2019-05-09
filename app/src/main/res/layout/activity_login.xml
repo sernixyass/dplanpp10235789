@@ -11,28 +11,38 @@
     android:layout_gravity="center">
 
 
-    <EditText
-        android:id="@+id/emailLoginId"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:drawableLeft="@drawable/ic_mai_24dp"
-        android:drawablePadding="5dp"
-        android:hint="@string/emailTxt"
+        android:layout_height="wrap_content">
 
-        android:inputType="textEmailAddress"
-        tools:ignore="Autofill" />
+        <EditText
+            android:id="@+id/emailLoginId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:drawableLeft="@drawable/ic_mai_24dp"
+            android:drawablePadding="5dp"
+            android:hint="@string/emailTxt"
 
-    <EditText
-        android:id="@+id/passwordLoginId"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:hint="@string/passwordTxt"
-        android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_lock_black_24dp"
-        android:drawablePadding="5dp"
-        tools:ignore="Autofill" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/passwordLoginId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="@string/passwordTxt"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:drawablePadding="5dp"
+            tools:ignore="Autofill" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/LoginBtnId"
@@ -49,7 +59,7 @@
         android:layout_margin="15dp"
         android:gravity="center"
         android:text="@string/sign_up_txt_btn"
-        android:textAppearance="@android:style/TextAppearance.Medium"/>
+        android:textAppearance="@android:style/TextAppearance.Medium" />
 
     <CheckBox
         android:id="@+id/remember_email_pass"
