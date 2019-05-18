@@ -27,4 +27,21 @@
     <string name="checkBoxSH">com.example.carpoolingappv1.checkbox</string>
     <string name="next">NEXT</string>
 
+    <string-array name="wilayas">
+        <item>Adrar</item>
+        <item>Annaba</item>
+        <item>Alger</item>
+        <item>Setif</item>
+        <item>Constantine</item>
+        <item>Khenchla</item>
+        <item>Ouargla</item>
+    </string-array>
+
+    <string-array name="carModels">
+        <item>Audi</item>
+        <item>Ford</item>
+    </string-array>
+
+
+
 </resources>

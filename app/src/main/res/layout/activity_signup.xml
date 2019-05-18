@@ -70,7 +70,6 @@
             android:textAlignment="center"
             android:textSize="12sp"
             tools:ignore="Autofill"
-
             />
 
         <EditText
@@ -83,13 +82,12 @@
             android:inputType="phone"
             tools:ignore="Autofill" />
 
-        <EditText
-            android:id="@+id/addressSignupId"
+        <Spinner
+            android:id="@+id/wilayaSignupId"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:hint="@string/address"
             android:inputType="text"
             tools:ignore="Autofill" />
 
@@ -104,6 +102,32 @@
             android:layout_marginBottom="10dp"
             />
 
+        <CheckBox
+            android:id="@+id/carCheckSignupId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="do you have a car"/>
+
+        <EditText
+            android:id="@+id/test1SignupId"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/passwordTxt"
+            android:inputType="text"
+            tools:ignore="Autofill"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            />
+        <Spinner
+            android:id="@+id/carModelSignupId"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:inputType="text"
+            tools:ignore="Autofill" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -116,19 +140,14 @@
         android:layout_marginBottom="30dp">
 
         <Button
-            android:id="@+id/NextBtnId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/next" />
-        <Button
             android:id="@+id/SignUpBtnId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:text="@string/signup_txt"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:textColor="#CCFFFFFF"
+            android:background="@drawable/button_bg"
             />
         <TextView
             android:id="@+id/LogInTxtBtnId"

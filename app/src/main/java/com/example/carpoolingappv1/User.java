@@ -7,19 +7,17 @@ public class User {
     public String email;
     public String bDate;
     public int phone;
-    public String address;
 
     public User() {
 
     }
 
-    public User(String firsName, String lastName, String email, String bDate, int phone, String address) {
+    public User(String firsName, String lastName, String email, String bDate, int phone) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.email = email;
         this.bDate = bDate;
         this.phone = phone;
-        this.address = address;
     }
 
 }

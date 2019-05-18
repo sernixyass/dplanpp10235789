@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox mCheckBox;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mEditor = mPreferences.edit();
         checkSharedPreferences();
 
-
     }
 
     @Override
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //startActivity(intent);
                 break;
         }
+
     }
 
     public void LoginUser() {
@@ -162,4 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mCheckBox.setChecked(false);
         }
     }
+
+
+
 }

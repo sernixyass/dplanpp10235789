@@ -11,8 +11,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,15 +29,21 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignupActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    public EditText emailSignup,passwordSignup,firstName,lastName,phone,address;
+    public EditText emailSignup,passwordSignup,firstName,lastName,phone;
+    public boolean oldAgeUser=false;
 
     //date
     public TextView bdateSignup;
     private DatePickerDialog.OnDateSetListener bdateSetListener;
 
     private FirebaseAuth mAuth;
+
+
+    private CheckBox carCheckBox;
+    private EditText testBrk;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +56,31 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.SignUpBtnId).setOnClickListener(this);
         findViewById(R.id.LogInTxtBtnId).setOnClickListener(this);
 
+
         emailSignup = findViewById(R.id.emailSignupId);
         passwordSignup = findViewById(R.id.passwordSignupId);
         bdateSignup = (TextView) findViewById(R.id.birthdateSignupId);
         firstName = findViewById(R.id.firstNameSignupId);
         lastName = findViewById(R.id.lastNameSignupId);
         phone = findViewById(R.id.phoneSignupId);
-        address = findViewById(R.id.addressSignupId);
 
+        Spinner wilayaSpinner = findViewById(R.id.wilayaSignupId);
+
+        //spinner t3 l wilaya
+        ArrayAdapter<CharSequence> wilayasAdapter = ArrayAdapter.createFromResource(this,R.array.wilayas,android.R.layout.simple_spinner_item);
+        wilayasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        wilayaSpinner.setAdapter(wilayasAdapter);
+        wilayaSpinner.setOnItemSelectedListener(this);
+
+
+        Spinner carModelsSpinner = findViewById(R.id.carModelSignupId);
+
+        //spinner t3 l car models
+        ArrayAdapter<CharSequence> carModelsAdapter = ArrayAdapter.createFromResource(this,R.array.carModels,android.R.layout.simple_spinner_item);
+        carModelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carModelsSpinner.setAdapter(carModelsAdapter);
+
+        carModelsSpinner.setOnItemSelectedListener(this);
 
         //date displays widget
         bdateSignup.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +93,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         SignupActivity.this,
-                        android.R.style.Theme_DeviceDefault_Dialog_NoActionBar_MinWidth,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         bdateSetListener,
                         year,month,day);
                 //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -85,10 +113,32 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 String date = month + "/" + dayOfMonth + "/" + year;
                 bdateSignup.setText(date);
 
+                //calcule Age
+                int age = (int) (Calendar.YEAR - year);
+
             }
         };
         //
 
+
+
+        //car check box
+        carCheckBox = findViewById(R.id.carCheckSignupId);
+        carCheckBox.setChecked(false);
+        testBrk = findViewById(R.id.test1SignupId);
+
+        carCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                //display or not .. for the car's data
+                if (carCheckBox.isChecked()){
+                    testBrk.setVisibility(View.VISIBLE);
+                }else {
+                    testBrk.setVisibility(View.GONE);
+
+                }
+            }
+        });
 
     }
 
@@ -107,7 +157,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
 
+
         }
+
     }
 
     private void registerUser() {
@@ -117,7 +169,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         final String firstNameS = firstName.getText().toString().trim();
 
         final int phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
-        final String addressS = address.getText().toString().trim();
         final String bDateS = bdateSignup.getText().toString().trim();
 
 
@@ -163,7 +214,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(firstNameS,lastNameS,emailS,bDateS,phoneS,addressS);
+                            User user = new User(firstNameS,lastNameS,emailS,bDateS,phoneS);
 
                             //put the account's data into (database) Users > "userID" > {}
                             FirebaseDatabase.getInstance().getReference("Users")
@@ -201,4 +252,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 });
 
     }
+
+
+    //WILAYAS
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+    //WILAYAS
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
 }
