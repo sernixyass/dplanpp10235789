@@ -33,6 +33,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     public EditText emailSignup,passwordSignup,firstName,lastName,phone;
     public boolean oldAgeUser=false;
+    private int oldAgeStandard=50;
 
     //date
     public TextView bdateSignup;
@@ -96,7 +97,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         bdateSetListener,
                         year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -110,11 +111,28 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 //
                 //Log.d("onDate set: mm/dd/yy" + month + "/" + dayOfMonth + "/" + year);
 
-                String date = month + "/" + dayOfMonth + "/" + year;
-                bdateSignup.setText(date);
+                String date ="Date of birth: " + month + "/" + dayOfMonth + "/" + year;
 
-                //calcule Age
-                int age = (int) (Calendar.YEAR - year);
+                int age = (int) ((Calendar.getInstance().get(Calendar.YEAR)) - year);
+
+                if (age<=0){
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (age<oldAgeStandard){
+                    oldAgeUser = false;
+                }else {
+                    oldAgeUser = true;
+                }
+
+                bdateSignup.setText(date);
+                bdateSignup.setTextColor(Color.BLACK);
+
+                //calculate Age
+
+                //Toast.makeText(getApplicationContext(), "year:  "+year, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Calendar year:  "+Calendar.getInstance().get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "age:  "+age, Toast.LENGTH_SHORT).show();
+
 
             }
         };
@@ -126,6 +144,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         carCheckBox = findViewById(R.id.carCheckSignupId);
         carCheckBox.setChecked(false);
         testBrk = findViewById(R.id.test1SignupId);
+        testBrk.setVisibility(View.GONE);
 
         carCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

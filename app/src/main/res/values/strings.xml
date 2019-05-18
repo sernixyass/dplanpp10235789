@@ -18,7 +18,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
-    <string name="birth_date">Birth date</string>
+    <string name="birth_date">Date of birth: --/--/----</string>
     <string name="phone">Phone</string>
     <string name="address">Address</string>
 
