@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardview_compat_inset_shadow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <LinearLayout
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/startTxtP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Depart"
+                    android:textSize="18sp"
+                    android:paddingRight="15dp"
+                    android:drawableLeft="@drawable/ic_startpoint"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/endTxtP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Arrive"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:paddingRight="15dp"
+                    android:drawableLeft="@drawable/ic_endpoint"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:gravity="end"    >
+                <Button
+                    android:id="@+id/takeBut"
+                    android:layout_gravity="center"
+                    android:layout_width="130dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:text="Take"/>
+                <Button
+                    android:id="@+id/joinBut"
+                    android:layout_gravity="center"
+                    android:layout_width="130dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:text="Join"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
