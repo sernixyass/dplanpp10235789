@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public MapView mMapView;
     GoogleMap mapH;
     public RelativeLayout mMapContainer;
+    public RelativeLayout mPostsContainer;
+
 
     private static final int MAP_LAYOUT_STATE_CONTRACTED = 0;
     private static final int MAP_LAYOUT_STATE_EXPANDED = 1;
@@ -83,6 +85,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         //map
         mMapView = (MapView) view.findViewById(R.id.mapHome);
         mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
+        mPostsContainer = (RelativeLayout) view.findViewById(R.id.posts_Container);
+
 
         view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
@@ -212,7 +216,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 100);
         mapAnimation.setDuration(800);
 
-        ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mRecyclerView);
+        ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mPostsContainer);
         ObjectAnimator recyclerAnimation = ObjectAnimator.ofFloat(recyclerAnimationWrapper,
                 "weight",
                 50,
@@ -231,7 +235,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 50);
         mapAnimation.setDuration(800);
 
-        ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mRecyclerView);
+        ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mPostsContainer);
         ObjectAnimator recyclerAnimation = ObjectAnimator.ofFloat(recyclerAnimationWrapper,
                 "weight",
                 0,
