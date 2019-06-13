@@ -52,11 +52,14 @@ public class CarteFragment extends Fragment implements OnMapReadyCallback {
         //initGoogleMap(savedInstanceState);
 
 
+
         return inflater.inflate(R.layout.fragment_carte,container,false);
 
 
 
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -71,6 +74,8 @@ public class CarteFragment extends Fragment implements OnMapReadyCallback {
             }
         }
     }
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -94,7 +99,6 @@ public class CarteFragment extends Fragment implements OnMapReadyCallback {
             return;
         }
         map.setMyLocationEnabled(true);
-
     }
 
     /*@Override
@@ -120,6 +124,7 @@ public class CarteFragment extends Fragment implements OnMapReadyCallback {
 
 
     }*/
+
 
    /* private void initGoogleMap(Bundle savedInstanceState){
         // *** IMPORTANT ***
