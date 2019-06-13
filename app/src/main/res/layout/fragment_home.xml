@@ -22,7 +22,7 @@
         <RelativeLayout
             android:id="@+id/posts_Container"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="100"
             android:layout_width="match_parent">
 
             <android.support.v7.widget.RecyclerView
@@ -41,7 +41,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
                 android:id="@+id/btn_Post"/>
-
 
         </RelativeLayout>
 

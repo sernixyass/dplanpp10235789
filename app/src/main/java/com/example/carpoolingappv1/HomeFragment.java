@@ -9,8 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +50,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     //MAP
     public MapView mMapView;
     GoogleMap mapH;
-    public RelativeLayout mMapContainer;
-    public RelativeLayout mPostsContainer;
+    public static RelativeLayout mMapContainer;
+    public static RelativeLayout mPostsContainer;
 
 
-    private static final int MAP_LAYOUT_STATE_CONTRACTED = 0;
-    private static final int MAP_LAYOUT_STATE_EXPANDED = 1;
-    private int mMapLayoutState = 0;
+
+
+    public static final int MAP_LAYOUT_STATE_CONTRACTED = 0;
+    public static final int MAP_LAYOUT_STATE_EXPANDED = 1;
+    public static int mMapLayoutState = 0;
 
 
 
@@ -88,12 +92,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         mPostsContainer = (RelativeLayout) view.findViewById(R.id.posts_Container);
 
 
+
         view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
         initGoogleMap(savedInstanceState);
 
         return view;
     }
+
+
 
 
 
@@ -174,6 +181,30 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+
+        //onBackPressed
+        if (getView() == null){
+            return;
+        }
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    //handle back button's click listener
+
+                    if(mMapLayoutState == MAP_LAYOUT_STATE_EXPANDED){
+                        mMapLayoutState = MAP_LAYOUT_STATE_CONTRACTED;
+                        contractMapAnimation();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -208,44 +239,43 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
 
     //expand
-    private void expandMapAnimation(){
+    public static void expandMapAnimation(){
         ViewWeightAnimationWrapper mapAnimationWrapper = new ViewWeightAnimationWrapper(mMapContainer);
         ObjectAnimator mapAnimation = ObjectAnimator.ofFloat(mapAnimationWrapper,
                 "weight",
-                50,
+                0,
                 100);
-        mapAnimation.setDuration(800);
+        mapAnimation.setDuration(600);
 
         ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mPostsContainer);
         ObjectAnimator recyclerAnimation = ObjectAnimator.ofFloat(recyclerAnimationWrapper,
                 "weight",
-                50,
+                100,
                 0);
-        recyclerAnimation.setDuration(800);
+        recyclerAnimation.setDuration(600);
 
         recyclerAnimation.start();
         mapAnimation.start();
     }
 
-    private void contractMapAnimation(){
+    public static void contractMapAnimation(){
         ViewWeightAnimationWrapper mapAnimationWrapper = new ViewWeightAnimationWrapper(mMapContainer);
         ObjectAnimator mapAnimation = ObjectAnimator.ofFloat(mapAnimationWrapper,
                 "weight",
                 100,
-                50);
-        mapAnimation.setDuration(800);
+                0);
+        mapAnimation.setDuration(200);
 
         ViewWeightAnimationWrapper recyclerAnimationWrapper = new ViewWeightAnimationWrapper(mPostsContainer);
         ObjectAnimator recyclerAnimation = ObjectAnimator.ofFloat(recyclerAnimationWrapper,
                 "weight",
                 0,
-                50);
-        recyclerAnimation.setDuration(800);
+                100);
+        recyclerAnimation.setDuration(200);
 
         recyclerAnimation.start();
         mapAnimation.start();
     }
-
 
     @Override
     public void onClick(View v) {
@@ -280,7 +310,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 //        startActivity(new Intent(getActivity(), LoginActivity.class));
 //        getActivity().finish();
 //    }
-
 
 
 

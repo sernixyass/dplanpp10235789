@@ -1,8 +1,12 @@
 package Adapter;
 
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,21 +14,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpoolingappv1.HomeFragment;
 import com.example.carpoolingappv1.R;
+import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
 
 import java.util.List;
 import java.util.zip.Inflater;
 
 import Model.ListItem;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
     private HomeFragment context;
     private List<ListItem> listItem;
     private static final String TAG = "MyAdapter";
+
+    //map
+    //private RelativeLayout mMapContainer;
+    //private RelativeLayout mPostsContainer;
+
+
+    //HomeFragment homeFraClass = new HomeFragment();
+
+
 
     public MyAdapter (HomeFragment context , List listitem){
         this.context=context;
@@ -39,6 +54,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_row,viewGroup,false);
+
+
+
+        //mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
+        //mPostsContainer = (RelativeLayout) view.findViewById(R.id.posts_Container);
+
         return new ViewHolder(view);
     }
 
@@ -46,27 +67,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     //link viewHolder with adapter
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder viewHolder, int i) {
+
         ListItem item = listItem.get(i);
         viewHolder.startPiont.setText(item.getStartingPoint());
         viewHolder.startPiont.setText(item.getEndPoint());
 
-        viewHolder.takeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG,"you clicked on take button");
+        viewHolder.cardViewRow.setOnClickListener(this);
 
-               // Toast.makeText(context, "Take Button Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        viewHolder.takeButton.setOnClickListener(this);
 
-        viewHolder.joinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG,"you clicked on JOIN button");
-
-                //Toast.makeText(context, "Join Button Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        viewHolder.joinButton.setOnClickListener(this);
 
     }
 
@@ -77,6 +87,38 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return listItem.size();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cardView:{
+
+                Log.d(TAG,"you clicked on ITEEEEEEEEEEEEEEEEEM");
+
+                if(HomeFragment.mMapLayoutState == HomeFragment.MAP_LAYOUT_STATE_CONTRACTED){
+                    HomeFragment.mMapLayoutState = HomeFragment.MAP_LAYOUT_STATE_EXPANDED;
+                    HomeFragment.expandMapAnimation();
+                }
+                else if(HomeFragment.mMapLayoutState == HomeFragment.MAP_LAYOUT_STATE_EXPANDED){
+                    HomeFragment.mMapLayoutState = HomeFragment.MAP_LAYOUT_STATE_CONTRACTED;
+                    HomeFragment.contractMapAnimation();
+                }
+                break;
+            }
+            case R.id.joinBut:{
+
+                Log.d(TAG,"you clicked on JOIN button");
+
+                break;
+            }
+            case R.id.takeBut:{
+                Log.d(TAG,"you clicked on take button");
+
+                //final Dialog dialog = new Dialog(activity);
+                //dialog.setContentView(R.layout.list_row);
+                break;
+            }
+        }
+    }
 
     //hold all the itemes in our list row
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,6 +126,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public Button joinButton;
         public TextView startPiont;
         public TextView arrivePoint;
+        public CardView cardViewRow;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +136,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             joinButton = itemView.findViewById(R.id.joinBut);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
+            cardViewRow = itemView.findViewById(R.id.cardView);
         }
     }
 }
