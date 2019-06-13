@@ -2,6 +2,9 @@ package com.example.carpoolingappv1;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -9,6 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +67,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,6 +102,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
         initGoogleMap(savedInstanceState);
+
+        FragmentActivity activity = (FragmentActivity) view.getContext();
+        FragmentManager manager = activity.getSupportFragmentManager();
 
         return view;
     }
@@ -294,6 +303,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             }
 
         }
+    }
+
+
+    public static void showSomething(){
+        //FragmentActivity activity = (FragmentActivity)
+
     }
 
 //    @Override

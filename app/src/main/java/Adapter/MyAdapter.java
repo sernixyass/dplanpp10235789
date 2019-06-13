@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpoolingappv1.HomeFragment;
+import com.example.carpoolingappv1.MainActivity;
 import com.example.carpoolingappv1.R;
 import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
 
@@ -41,6 +44,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
 
 
+
+
     public MyAdapter (HomeFragment context , List listitem){
         this.context=context;
         this.listItem=listitem;
@@ -54,6 +59,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_row,viewGroup,false);
+
 
 
 
@@ -113,7 +119,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             case R.id.takeBut:{
                 Log.d(TAG,"you clicked on take button");
 
-                //final Dialog dialog = new Dialog(activity);
+
+                HomeFragment.showSomething();
+                //final Dialog dialog = new Dialog(getActivity());
                 //dialog.setContentView(R.layout.list_row);
                 break;
             }
@@ -127,6 +135,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public TextView startPiont;
         public TextView arrivePoint;
         public CardView cardViewRow;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
