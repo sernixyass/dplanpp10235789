@@ -1,41 +1,21 @@
 package Adapter;
 
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.carpoolingappv1.ChatFragment;
 import com.example.carpoolingappv1.HomeFragment;
-import com.example.carpoolingappv1.LoginActivity;
-import com.example.carpoolingappv1.MainActivity;
 import com.example.carpoolingappv1.R;
-import com.example.carpoolingappv1.RidePostActivity;
 import com.example.carpoolingappv1.RidePostFragment;
-import com.example.carpoolingappv1.SignupActivity;
-import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.zip.Inflater;
 
 import Model.ListItem;
 
