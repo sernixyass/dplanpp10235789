@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPostActivity"
+
+    >
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_check"
+        android:layout_margin="32dp"
+        android:id="@+id/btn_conform_add"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edit_start_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Point"
+            android:inputType="text"
+            android:drawableRight="@drawable/ic_gps"
+            />
+        <EditText
+            android:id="@+id/edit_end_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Point"
+            android:inputType="text"
+
+            />
+        </LinearLayout>
+
+
+</RelativeLayout>

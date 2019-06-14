@@ -11,6 +11,7 @@ public class ListItem {
         this.endPoint = endPoint;
     }
 
+
     public String getStartingPoint() {
         return startingPoint;
     }

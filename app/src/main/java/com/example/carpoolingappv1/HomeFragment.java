@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,13 +46,13 @@ import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 public class HomeFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 //    implements View.OnClickListener
 
+
+    public static final int ADD_POST_REQUEST = 1;
     private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter ;
     private List<ListItem> mListItems;
-
-
-
+    private FloatingActionButton buttonAddPost;
 
     //MAP
     public MapView mMapView;
@@ -82,18 +84,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
         mListItems=new ArrayList<>();
 
-        for (int i =0 ; i<10 ; i++){
-            ListItem item = new ListItem(
-                    "StartPoint" + (i+1),
-                    "endingPoint");
-            mListItems.add(item);
-        }
-
-        mAdapter = new MyAdapter(this,mListItems);
-        mRecyclerView.setAdapter(mAdapter);
 
 
         //map
+        mMapView =  view.findViewById(R.id.mapHome);
+        mMapContainer =  view.findViewById(R.id.map_container);
+        mPostsContainer =  view.findViewById(R.id.posts_Container);
+
+
+
         /*
         mMapView = (MapView) view.findViewById(R.id.mapHome);
         mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
@@ -102,6 +101,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
         initGoogleMap(savedInstanceState);
+
+        FragmentActivity activity = (FragmentActivity) view.getContext();
+        FragmentManager manager = activity.getSupportFragmentManager();
+
+        //floating button
+        buttonAddPost = view.findViewById(R.id.btn_add_Post);
+        buttonAddPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddPostActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         return view;
     }
@@ -306,6 +320,38 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 //        getActivity().finish();
 //    }
 
+
+
+    //floating
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+
+        ListItem poste = new ListItem(data.getStringExtra(AddPostActivity.EXTRA_STARTpOINT),data.getStringExtra(AddPostActivity.EXTRA_ENDpOINT));
+        mListItems.add(poste);
+        mAdapter = new MyAdapter(this,mListItems);
+        mRecyclerView.setAdapter(mAdapter);
+        //hna 7at insert fi base de donnes
+        Toast.makeText(getActivity(),"poste add in DB",Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(getActivity(),"poste not add in DB",Toast.LENGTH_SHORT).show();
+
+
+
+
+   /* //retriving data from addpostact and creating new item
+    Bundle b = new Bundle();
+    ListItem item = new ListItem(b.getString("EXTRA_STARTpOINT") , b.getString("EXTRA_ENDpOINT"));
+    mListItems.add(item);
+
+    mAdapter = new MyAdapter(this,mListItems);
+    //mAdapter.notifyItemInserted(mListItems.size()-1);
+    mRecyclerView.setAdapter(mAdapter);
+    mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    Toast.makeText(getActivity(), "add", Toast.LENGTH_SHORT).show();*/
+
+}
 
 
 }

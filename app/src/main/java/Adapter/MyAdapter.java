@@ -67,13 +67,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         ListItem item = listItem.get(i);
         viewHolder.startPiont.setText(item.getStartingPoint());
-        viewHolder.startPiont.setText(item.getEndPoint());
+        viewHolder.arrivePoint.setText(item.getEndPoint());
 
         viewHolder.cardViewRow.setOnClickListener(this);
 
         viewHolder.takeButton.setOnClickListener(this);
 
         viewHolder.joinButton.setOnClickListener(this);
+
+
+
 
     }
 
