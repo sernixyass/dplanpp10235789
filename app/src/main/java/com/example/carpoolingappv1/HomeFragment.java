@@ -88,8 +88,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
         //map
         mMapView =  view.findViewById(R.id.mapHome);
-        mMapContainer =  view.findViewById(R.id.map_container);
-        mPostsContainer =  view.findViewById(R.id.posts_Container);
+        //mMapContainer =  view.findViewById(R.id.map_container);
+        //mPostsContainer =  view.findViewById(R.id.posts_Container);
 
 
 
