@@ -55,16 +55,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     //MAP
     public MapView mMapView;
     GoogleMap mapH;
-    public static RelativeLayout mMapContainer;
-    public static RelativeLayout mPostsContainer;
+    //public static RelativeLayout mMapContainer;
+    //public static RelativeLayout mPostsContainer;
 
 
 
 
+    /*
     public static final int MAP_LAYOUT_STATE_CONTRACTED = 0;
     public static final int MAP_LAYOUT_STATE_EXPANDED = 1;
     public static int mMapLayoutState = 0;
-
+*/
 
 
 
@@ -93,43 +94,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
 
         //map
+        /*
         mMapView = (MapView) view.findViewById(R.id.mapHome);
         mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
         mPostsContainer = (RelativeLayout) view.findViewById(R.id.posts_Container);
-
-
-
+        */
         view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
         initGoogleMap(savedInstanceState);
 
-        FragmentActivity activity = (FragmentActivity) view.getContext();
-        FragmentManager manager = activity.getSupportFragmentManager();
-
         return view;
     }
-
-
-
-
-
-/*
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // *** IMPORTANT ***
-        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
-        // objects or sub-Bundles.
-        Bundle mapViewBundle = null;
-        if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
-        }
-
-        mMapView.onCreate(mapViewBundle);
-
-        mMapView.getMapAsync(this);
-    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -204,9 +179,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     //handle back button's click listener
 
-                    if(mMapLayoutState == MAP_LAYOUT_STATE_EXPANDED){
-                        mMapLayoutState = MAP_LAYOUT_STATE_CONTRACTED;
-                        contractMapAnimation();
+                    //remove post fragment opened at the top of the home Fragment
+                    Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_Post_container);
+                    if (fragment != null){
+                        getFragmentManager().beginTransaction().remove(fragment).commit();
                     }
 
                     return true;
@@ -247,6 +223,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 
 
+    /*
     //expand
     public static void expandMapAnimation(){
         ViewWeightAnimationWrapper mapAnimationWrapper = new ViewWeightAnimationWrapper(mMapContainer);
@@ -285,12 +262,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         recyclerAnimation.start();
         mapAnimation.start();
     }
+*/
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_full_screen_map:{
 
+                /*
                 if(mMapLayoutState == MAP_LAYOUT_STATE_CONTRACTED){
                     mMapLayoutState = MAP_LAYOUT_STATE_EXPANDED;
                     expandMapAnimation();
@@ -299,6 +278,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     mMapLayoutState = MAP_LAYOUT_STATE_CONTRACTED;
                     contractMapAnimation();
                 }
+                */
                 break;
             }
 

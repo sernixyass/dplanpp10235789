@@ -4,10 +4,13 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,12 +23,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.carpoolingappv1.ChatFragment;
 import com.example.carpoolingappv1.HomeFragment;
+import com.example.carpoolingappv1.LoginActivity;
 import com.example.carpoolingappv1.MainActivity;
 import com.example.carpoolingappv1.R;
+import com.example.carpoolingappv1.RidePostActivity;
+import com.example.carpoolingappv1.RidePostFragment;
+import com.example.carpoolingappv1.SignupActivity;
 import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.Inflater;
 
 import Model.ListItem;
@@ -42,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     //HomeFragment homeFraClass = new HomeFragment();
 
+    public RecyclerView recyclerView;
 
 
 
@@ -61,6 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 .inflate(R.layout.list_row,viewGroup,false);
 
 
+        recyclerView = view.findViewById(R.id.recyclerViewId);
 
 
         //mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
@@ -100,14 +111,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
                 Log.d(TAG,"you clicked on ITEEEEEEEEEEEEEEEEEM");
 
-                if(HomeFragment.mMapLayoutState == HomeFragment.MAP_LAYOUT_STATE_CONTRACTED){
+                Fragment fra;
+                fra = new RidePostFragment();
+
+
+                context.getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
+                        fra).commit();
+
+
+
+                //context.startActivity(new Intent(context.getActivity(), RidePostActivity.class));
+
+
+
+                //animation
+                /*if(HomeFragment.mMapLayoutState == HomeFragment.MAP_LAYOUT_STATE_CONTRACTED){
                     HomeFragment.mMapLayoutState = HomeFragment.MAP_LAYOUT_STATE_EXPANDED;
                     HomeFragment.expandMapAnimation();
                 }
                 else if(HomeFragment.mMapLayoutState == HomeFragment.MAP_LAYOUT_STATE_EXPANDED){
                     HomeFragment.mMapLayoutState = HomeFragment.MAP_LAYOUT_STATE_CONTRACTED;
                     HomeFragment.contractMapAnimation();
-                }
+                }*/
                 break;
             }
             case R.id.joinBut:{
@@ -127,6 +152,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             }
         }
     }
+
 
     //hold all the itemes in our list row
     public class ViewHolder extends RecyclerView.ViewHolder {

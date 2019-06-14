@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new CarteFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new ProfileFragment();
+                            selectedFragment = new RidePostFragment();
                             break;
                     }
 
