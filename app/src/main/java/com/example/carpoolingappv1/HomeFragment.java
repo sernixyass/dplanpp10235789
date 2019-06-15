@@ -27,6 +27,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.carpoolingappv1.util.ViewWeightAnimationWrapper;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,9 +37,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Adapter.MyAdapter;
 import Model.ListItem;
@@ -53,6 +64,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     private RecyclerView.Adapter mAdapter ;
     private List<ListItem> mListItems;
     private FloatingActionButton buttonAddPost;
+    //private MyAdapter adapter;
+
+    private FirebaseRecyclerAdapter adapterFire;
 
     //MAP
     public MapView mMapView;
@@ -86,6 +100,31 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
 
 
+        fetch();
+
+/*
+        final DatabaseReference nm= FirebaseDatabase.getInstance().getReference().child("posts");
+        nm.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
+                        ListItem l=npsnapshot.getValue(ListItem.class);
+                        mListItems.add(l);
+                    }
+                    mAdapter=new MyAdapter(mListItems);
+                    mRecyclerView.setAdapter(mAdapter);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+*/
+
         //map
         mMapView =  view.findViewById(R.id.mapHome);
         //mMapContainer =  view.findViewById(R.id.map_container);
@@ -110,14 +149,70 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         buttonAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddPostActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getActivity(), AddPostActivity.class);
+                startActivity(new Intent(getActivity(), AddPostActivity.class));
+
+                /*
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", databaseReference.getKey());
+                map.put("title", "test1");
+                map.put("desc", "test2");
+
+                databaseReference.setValue(map);
+                */
             }
         });
 
 
 
         return view;
+    }
+
+
+    private void fetch() {
+        Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("posts");
+
+        FirebaseRecyclerOptions<ListItem> options =
+                new FirebaseRecyclerOptions.Builder<ListItem>()
+                        .setQuery(query, new SnapshotParser<ListItem>() {
+                            @NonNull
+                            @Override
+                            public ListItem parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new ListItem(
+                                        snapshot.child("startingPoint").getValue().toString(),
+                                        snapshot.child("endingPoint").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapterFire = new FirebaseRecyclerAdapter<ListItem, MyAdapter.ViewHolder>(options) {
+            @Override
+            public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.list_row, parent, false);
+
+                return new MyAdapter.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(MyAdapter.ViewHolder holder, final int position, ListItem model) {
+                holder.setStartPiont(model.getStartingPoint());
+                holder.setArrivePoint(model.getEndPoint());
+
+                /*holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+            }
+
+        };
+        mRecyclerView.setAdapter(adapterFire);
     }
 
     @Override
@@ -210,12 +305,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public void onStart() {
         super.onStart();
         mMapView.onStart();
+        adapterFire.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mMapView.onStop();
+        adapterFire.stopListening();
     }
 
     @Override
@@ -278,6 +375,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 */
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -328,10 +426,11 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
 
-        ListItem poste = new ListItem(data.getStringExtra(AddPostActivity.EXTRA_STARTpOINT),data.getStringExtra(AddPostActivity.EXTRA_ENDpOINT));
+        /*ListItem poste = new ListItem(data.getStringExtra(AddPostActivity.EXTRA_STARTpOINT),data.getStringExtra(AddPostActivity.EXTRA_ENDpOINT));
         mListItems.add(poste);
         mAdapter = new MyAdapter(this,mListItems);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);*/
+
         //hna 7at insert fi base de donnes
         Toast.makeText(getActivity(),"poste add in DB",Toast.LENGTH_SHORT).show();
 

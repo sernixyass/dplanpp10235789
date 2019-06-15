@@ -10,6 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.support.design.widget.FloatingActionButton;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class AddPostActivity extends AppCompatActivity {
     public static final String EXTRA_STARTpOINT =
@@ -47,7 +53,7 @@ public class AddPostActivity extends AppCompatActivity {
     private void savePoste() {
         String startP = startingPoint.getText().toString();
         String endP = endingPoint.getText().toString();
-        Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
             Toast.makeText(this, "please insert a startingPoint and endingPoint", Toast.LENGTH_SHORT).show();
             return;
@@ -55,14 +61,21 @@ public class AddPostActivity extends AppCompatActivity {
         }
         //save to firebase table .............................
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", databaseReference.getKey());
+        map.put("startingPoint", startP);
+        map.put("endingPoint", endP);
+
+        databaseReference.setValue(map);
 
 
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString(EXTRA_STARTpOINT, startP);
         bundle.putString(EXTRA_ENDpOINT, endP);
         Toast.makeText(this, "setting bundele", Toast.LENGTH_SHORT).show();
         HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(bundle);
+        homeFragment.setArguments(bundle);*/
         finish();
 
 

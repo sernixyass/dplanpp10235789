@@ -42,6 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     }
 
 
+    public MyAdapter(List<ListItem> listData) {
+        this.listItem = listData;
+    }
+
     //inflating the view
     @NonNull
     @Override
@@ -138,7 +142,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
 
     //hold all the itemes in our list row
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public Button takeButton;
         public Button joinButton;
         public TextView startPiont;
@@ -155,6 +159,46 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             cardViewRow = itemView.findViewById(R.id.cardView);
+        }
+
+        public Button getTakeButton() {
+            return takeButton;
+        }
+
+        public void setTakeButton(Button takeButton) {
+            this.takeButton = takeButton;
+        }
+
+        public Button getJoinButton() {
+            return joinButton;
+        }
+
+        public void setJoinButton(Button joinButton) {
+            this.joinButton = joinButton;
+        }
+
+        public TextView getStartPiont() {
+            return startPiont;
+        }
+
+        public void setStartPiont(String startPiont) {
+            this.startPiont.setText(startPiont);
+        }
+
+        public TextView getArrivePoint() {
+            return arrivePoint;
+        }
+
+        public void setArrivePoint(String arrivePoint) {
+            this.arrivePoint.setText(arrivePoint);
+        }
+
+        public CardView getCardViewRow() {
+            return cardViewRow;
+        }
+
+        public void setCardViewRow(CardView cardViewRow) {
+            this.cardViewRow = cardViewRow;
         }
     }
 }
