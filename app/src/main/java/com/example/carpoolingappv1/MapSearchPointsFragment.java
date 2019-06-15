@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,42 +21,36 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
-public class RidePostFragment extends Fragment implements OnMapReadyCallback {
+public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallback {
 
-    //MAP
-    public MapView mMapView;
-    GoogleMap mapH;
-
+    //searching MAP
+    public MapView mMapViewS;
+    public static GoogleMap mapS;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_ride_post,container,false);
+        View view = inflater.inflate(R.layout.fragment_map_search_points,container,false);
 
 
-
-        mMapView = (MapView) view.findViewById(R.id.mapPost);
-
-
-
+        //map search
+        mMapViewS =  view.findViewById(R.id.mapSearch);
         initGoogleMap(savedInstanceState);
 
 
         return view;
     }
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        mapH = googleMap;
+        mapS = googleMap;
 
         //Do your stuff here
         LatLng somewhere = new  LatLng(0,10);
-        mapH.addMarker(new MarkerOptions().position(somewhere).title("Marker Title").snippet("Marker Description"));
+        mapS.addMarker(new MarkerOptions().position(somewhere).title("Marker Title").snippet("Marker Description"));
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -69,7 +65,17 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        mapH.setMyLocationEnabled(true);
+        mapS.setMyLocationEnabled(true);
+
+    }
+
+    public static void MoveCamera(LatLng latLng,float zoom,String title){
+        mapS.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
+
+        MarkerOptions options = new MarkerOptions()
+                .position(latLng)
+                .title(title);
+        mapS.addMarker(options);
 
     }
 
@@ -82,12 +88,10 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
 
-        mMapView.onCreate(mapViewBundle);
+        mMapViewS.onCreate(mapViewBundle);
 
-        mMapView.getMapAsync(this);
+        mMapViewS.getMapAsync(this);
     }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -99,7 +103,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
         }
 
-        mMapView.onSaveInstanceState(mapViewBundle);
+        mMapViewS.onSaveInstanceState(mapViewBundle);
     }
 
 
@@ -107,40 +111,37 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
-        mMapView.onResume();
-
+        mMapViewS.onResume();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mMapView.onStart();
+        mMapViewS.onStart();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mMapView.onStop();
+        mMapViewS.onStop();
     }
 
     @Override
     public void onPause() {
-        mMapView.onPause();
+        mMapViewS.onPause();
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
-        mMapView.onDestroy();
+        mMapViewS.onDestroy();
         super.onDestroy();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mMapView.onLowMemory();
+        mMapViewS.onLowMemory();
     }
-
-
 
 }
