@@ -1,5 +1,6 @@
 package com.example.carpoolingappv1;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.support.design.widget.FloatingActionButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -67,7 +70,21 @@ public class AddPostActivity extends AppCompatActivity {
         map.put("startingPoint", startP);
         map.put("endingPoint", endP);
 
-        databaseReference.setValue(map);
+        databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    finish();
+
+                }else {
+
+
+                    return;
+                }
+
+            }
+        });
 
 
         /*Bundle bundle = new Bundle();
@@ -76,7 +93,6 @@ public class AddPostActivity extends AppCompatActivity {
         Toast.makeText(this, "setting bundele", Toast.LENGTH_SHORT).show();
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setArguments(bundle);*/
-        finish();
 
 
     /*    Intent data = new Intent(this,HomeFragment.class);

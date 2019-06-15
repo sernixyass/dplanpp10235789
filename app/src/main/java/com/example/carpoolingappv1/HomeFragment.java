@@ -203,12 +203,19 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
 
-                /*holder.root.setOnClickListener(new View.OnClickListener() {
+                holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+                        Fragment fra;
+                        fra = new RidePostFragment();
+
+
+                        getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
+                                fra).commit();
                     }
-                });*/
+                });
             }
 
         };
