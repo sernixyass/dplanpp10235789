@@ -27,7 +27,7 @@
             android:orientation="vertical"
             android:gravity="top|center_horizontal"
             android:padding="16dp">
-
+<!--
         <EditText
             android:id="@+id/edit_start_point"
             android:layout_width="match_parent"
@@ -44,8 +44,18 @@
             android:hint="End Point"
             android:inputType="text"
             android:imeOptions="actionSearch"
-
             />
+            -->
+        <fragment
+            android:id="@+id/startPoint_autocomplete_fragment"
+            android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <fragment
+            android:id="@+id/endPoint_autocomplete_fragment"
+            android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <FrameLayout
             android:id="@+id/fragment_map_search"

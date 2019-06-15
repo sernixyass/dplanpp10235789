@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.design.widget.FloatingActionButton;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,6 +29,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.compat.Place;
+import com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment;
+import com.google.android.libraries.places.compat.ui.PlaceSelectionListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -44,20 +48,31 @@ import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
 public class AddPostActivity extends AppCompatActivity  {
 
-    private EditText startingPoint;
-    private EditText endingPoint;
+    //private EditText startingPoint;
+    //private EditText endingPoint;
+
+    private String startingPointText;
+    private String endingPointText;
+
     private FloatingActionButton confermeAdd;
 
     public final float DEFAULT_ZOOM= 10.0f;
 
+
+
+
+    //m
+    private LatLng sydney = new LatLng(-8.579892, 116.095239);
+    //private MapFragment mapFragment;
+    public MapView mMapViewS2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        startingPoint = findViewById(R.id.edit_start_point);
-        endingPoint = findViewById(R.id.edit_end_point);
+        //startingPoint = findViewById(R.id.startPoint_autocomplete_fragment);
+        //endingPoint = findViewById(R.id.endPoint_autocomplete_fragment);
         confermeAdd=findViewById(R.id.btn_conform_add);
         confermeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,16 +87,17 @@ public class AddPostActivity extends AppCompatActivity  {
                 new MapSearchPointsFragment()).commit();
 
 
-
         init();
 
+
+        setupAutoCompleteFragment();
     }
 
 
 
 
     private void init(){
-        startingPoint.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        /*startingPoint.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH
@@ -106,7 +122,7 @@ public class AddPostActivity extends AppCompatActivity  {
                 }
                 return false;
             }
-        });
+        });*/
     }
 
 
@@ -131,10 +147,54 @@ public class AddPostActivity extends AppCompatActivity  {
         }
 
     }
+    private void geoLocateWithLL(LatLng searchingField){
+
+        MapSearchPointsFragment.MoveCamera(searchingField, DEFAULT_ZOOM,"Starting Point");
+
+    }
+
+    private void setupAutoCompleteFragment() {
+        PlaceAutocompleteFragment autocompleteFragmentStartPoint = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.startPoint_autocomplete_fragment);
+        autocompleteFragmentStartPoint.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                //sydney = place.getLatLng();
+                //mapFragment.getMapAsync(MapsActivity.this);
+
+                geoLocateWithLL(place.getLatLng());
+                startingPointText = place.getName().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.e("Error", status.getStatusMessage());
+            }
+        });
+
+        PlaceAutocompleteFragment autocompleteFragmentEndPoint = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.endPoint_autocomplete_fragment);
+        autocompleteFragmentEndPoint.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                //sydney = place.getLatLng();
+                //mapFragment.getMapAsync(MapsActivity.this);
+
+                geoLocateWithLL(place.getLatLng());
+                endingPointText = place.getName().toString();
+
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.e("Error", status.getStatusMessage());
+            }
+        });
+    }
 
     private void savePoste() {
-        String startP = startingPoint.getText().toString();
-        String endP = endingPoint.getText().toString();
+        String startP = startingPointText;
+        String endP = endingPointText;
         //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
             Toast.makeText(this, "please insert a startingPoint and endingPoint", Toast.LENGTH_SHORT).show();

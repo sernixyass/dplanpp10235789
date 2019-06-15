@@ -7,10 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +20,9 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.compat.Place;
+import com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment;
+import com.google.android.libraries.places.compat.ui.PlaceSelectionListener;
 
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
@@ -42,6 +47,24 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
 
         return view;
     }
+
+    /*private void setupAutoCompleteFragment() {
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                sydney = place.getLatLng();
+                mapFragment.getMapAsync(this);
+
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.e("Error", status.getStatusMessage());
+            }
+        });
+    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
