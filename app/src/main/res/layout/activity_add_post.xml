@@ -22,11 +22,12 @@
 
 
     <LinearLayout
+            android:backgroundTint="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="top|center_horizontal"
-            android:padding="16dp">
+            android:padding="0dp">
 <!--
         <EditText
             android:id="@+id/edit_start_point"
@@ -47,11 +48,14 @@
             />
             -->
         <fragment
+            android:layout_margin="10dp"
             android:id="@+id/startPoint_autocomplete_fragment"
             android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <fragment
+            android:layout_margin="10dp"
+
             android:id="@+id/endPoint_autocomplete_fragment"
             android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"

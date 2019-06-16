@@ -26,6 +26,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -59,7 +60,12 @@ public class AddPostActivity extends AppCompatActivity  {
     public final float DEFAULT_ZOOM= 10.0f;
 
 
+    //markers 2
+    public MarkerOptions markerOStart;
+    public MarkerOptions markerOEnd;
 
+    public Marker markerStart;
+    public Marker markerEnd;
 
     //m
     private LatLng sydney = new LatLng(-8.579892, 116.095239);
@@ -147,22 +153,22 @@ public class AddPostActivity extends AppCompatActivity  {
         }
 
     }
-    private void geoLocateWithLL(LatLng searchingField){
-
-        MapSearchPointsFragment.MoveCamera(searchingField, DEFAULT_ZOOM,"Starting Point");
+    private void geoLocateWithLL(String markerKey,LatLng searchingField){
+        MapSearchPointsFragment.MoveCameraAndMarker(markerKey,searchingField, DEFAULT_ZOOM);
 
     }
 
     private void setupAutoCompleteFragment() {
         PlaceAutocompleteFragment autocompleteFragmentStartPoint = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.startPoint_autocomplete_fragment);
+        autocompleteFragmentStartPoint.setHint("Start; Search for cite, rue...");
         autocompleteFragmentStartPoint.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 //sydney = place.getLatLng();
                 //mapFragment.getMapAsync(MapsActivity.this);
 
-                geoLocateWithLL(place.getLatLng());
+                geoLocateWithLL("start",place.getLatLng());
                 startingPointText = place.getName().toString();
             }
 
@@ -174,14 +180,19 @@ public class AddPostActivity extends AppCompatActivity  {
 
         PlaceAutocompleteFragment autocompleteFragmentEndPoint = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.endPoint_autocomplete_fragment);
+        autocompleteFragmentEndPoint.setHint("End  ; Search for cite, rue...");
+
         autocompleteFragmentEndPoint.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 //sydney = place.getLatLng();
                 //mapFragment.getMapAsync(MapsActivity.this);
 
-                geoLocateWithLL(place.getLatLng());
+                geoLocateWithLL("end",place.getLatLng());
                 endingPointText = place.getName().toString();
+
+
+                //MapSearchPointsFragment.calculateDirections(markerStart,markerEnd);
 
             }
 
