@@ -39,12 +39,22 @@
                     android:id="@+id/endTxtP"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.3"
                     android:text="Arrive"
                     android:textSize="18sp"
                     android:layout_gravity="center"
                     android:paddingRight="15dp"
                     android:drawableLeft="@drawable/ic_endpoint"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/placesTxtP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="5"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:paddingRight="15dp"
                     android:gravity="center"/>
 
             </LinearLayout>

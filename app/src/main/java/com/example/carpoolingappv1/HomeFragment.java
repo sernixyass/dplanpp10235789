@@ -183,7 +183,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                             public ListItem parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new ListItem(
                                         snapshot.child("startingPoint").getValue().toString(),
-                                        snapshot.child("endingPoint").getValue().toString());
+                                        snapshot.child("endingPoint").getValue().toString(),
+                                        snapshot.child("places").getValue(Integer.class));
                             }
                         })
                         .build();
@@ -202,6 +203,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             protected void onBindViewHolder(MyAdapter.ViewHolder holder, final int position, ListItem model) {
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
+                holder.setPlaces(model.getPlaces());
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -54,6 +54,8 @@ public class AddPostActivity extends AppCompatActivity  {
 
     private String startingPointText;
     private String endingPointText;
+    private Integer placesText;
+
 
     private FloatingActionButton confermeAdd;
 
@@ -206,6 +208,9 @@ public class AddPostActivity extends AppCompatActivity  {
     private void savePoste() {
         String startP = startingPointText;
         String endP = endingPointText;
+        Integer places = placesText;
+        places = 3;
+
         //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
             Toast.makeText(this, "please insert a startingPoint and endingPoint", Toast.LENGTH_SHORT).show();
@@ -219,6 +224,7 @@ public class AddPostActivity extends AppCompatActivity  {
         map.put("id", databaseReference.getKey());
         map.put("startingPoint", startP);
         map.put("endingPoint", endP);
+        map.put("places", places);
 
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
 

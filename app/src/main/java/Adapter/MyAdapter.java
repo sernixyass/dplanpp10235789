@@ -42,9 +42,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     }
 
 
-    public MyAdapter(List<ListItem> listData) {
+    /*public MyAdapter(List<ListItem> listData) {
         this.listItem = listData;
-    }
+    }*/
 
     //inflating the view
     @NonNull
@@ -72,6 +72,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         ListItem item = listItem.get(i);
         viewHolder.startPiont.setText(item.getStartingPoint());
         viewHolder.arrivePoint.setText(item.getEndPoint());
+        viewHolder.places.setText(item.getPlaces());
+
 
         viewHolder.cardViewRow.setOnClickListener(this);
 
@@ -147,6 +149,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public Button joinButton;
         public TextView startPiont;
         public TextView arrivePoint;
+        public TextView places;
         public CardView cardViewRow;
 
 
@@ -158,7 +161,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             joinButton = itemView.findViewById(R.id.joinBut);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
+            places = itemView.findViewById(R.id.placesTxtP);
             cardViewRow = itemView.findViewById(R.id.cardView);
+        }
+
+        public TextView getPlaces() {
+            return places;
+        }
+
+        public void setPlaces(Integer places) {
+            this.places.setText(places.toString());
         }
 
         public Button getTakeButton() {
