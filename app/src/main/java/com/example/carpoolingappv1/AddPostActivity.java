@@ -1,6 +1,7 @@
 package com.example.carpoolingappv1;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -85,7 +86,9 @@ public class AddPostActivity extends AppCompatActivity  {
         confermeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePoste();
+
+                setingDate();
+                //savePoste();
             }
         });
 
@@ -101,7 +104,10 @@ public class AddPostActivity extends AppCompatActivity  {
         setupAutoCompleteFragment();
     }
 
-
+    private void setingDate() {
+        Intent intent = new Intent(getApplicationContext(),CompeltPosting.class);
+        startActivity(intent);
+    }
 
 
     private void init(){
