@@ -53,10 +53,12 @@ public class AddPostActivity extends AppCompatActivity  {
     //private EditText startingPoint;
     //private EditText endingPoint;
 
-    private String startingPointText;
-    private String endingPointText;
+    public static String startingPointText;
+    public static String endingPointText;
     private Integer placesText;
 
+    public static LatLng endingPointLL;
+    public static LatLng startingPointLL;
 
     private FloatingActionButton confermeAdd;
 
@@ -178,6 +180,7 @@ public class AddPostActivity extends AppCompatActivity  {
 
                 geoLocateWithLL("start",place.getLatLng());
                 startingPointText = place.getName().toString();
+                startingPointLL = place.getLatLng();
             }
 
             @Override
@@ -198,6 +201,7 @@ public class AddPostActivity extends AppCompatActivity  {
 
                 geoLocateWithLL("end",place.getLatLng());
                 endingPointText = place.getName().toString();
+                endingPointLL = place.getLatLng();
 
 
                 //MapSearchPointsFragment.calculateDirections(markerStart,markerEnd);
@@ -215,7 +219,6 @@ public class AddPostActivity extends AppCompatActivity  {
         String startP = startingPointText;
         String endP = endingPointText;
         Integer places = placesText;
-        places = 3;
 
         //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
