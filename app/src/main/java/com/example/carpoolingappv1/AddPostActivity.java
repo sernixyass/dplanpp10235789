@@ -86,7 +86,7 @@ public class AddPostActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
                 setingDate();
-                //savePoste();
+                savePoste();
             }
         });
 
@@ -218,6 +218,7 @@ public class AddPostActivity extends AppCompatActivity  {
             return;
             //this return without executing any code below
         }
+
         //save to firebase table .............................
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class CompeltPosting extends Activity {
+public class CompeltPosting extends Activity implements View.OnClickListener {
 
     private Button conferm ;
 
@@ -31,23 +31,40 @@ public class CompeltPosting extends Activity {
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
-        params.x= 0 ;
-        params.y=-20;
+        params.x= -020 ;
+        params.y=-0;
 
         getWindow().setAttributes(params);
 
 
 
-        conferm.findViewById(R.id.conferme_date_btn);
-       conferm.setOnClickListener(new View.OnClickListener() {
+       //conferm.findViewById(R.id.conferme_date_btn);
+       /*conferm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),AddPostActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
+    }
+
+    public void createPost(){
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case (R.id.conferme_date_btn):{
+
+                createPost();
+
+                break;
+            }
+
+        }
     }
 }
 
