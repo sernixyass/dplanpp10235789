@@ -90,7 +90,7 @@ public class AddPostActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
                 setingDate();
-                savePoste();
+                //savePoste();
             }
         });
 
