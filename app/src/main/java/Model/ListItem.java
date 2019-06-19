@@ -7,11 +7,12 @@ import java.util.Date;
 public class ListItem {
 
 
-
-    private String startingPoint ;
+ private String startingPoint ;
  private String endPoint ;
-    private Integer places;
+ private Integer places;
  private String postID;
+ private String accountIDPostedIt;
+
 
     private boolean isTaken;
 
@@ -19,7 +20,6 @@ public class ListItem {
 
     private LatLng tripPosition;
     private LatLng tripDestinationPosition;
-    //private String accountIDPostedIt;
     //private String accountIDTakedIt;
  //private String rideType;
  //private Date dateOfPosting;
@@ -45,13 +45,24 @@ public class ListItem {
  private Integer places;
  */
 
-    public ListItem(String startingPoint, String endPoint,Integer places,String postID,LatLng tripPosition,LatLng tripDestinationPosition) {
+    public ListItem(String startingPoint, String endPoint,Integer places,
+                    String postID,LatLng tripPosition,LatLng tripDestinationPosition,
+                    String accountIDPostedIt) {
         this.startingPoint = startingPoint;
         this.endPoint = endPoint;
         this.places = places;
         this.postID = postID;
         this.tripPosition = tripPosition;
         this.tripDestinationPosition = tripDestinationPosition;
+        this.accountIDPostedIt = accountIDPostedIt;
+    }
+
+    public String getAccountIDPostedIt() {
+        return accountIDPostedIt;
+    }
+
+    public void setAccountIDPostedIt(String accountIDPostedIt) {
+        this.accountIDPostedIt = accountIDPostedIt;
     }
 
     public Integer getPlaces() {

@@ -235,6 +235,7 @@ public class AddPostActivity extends AppCompatActivity  {
         map.put("endingPoint", endP);
         map.put("places", places);
 
+
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
 
             @Override

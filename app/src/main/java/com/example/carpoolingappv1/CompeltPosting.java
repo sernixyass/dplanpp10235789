@@ -97,6 +97,7 @@ public class CompeltPosting extends Activity {
         map.put("places", places);
         map.put("tripPosition", tripPos);
         map.put("tripDestinationPosition", tripDesPos);
+        map.put("accountIDPostedIt",MainActivity.mAuth.getCurrentUser().getUid());
 
 
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -119,4 +120,3 @@ public class CompeltPosting extends Activity {
     }
 
 }
-

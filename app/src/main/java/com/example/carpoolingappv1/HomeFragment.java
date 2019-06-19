@@ -187,7 +187,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("places").getValue(Integer.class),
                                         snapshot.child("id").getValue().toString(),
                                         snapshot.child("tripPos").getValue(LatLng.class),
-                                        snapshot.child("tripDesPos").getValue(LatLng.class));
+                                        snapshot.child("tripDesPos").getValue(LatLng.class),
+                                        snapshot.child("accountIDPostedIt").getValue().toString());
                             }
                         })
                         .build();

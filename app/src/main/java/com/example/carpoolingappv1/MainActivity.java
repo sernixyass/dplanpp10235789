@@ -32,7 +32,7 @@ import static com.example.carpoolingappv1.util.Constants.PERMISSIONS_REQUEST_ENA
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
 
     private boolean mLocationPermissionGranted = false;
 
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new CarteFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new RidePostFragment();
+                            selectedFragment = new ProfileFragment();
                             break;
                     }
 
