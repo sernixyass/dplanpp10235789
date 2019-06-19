@@ -7,6 +7,22 @@
     tools:context=".CompeltPosting"
     android:background="@drawable/pop_backg">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/C_P_places"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/conferme_date_btn"
         android:layout_width="wrap_content"
