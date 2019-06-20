@@ -175,7 +175,15 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
         final String fulNameS = fullName.getText().toString().trim();
 
 
-        final Integer phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+        final Integer phoneS;
+        if (phone.getText().toString() == ""){
+            phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+
+        }else {
+            phoneS = 0 ;
+
+        }
+
         final String bDateS = bdate.getText().toString().trim();
 
 

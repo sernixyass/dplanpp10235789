@@ -35,7 +35,9 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
     public EditText phone;
     public String wilayaS;
     public EditText carModel;
-    public EditText[] carKeys = new EditText[4];
+    public EditText carKey1;
+    public EditText carKey2;
+    public EditText carKey3;
 
 
     //date
@@ -60,16 +62,16 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
         mAuth = FirebaseAuth.getInstance();
 
 
-        email = findViewById(R.id.emailSignupPId);
-        password = findViewById(R.id.passwordSignupPId);
-        password2 = findViewById(R.id.passwordSignupPId2);
-        fullName = findViewById(R.id.fullNameSignupPId);
-        phone = findViewById(R.id.phoneSignupPId);
+        email = findViewById(R.id.emailSignupCId);
+        password = findViewById(R.id.passwordSignupCId);
+        password2 = findViewById(R.id.passwordSignupCId2);
+        fullName = findViewById(R.id.fullNameSignupCId);
+            phone = findViewById(R.id.phoneSignupCId);
         carModel =findViewById(R.id.carModelSignupId);
 
-        carKeys[1] = findViewById(R.id.carKey1SignupId);
-        carKeys[2] = findViewById(R.id.carKey2SignupId);
-        carKeys[3] = findViewById(R.id.carKey3SignupId);
+        carKey1 = findViewById(R.id.carKey1SignupId);
+        carKey2 = findViewById(R.id.carKey2SignupId);
+        carKey3 = findViewById(R.id.carKey3SignupId);
 
 
         findViewById(R.id.SignUpCBtnId).setOnClickListener(this);
@@ -168,13 +170,20 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
         final String carModelS = carModel.getText().toString().trim();
 
-        String carKey1 = carKeys[1].getText().toString().trim();
-        String carKey2 = carKeys[2].getText().toString().trim();
-        String carKey3 = carKeys[3].getText().toString().trim();
+        String carKey1S = carKey1.getText().toString().trim();
+        String carKey2S = carKey2.getText().toString().trim();
+        String carKey3S = carKey3.getText().toString().trim();
 
         final String carKey = carKey1 + " - " + carKey2 + " - " + carKey3;
 
-        final int phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+        final int phoneS;
+        if (phone.getText().toString()== ""){
+            phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+        }
+        else {
+            phoneS = 0;
+        }
+
         final String bDateS = bdate.getText().toString().trim();
 
 
