@@ -58,14 +58,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.SignUpTxtBtnId:
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-                finish();
+                //startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                //finish();
 
                 //Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 //startActivity(intent);
+                signUpButton();
                 break;
         }
 
+    }
+
+    public void signUpButton(){
+        Intent intent = new Intent(this.getApplicationContext(),ChoosingUserType.class);
+        startActivity(intent);
     }
 
     public void LoginUser() {
@@ -164,7 +170,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mCheckBox.setChecked(false);
         }
     }
-
 
 
 }

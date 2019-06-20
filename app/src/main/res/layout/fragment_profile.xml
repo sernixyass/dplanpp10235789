@@ -11,4 +11,11 @@
         android:textSize="40dp"
         android:layout_centerInParent="true" />
 
+    <Button
+        android:id="@+id/P_LogoutBtn"
+        android:layout_margin="20dp"
+        android:text="LOGOUT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
