@@ -226,6 +226,7 @@ public class AddPostActivity extends AppCompatActivity  {
             return;
             //this return without executing any code below
         }
+
         //save to firebase table .............................
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();

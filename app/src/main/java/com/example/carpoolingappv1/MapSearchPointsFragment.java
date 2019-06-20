@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,6 +46,8 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
 
     public static GeoApiContext mGeoApiContext = null;
 
+    public static Polyline mPolyline;
+
 
     //
     public static HashMap<String,Marker> hashMapMarker = new HashMap<>();
@@ -60,6 +63,8 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
         mMapViewS =  view.findViewById(R.id.mapSearch);
         initGoogleMap(savedInstanceState);
 
+
+        hashMapMarker.clear();
 
         return view;
     }
@@ -88,8 +93,8 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
         mapS = googleMap;
 
         //Do your stuff here
-        LatLng somewhere = new  LatLng(0,10);
-        mapS.addMarker(new MarkerOptions().position(somewhere).title("Marker Title").snippet("Marker Description"));
+        //LatLng somewhere = new  LatLng(0,10);
+        //mapS.addMarker(new MarkerOptions().position(somewhere).title("Marker Title").snippet("Marker Description"));
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -122,12 +127,27 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
         mapS.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
 
         //removing
-        if (hashMapMarker.get(key) !=null){
+        if (hashMapMarker.get(key) != null){
             Marker marker = hashMapMarker.get(key);
             marker.remove();
             hashMapMarker.remove(key);
+            /*if (key == "start"){
+                if (hashMapMarker.get("end") != null){
+                    Marker markerHelping = hashMapMarker.get("end");
+                    hashMapMarker.clear();
+                    hashMapMarker.put("end",markerHelping);
+                }
+            }
+            if (key == "end"){
+                if (hashMapMarker.get("start") != null){
+                    Marker markerHelping = hashMapMarker.get("start");
+                    hashMapMarker.clear();
+                    hashMapMarker.put("start",markerHelping);
+                }
+            }*/
         }
 
+        //Toast.makeText(carpoolingappv1.getAppContext(),"bbbb",Toast.LENGTH_SHORT);
 
         MarkerOptions options = new MarkerOptions()
                 .position(latLng);
@@ -173,16 +193,22 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
         }
     }
 
-    public static void calculateDirections(Marker markerStart,Marker markerEnd){
+    public static void calculateDirections(final Marker markerStart, final Marker markerEnd){
         //Log.d(TAG, "calculateDirections: calculating directions.");
 
         //Log.d("DURATION  ******       ","test 2");
+
+        //clear old polylines for creating the new one .. and retrieve the markers
+        mapS.clear();
+        mapS.addMarker(new MarkerOptions().position(markerStart.getPosition()));
+        mapS.addMarker(new MarkerOptions().position(markerEnd.getPosition()));
+
 
         com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
                 markerEnd.getPosition().latitude,
                 markerEnd.getPosition().longitude
         );
-        com.google.maps.model.LatLng startOrigine = new com.google.maps.model.LatLng(
+        final com.google.maps.model.LatLng startOrigine = new com.google.maps.model.LatLng(
                 markerStart.getPosition().latitude,
                 markerStart.getPosition().longitude
         );
@@ -203,8 +229,12 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
                 //Log.d(TAG, "calculateDirections: distance: " + result.routes[0].legs[0].distance);
                 //Log.d(TAG, "calculateDirections: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
 
+                //mPolyline.remove();
+                //mPolyline = null;
                 addPolylinesToMap(result);
             }
+
+
 
             @Override
             public void onFailure(Throwable e) {
@@ -220,6 +250,7 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
+
                 //Log.d(TAG, "run: result routes: " + result.routes.length);
 
                 for(DirectionsRoute route: result.routes){
@@ -238,9 +269,9 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
                                 latLng.lng
                         ));
                     }
-                    Polyline polyline = mapS.addPolyline(new PolylineOptions().addAll(newDecodedPath));
-                    polyline.setColor(ContextCompat.getColor( carpoolingappv1.getAppContext() , R.color.blue));
-                    polyline.setClickable(true);
+                    mPolyline = mapS.addPolyline(new PolylineOptions().addAll(newDecodedPath));
+                    mPolyline.setColor(ContextCompat.getColor( carpoolingappv1.getAppContext() , R.color.blue));
+                    mPolyline.setClickable(true);
 
                 }
             }

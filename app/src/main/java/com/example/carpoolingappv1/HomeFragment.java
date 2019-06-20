@@ -22,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -55,17 +56,15 @@ import Model.ListItem;
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
-//    implements View.OnClickListener
 
 
-    public static final int ADD_POST_REQUEST = 1;
     private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter ;
     private List<ListItem> mListItems;
     private FloatingActionButton buttonAddPost;
-    //private MyAdapter adapter;
 
+    //private MyAdapter adapter;
     private FirebaseRecyclerAdapter adapterFire;
 
     //MAP
@@ -73,6 +72,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     GoogleMap mapH;
     //public static RelativeLayout mMapContainer;
     //public static RelativeLayout mPostsContainer;
+
+    private EditText searchField ;
 
 
 
@@ -98,7 +99,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
         mListItems=new ArrayList<>();
 
-
+        searchField=view.findViewById(R.id.search_field);
 
         fetch();
 
