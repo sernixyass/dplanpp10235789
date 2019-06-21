@@ -79,9 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         viewHolder.cardViewRow.setOnClickListener(this);
 
-        viewHolder.takeButton.setOnClickListener(this);
-
-        viewHolder.joinButton.setOnClickListener(this);
+        viewHolder.ActionButton.setOnClickListener(this);
 
 
     }
@@ -124,19 +122,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 }*/
                 break;
             }
-            case R.id.joinBut:{
+            case R.id.actionBtn:{
 
-                Log.d(TAG,"you clicked on JOIN button");
+                Log.d(TAG,"you clicked on Action button");
 
-                break;
-            }
-            case R.id.takeBut:{
-                Log.d(TAG,"you clicked on take button");
-
-
-                HomeFragment.showSomething();
-                //final Dialog dialog = new Dialog(getActivity());
-                //dialog.setContentView(R.layout.list_row);
                 break;
             }
         }
@@ -145,8 +134,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     //hold all the itemes in our list row
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public Button takeButton;
-        public Button joinButton;
+        public Button ActionButton;
         public TextView startPiont;
         public TextView arrivePoint;
         public TextView places;
@@ -157,8 +145,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             super(itemView);
             //itemView to let us attatche the view
 
-            takeButton = itemView.findViewById(R.id.takeBut);
-            joinButton = itemView.findViewById(R.id.joinBut);
+            ActionButton = itemView.findViewById(R.id.actionBtn);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             places = itemView.findViewById(R.id.nbr_passenger_places);
@@ -174,20 +161,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         }
 
         public Button getTakeButton() {
-            return takeButton;
+            return ActionButton;
         }
 
         public void setTakeButton(Button takeButton) {
-            this.takeButton = takeButton;
+            this.ActionButton = takeButton;
         }
 
-        public Button getJoinButton() {
-            return joinButton;
-        }
-
-        public void setJoinButton(Button joinButton) {
-            this.joinButton = joinButton;
-        }
 
         public TextView getStartPiont() {
             return startPiont;

@@ -71,8 +71,7 @@ public class MySearchAdapter extends RecyclerView.Adapter<MySearchAdapter.MySear
 
     public static class MySearchAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        public Button takeButton;
-        public Button joinButton;
+        public Button actionButton;
         public TextView startPiont;
         public TextView arrivePoint;
         public TextView places;
@@ -81,8 +80,7 @@ public class MySearchAdapter extends RecyclerView.Adapter<MySearchAdapter.MySear
         public MySearchAdapterViewHolder(View itemView){
             super(itemView);
 
-            takeButton = itemView.findViewById(R.id.takeBut);
-            joinButton = itemView.findViewById(R.id.joinBut);
+            actionButton = itemView.findViewById(R.id.actionBtn);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             places = itemView.findViewById(R.id.nbr_passenger_places);

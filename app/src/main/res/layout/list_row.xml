@@ -106,19 +106,13 @@
                 android:layout_weight="0.3"
                 android:orientation="vertical"
                 android:weightSum="1"
-                android:gravity="end"    >
+                android:gravity="end"
+                >
                 <Button
-                    android:id="@+id/takeBut"
+                    android:id="@+id/actionBtn"
                     android:layout_gravity="center"
                     android:layout_width="130dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:text="Take"/>
-                <Button
-                    android:id="@+id/joinBut"
-                    android:layout_gravity="center"
-                    android:layout_width="130dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:text="Join"/>
 

@@ -212,6 +212,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
+                holder.ActionButton.setText("AAA");
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override
