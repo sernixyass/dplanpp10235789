@@ -65,7 +65,7 @@
 
                     <TextView
                         android:text="4/4"
-                        android:id="@+id/placesTxtP"
+                        android:id="@+id/nbr_passenger_places"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -75,15 +75,14 @@
                         />
 
                     <TextView
-                        android:text="1/1"
                         android:id="@+id/nbr_conductor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:textSize="18sp"
                         android:layout_gravity="center"
+                        android:layout_weight="0.3"
                         android:gravity="center"
-                        />
+                        android:text="1/1"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:text="Date"

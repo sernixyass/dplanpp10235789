@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_backg">
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/search_baar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/search_field01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type a destination"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:drawableRight="@drawable/ic_search"
+                android:clickable="true"
+                />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:layout_width="match_parent"
+            android:padding="20dp"
+            android:layout_below="@+id/search_baar">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewId"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/confirm_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirme"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+
+
+    <FrameLayout
+
+        android:id="@+id/pop_up_post_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

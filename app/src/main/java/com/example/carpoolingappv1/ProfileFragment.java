@@ -27,25 +27,25 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();
 
-        logoutBtn = view.findViewById(R.id.P_LogoutBtn);
-        logoutBtn.setOnClickListener(this);
+//        logoutBtn = view.findViewById(R.id.P_LogoutBtn);
+//        logoutBtn.setOnClickListener(this);
 
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case (R.id.P_LogoutBtn):
-                logout();
-                break;
+//        switch (v.getId()){
+//            case (R.id.P_LogoutBtn):
+//                logout();
+//                break;
 
         }
     }
+//
+//    private void logout() {
+//        MainActivity.mAuth.getInstance().signOut();
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        getActivity().finish();
+//    }
 
-    private void logout() {
-        MainActivity.mAuth.getInstance().signOut();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
-    }
-}

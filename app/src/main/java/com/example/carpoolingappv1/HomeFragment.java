@@ -18,6 +18,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +68,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     //private MyAdapter adapter;
     private FirebaseRecyclerAdapter adapterFire;
+    private FirebaseRecyclerAdapter adapterFireS;
 
     //MAP
     public MapView mMapView;
@@ -74,7 +77,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     //public static RelativeLayout mPostsContainer;
 
     private EditText searchField ;
-
+    private DatabaseReference mRideReference ;
 
 
 
@@ -91,7 +94,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.fragment_home,container,false);
+        final View view = inflater.inflate(R.layout.fragment_home,container,false);
         //view.findViewById(R.id.logoutBtnId).setOnClickListener(this);
         mRecyclerView=view.findViewById(R.id.recyclerViewId);
         mRecyclerView.setHasFixedSize(true);
@@ -164,14 +167,86 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
                 databaseReference.setValue(map);
                 */
+
+
             }
         });
 
 
 
+       //mRideReference =FirebaseDatabase.getInstance().getReference("posts");
+
+//
+
+//        searchField.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                filter(s.toString());
+//                Toast.makeText(getContext(),"hhhhhhhhhhhhhh"+s.toString(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
         return view;
     }
 
+    private void search() {
+        Intent intent = new Intent(getActivity(),search_pop_up.class);
+        startActivity(intent);
+    }
+
+   /* private void filter (String text){
+        Query fireSearchQuery = mRideReference.orderByChild("posts").startAt(text).endAt(text+ "\uf8ff");
+
+        FirebaseRecyclerOptions<ListItem> options = new FirebaseRecyclerOptions.Builder<ListItem>()
+                .setQuery(fireSearchQuery, ListItem.class)
+                .build();
+
+        adapterFireS = new FirebaseRecyclerAdapter<ListItem, MyAdapter.ViewHolder>(options) {
+            @NonNull
+            @Override
+            public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.list_row, viewGroup, false);
+
+                return new MyAdapter.ViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, final int position, @NonNull ListItem model) {
+                holder.setStartPiont(model.getStartingPoint());
+                holder.setArrivePoint(model.getEndPoint());
+                holder.setPlaces(model.getPlaces());
+
+                holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+                        Fragment fra;
+                        fra = new RidePostFragment();
+
+
+                        getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
+                                fra).commit();
+                    }
+                });            }
+        } ;
+        mRecyclerView.setAdapter(adapterFireS);
+        adapterFireS.startListening();
+
+
+
+    }*/
 
     private void fetch() {
         Query query = FirebaseDatabase.getInstance()
@@ -330,6 +405,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         super.onStop();
         mMapView.onStop();
         adapterFire.stopListening();
+
+
     }
 
     @Override

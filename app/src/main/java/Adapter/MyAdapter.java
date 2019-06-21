@@ -161,7 +161,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             joinButton = itemView.findViewById(R.id.joinBut);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
-            places = itemView.findViewById(R.id.placesTxtP);
+            places = itemView.findViewById(R.id.nbr_passenger_places);
             cardViewRow = itemView.findViewById(R.id.cardView);
         }
 
@@ -211,6 +211,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         public void setCardViewRow(CardView cardViewRow) {
             this.cardViewRow = cardViewRow;
+        }
+
+        public void setDetails(String startingPoint, String endPoint, Integer places) {
+
+            TextView startPiont = itemView.findViewById(R.id.startTxtP);
+            TextView arrivePoint = itemView.findViewById(R.id.endTxtP);
+            TextView placesNbe=itemView.findViewById(R.id.nbr_passenger_places);
+
+            startPiont.setText(startingPoint);
+            arrivePoint.setText(endPoint);
+            placesNbe.setText(places);
+
         }
     }
 }

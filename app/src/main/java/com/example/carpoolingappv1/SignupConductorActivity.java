@@ -101,10 +101,6 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
 
 
-
-
-
-
         bdate = findViewById(R.id.birthdateSignupCId);
 
         //date displays widget
