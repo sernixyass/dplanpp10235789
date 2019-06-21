@@ -9,13 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    public Button logoutBtn;
     private FirebaseAuth mAuth;
+
+    EditText fullName,email,phone;
 
 
     @Nullable
@@ -33,6 +35,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
 
     @Override
     public void onClick(View v) {

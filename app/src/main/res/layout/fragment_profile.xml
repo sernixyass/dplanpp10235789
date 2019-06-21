@@ -97,6 +97,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/fullName_profile"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -107,6 +108,8 @@
                     android:text="Edit Name" />
 
                 <TextView
+                    android:id="@+id/phone_profile"
+
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -126,7 +129,9 @@
                     android:clickable="true"
                     android:elevation="4dp"
                     android:padding="20dp"
-                    android:text="Edit date of birth" />
+                    android:text="Edit date of birth"
+                    android:id="@+id/bDate_profile"
+                    />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -141,6 +146,8 @@
                     android:text="Edit Password" />
 
                 <TextView
+                    android:id="@+id/email_profile"
+
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
