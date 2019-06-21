@@ -19,28 +19,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignupPassengerActivity"/>
-
-
+        <activity android:name=".Edit_profile_Conductor"></activity>
+        <activity android:name=".Edit_profile_Passenger" />
+        <activity android:name=".SignupPassengerActivity" />
         <activity android:name=".SignupConductorActivity" />
-
-        <activity android:name=".search_pop_up"
-                  android:theme="@style/AppTheme.PopMe">
-
-        </activity>
-
+        <activity
+            android:name=".search_pop_up"
+            android:theme="@style/AppTheme.PopMe" />
         <activity
             android:name=".ChoosingUserType"
             android:theme="@style/AppTheme.PopMe" />
-
         <activity
             android:name=".CompeltPosting"
             android:theme="@style/AppTheme.PopMe" />
-
         <activity android:name=".AddPostActivity" />
-
         <activity android:name=".LoginActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

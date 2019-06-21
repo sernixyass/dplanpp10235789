@@ -156,22 +156,34 @@
                     android:elevation="4dp"
                     android:padding="20dp"
                     android:text="Edit Email" />
+
+                <TextView
+                    android:id="@+id/P_LogoutBtn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="Logout" />
+
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="PROFILE"-->
-        <!--android:textSize="40dp"-->
-        <!--android:layout_centerInParent="true" />-->
+    <android.support.design.widget.FloatingActionButton
 
-    <!--<Button-->
-        <!--android:id="@+id/P_LogoutBtn"-->
-        <!--android:layout_margin="20dp"-->
-        <!--android:text="LOGOUT"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_edit"
+        android:layout_margin="32dp"
+        android:id="@+id/btn_add_Post"
+        />
 
 </RelativeLayout>

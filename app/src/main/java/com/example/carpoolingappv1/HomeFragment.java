@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
         mListItems=new ArrayList<>();
 
-        //searchField=view.findViewById(R.id.search_field);
+
 
 
 
@@ -155,46 +155,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         buttonAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getActivity(), AddPostActivity.class);
                 startActivity(new Intent(getActivity(), AddPostActivity.class));
-
-                /*
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();
-                Map<String, Object> map = new HashMap<>();
-                map.put("id", databaseReference.getKey());
-                map.put("title", "test1");
-                map.put("desc", "test2");
-
-                databaseReference.setValue(map);
-                */
-
 
             }
         });
 
 
-
-       //mRideReference =FirebaseDatabase.getInstance().getReference("posts");
-
-//
-
-//        searchField.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                filter(s.toString());
-//                Toast.makeText(getContext(),"hhhhhhhhhhhhhh"+s.toString(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         return view;
     }
@@ -204,49 +170,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         startActivity(intent);
     }
 
-   /* private void filter (String text){
-        Query fireSearchQuery = mRideReference.orderByChild("posts").startAt(text).endAt(text+ "\uf8ff");
-
-        FirebaseRecyclerOptions<ListItem> options = new FirebaseRecyclerOptions.Builder<ListItem>()
-                .setQuery(fireSearchQuery, ListItem.class)
-                .build();
-
-        adapterFireS = new FirebaseRecyclerAdapter<ListItem, MyAdapter.ViewHolder>(options) {
-            @NonNull
-            @Override
-            public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.list_row, viewGroup, false);
-
-                return new MyAdapter.ViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, final int position, @NonNull ListItem model) {
-                holder.setStartPiont(model.getStartingPoint());
-                holder.setArrivePoint(model.getEndPoint());
-                holder.setPlaces(model.getPlaces());
-
-                holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
-
-                        Fragment fra;
-                        fra = new RidePostFragment();
-
-
-                        getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
-                                fra).commit();
-                    }
-                });            }
-        } ;
-        mRecyclerView.setAdapter(adapterFireS);
-        adapterFireS.startListening();
-
-
-
-    }*/
 
     private void fetch() {
         Query query = FirebaseDatabase.getInstance()
