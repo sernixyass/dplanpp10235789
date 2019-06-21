@@ -57,6 +57,10 @@ public class ListItem {
         this.accountIDPostedIt = accountIDPostedIt;
     }
 
+    public ListItem(){
+
+    }
+
     public String getAccountIDPostedIt() {
         return accountIDPostedIt;
     }

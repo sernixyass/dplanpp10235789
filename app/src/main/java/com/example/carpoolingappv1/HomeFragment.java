@@ -99,7 +99,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
         mListItems=new ArrayList<>();
 
-        searchField=view.findViewById(R.id.search_field);
+        //searchField=view.findViewById(R.id.search_field);
+
+
 
         fetch();
 
@@ -193,6 +195,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                             }
                         })
                         .build();
+
 
         adapterFire = new FirebaseRecyclerAdapter<ListItem, MyAdapter.ViewHolder>(options) {
             @Override

@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_chat:
-                            selectedFragment = new ChatFragment();
+                            selectedFragment = new SearchFragment();
                             break;
                         case R.id.nav_carte:
                             selectedFragment = new CarteFragment();

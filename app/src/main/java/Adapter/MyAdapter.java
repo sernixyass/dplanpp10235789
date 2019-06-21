@@ -15,6 +15,7 @@ import com.example.carpoolingappv1.HomeFragment;
 import com.example.carpoolingappv1.R;
 import com.example.carpoolingappv1.RidePostFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Model.ListItem;
@@ -36,10 +37,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
 
 
-    public MyAdapter (HomeFragment context , List listitem){
+    public MyAdapter (HomeFragment context , ArrayList listitem){
         this.context=context;
         this.listItem=listitem;
     }
+
 
 
     /*public MyAdapter(List<ListItem> listData) {
@@ -80,8 +82,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         viewHolder.takeButton.setOnClickListener(this);
 
         viewHolder.joinButton.setOnClickListener(this);
-
-
 
 
     }
