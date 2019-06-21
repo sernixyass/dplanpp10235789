@@ -111,7 +111,7 @@ public class SearchFragment extends Fragment {
 
                 holder.arrivePoint.setText(model.getEndPoint());
 
-                //holder.places.setText(model.getPlaces());
+                holder.places.setText((model.getPlaces()).toString());
 
 
                 //holder.cardViewRow.setOnClickListener(this);

@@ -38,6 +38,7 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
     public EditText carKey1;
     public EditText carKey2;
     public EditText carKey3;
+//    public String carKey;
 
 
     //date
@@ -166,11 +167,11 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
         final String carModelS = carModel.getText().toString().trim();
 
-        String carKey1S = carKey1.getText().toString().trim();
-        String carKey2S = carKey2.getText().toString().trim();
-        String carKey3S = carKey3.getText().toString().trim();
+        final String carKey1S = carKey1.getText().toString().trim();
+        final String carKey2S = carKey2.getText().toString().trim();
+        final String carKey3S = carKey3.getText().toString().trim();
 
-        final String carKey = carKey1 + " - " + carKey2 + " - " + carKey3;
+        final String carKey4 = carKey1S + " - " + carKey2S + " - " + carKey3S;
 
         final int phoneS;
         if (phone.getText().toString()== ""){
@@ -230,7 +231,7 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(true,fulNameS,emailS,bDateS,phoneS,wilayaS,carModelS,carKey);
+                            User user = new User(true,fulNameS,emailS,bDateS,phoneS,wilayaS,carModelS,carKey4);
 
                             //put the account's data into (database) Users > "userID" > {}
                             FirebaseDatabase.getInstance().getReference("Users")

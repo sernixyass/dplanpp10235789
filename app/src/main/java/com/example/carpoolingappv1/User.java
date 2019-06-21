@@ -11,10 +11,71 @@ public class User {
 
     //conductor
     public String carModel;
-    public String CarKey;
+    public String carKey;
 
+    public boolean isConductor() {
+        return isConductor;
+    }
 
+    public void setConductor(boolean conductor) {
+        isConductor = conductor;
+    }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getbDate() {
+        return bDate;
+    }
+
+    public void setbDate(String bDate) {
+        this.bDate = bDate;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
+
+    public String getWilaya() {
+        return wilaya;
+    }
+
+    public void setWilaya(String wilaya) {
+        this.wilaya = wilaya;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public String getCarKey() {
+        return carKey;
+    }
+
+    public void setCarKey(String carKey) {
+        this.carKey = carKey;
+    }
 
     public User() {
 
@@ -38,6 +99,6 @@ public class User {
         this.phone = phone;
         this.wilaya = wilaya;
         this.carModel = carModel;
-        this.CarKey = carKey;
+        this.carKey = carKey;
     }
 }

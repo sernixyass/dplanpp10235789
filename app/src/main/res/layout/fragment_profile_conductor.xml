@@ -47,11 +47,9 @@
                     android:background="#ebca0707"
                     android:elevation="4dp"
                     android:paddingBottom="24dp">
-
-
                     <ImageView
+                            android:id="@+id/con_add_friend"
                         android:clickable="true"
-                        android:id="@+id/add_friend"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="16dp"

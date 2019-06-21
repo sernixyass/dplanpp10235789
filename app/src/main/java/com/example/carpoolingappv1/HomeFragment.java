@@ -95,6 +95,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         //return super.onCreateView(inflater, container, savedInstanceState);
 
         final View view = inflater.inflate(R.layout.fragment_home,container,false);
+
+
         //view.findViewById(R.id.logoutBtnId).setOnClickListener(this);
         mRecyclerView=view.findViewById(R.id.recyclerViewId);
         mRecyclerView.setHasFixedSize(true);

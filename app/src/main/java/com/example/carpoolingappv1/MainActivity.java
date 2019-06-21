@@ -23,6 +23,11 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Constants;
 import com.google.firebase.database.core.Tag;
 
@@ -33,6 +38,10 @@ import static com.example.carpoolingappv1.util.Constants.PERMISSIONS_REQUEST_ENA
 public class MainActivity extends AppCompatActivity {
 
     public static FirebaseAuth mAuth;
+
+    public static DatabaseReference databaseReference;
+    public static String userID;
+    public static Boolean isConductor = false;
 
     private boolean mLocationPermissionGranted = false;
 
@@ -50,6 +59,24 @@ public class MainActivity extends AppCompatActivity {
         }
         //** or main activity directly
         setContentView(R.layout.activity_main);
+
+        //
+        userID = mAuth.getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                isConductor = dataSnapshot.child("isConductor").getValue(Boolean.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         //btmnav
@@ -213,7 +240,11 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new CarteFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new ProfileFragment();
+                            if (isConductor){
+                                selectedFragment = new ProfileConductorFragment();
+                            }else {
+                                selectedFragment = new ProfilePassengerFragment();
+                            }
                             break;
                     }
 
