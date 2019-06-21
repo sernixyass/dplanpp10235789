@@ -80,7 +80,7 @@ public class SearchFragment extends Fragment {
                     //Toast.makeText(getContext(),"hhhhhh  "+ s,Toast.LENGTH_SHORT).show();
                     search(s.toString());
                 }else {
-                    return;
+                    search("");
                 }
 
             }

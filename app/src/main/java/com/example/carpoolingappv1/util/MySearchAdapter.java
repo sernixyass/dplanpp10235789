@@ -85,7 +85,7 @@ public class MySearchAdapter extends RecyclerView.Adapter<MySearchAdapter.MySear
             joinButton = itemView.findViewById(R.id.joinBut);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
-            places = itemView.findViewById(R.id.placesTxtP);
+            places = itemView.findViewById(R.id.nbr_passenger_places);
             cardViewRow = itemView.findViewById(R.id.cardView);
         }
     }

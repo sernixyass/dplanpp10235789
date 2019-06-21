@@ -17,14 +17,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public Button logoutBtn;
     private FirebaseAuth mAuth;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         //return inflater.inflate(R.layout.fragment_profile,container,false);
-        View view = inflater.inflate(R.layout.fragment_profile,container,false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-
+        view.findViewById(R.id.add_friend).setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
 //        logoutBtn = view.findViewById(R.id.P_LogoutBtn);
@@ -35,17 +36,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()){
-//            case (R.id.P_LogoutBtn):
-//                logout();
-//                break;
+        switch (v.getId()) {
+            case (R.id.add_friend):
+                logout();
+                break;
 
         }
     }
-//
-//    private void logout() {
-//        MainActivity.mAuth.getInstance().signOut();
-//        startActivity(new Intent(getActivity(), LoginActivity.class));
-//        getActivity().finish();
-//    }
 
+    private void logout() {
+        MainActivity.mAuth.getInstance().signOut();
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
+    }
+
+}

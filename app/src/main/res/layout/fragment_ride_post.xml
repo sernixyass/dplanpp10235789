@@ -31,7 +31,7 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/startTxtP"
+                    android:id="@+id/startTxtfP"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -43,7 +43,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/endTxtP"
+                    android:id="@+id/endTxtfP"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -63,14 +63,14 @@
                 android:weightSum="1"
                 android:gravity="end"    >
                 <Button
-                    android:id="@+id/takeBut"
+                    android:id="@+id/takefBut"
                     android:layout_gravity="center"
                     android:layout_width="130dp"
                     android:layout_height="0dp"
                     android:layout_weight="0.5"
                     android:text="Take"/>
                 <Button
-                    android:id="@+id/joinBut"
+                    android:id="@+id/joinfBut"
                     android:layout_gravity="center"
                     android:layout_width="130dp"
                     android:layout_height="0dp"
