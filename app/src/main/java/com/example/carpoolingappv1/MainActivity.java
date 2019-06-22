@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static DatabaseReference databaseReferencePosts;
     public static String userID;
     public static Boolean isConductor = false;
+    public static Boolean isTaken = false;
 
     private boolean mLocationPermissionGranted = false;
 

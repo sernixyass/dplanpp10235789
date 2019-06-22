@@ -1,5 +1,6 @@
 package Adapter;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -76,6 +77,35 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         viewHolder.arrivePoint.setText(item.getEndPoint());
         viewHolder.places.setText(item.getPlaces());
 
+        if (item.isTaken()){
+            viewHolder.conductor.setText("TAKEN");
+        }else
+        {
+            viewHolder.conductor.setText("NOT taken");
+        }
+
+        /*if (item.getSaturday()){
+            viewHolder.satTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getSunday()){
+            viewHolder.sunTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getMonday()){
+            viewHolder.monTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getTuesday()){
+            viewHolder.tueTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getWednesday()){
+            viewHolder.wedTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getThursday()){
+            viewHolder.thuTxt.setTypeface(null, Typeface.BOLD);
+        }
+        if (item.getFriday()){
+            viewHolder.friTxt.setTypeface(null, Typeface.BOLD);
+        }*/
+
 
         viewHolder.cardViewRow.setOnClickListener(this);
 
@@ -139,6 +169,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public TextView arrivePoint;
         public TextView places;
         public CardView cardViewRow;
+        public TextView conductor;
+
+        public TextView satTxt,sunTxt,monTxt,tueTxt,wedTxt,thuTxt,friTxt;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -150,6 +183,51 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             places = itemView.findViewById(R.id.nbr_passenger_places);
             cardViewRow = itemView.findViewById(R.id.cardView);
+            conductor = itemView.findViewById(R.id.conductorSign);
+
+            satTxt = itemView.findViewById(R.id.satID);
+            sunTxt = itemView.findViewById(R.id.sunID);
+            monTxt = itemView.findViewById(R.id.monID);
+            tueTxt = itemView.findViewById(R.id.tueID);
+            wedTxt = itemView.findViewById(R.id.wedID);
+            thuTxt = itemView.findViewById(R.id.thuID);
+            friTxt = itemView.findViewById(R.id.friID);
+
+        }
+
+        public TextView getSatTxt() {
+            return satTxt;
+        }
+
+        public void setSatTxt(int color) {
+            this.satTxt.setTextColor(color);
+        }
+        public void setSunTxt(int color) {
+            this.sunTxt.setTextColor(color);
+        }
+        public void setMonTxt(int color) {
+            this.monTxt.setTextColor(color);
+        }
+        public void setTueTxt(int color) {
+            this.tueTxt.setTextColor(color);
+        }
+        public void setWedTxt(int color) {
+            this.wedTxt.setTextColor(color);
+        }
+        public void setThuTxt(int color) {
+            this.thuTxt.setTextColor(color);
+        }
+        public void setFriTxt(int color) {
+            this.friTxt.setTextColor(color);
+        }
+
+
+        public TextView getConductor() {
+            return conductor;
+        }
+
+        public void setConductor(String conductor) {
+            this.conductor.setText(conductor);
         }
 
         public TextView getPlaces() {

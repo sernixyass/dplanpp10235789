@@ -7,6 +7,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -139,7 +141,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 */
 
         //map
-        mMapView =  view.findViewById(R.id.mapHome);
+        //mMapView =  view.findViewById(R.id.mapHome);
         //mMapContainer =  view.findViewById(R.id.map_container);
         //mPostsContainer =  view.findViewById(R.id.posts_Container);
 
@@ -150,9 +152,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         mMapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
         mPostsContainer = (RelativeLayout) view.findViewById(R.id.posts_Container);
         */
-        view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
+        //view.findViewById(R.id.btn_full_screen_map).setOnClickListener(this);
 
-        initGoogleMap(savedInstanceState);
+        //initGoogleMap(savedInstanceState);
 
         FragmentActivity activity = (FragmentActivity) view.getContext();
         FragmentManager manager = activity.getSupportFragmentManager();
@@ -266,6 +268,43 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     });
                 }
 
+                if (model.isTaken()){
+                    holder.conductor.setText("TAKEN.");
+                }else
+                {
+                    holder.conductor.setText("NOT taken.");
+                }
+
+                if (model.getSaturday()){
+                    holder.setSatTxt(Color.RED);
+                }
+
+                if (model.getSunday()){
+                    holder.setSunTxt(Color.RED);
+                }
+
+                if (model.getMonday()){
+                    holder.setMonTxt(Color.RED);
+                }
+
+                if (model.getTuesday()){
+                    holder.setTueTxt(Color.RED);
+                }
+
+                if (model.getWednesday()){
+                    holder.setWedTxt(Color.RED);
+                }
+
+                if (model.getThursday()){
+                    holder.setThuTxt(Color.RED);
+                }
+
+                if (model.getFriday()){
+                    holder.setFriTxt(Color.RED);
+                }
+
+
+
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -294,6 +333,26 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     private void takeTrip() {
         //MainActivity.databaseReference.child("places").get;
+        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(selectedTripID);
+        databaseReferenceP.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
+                    Toast.makeText(getContext(),"already taken",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("isTaken").setValue(true);
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDTakedIt").setValue(MainActivity.mAuth.getCurrentUser().getUid());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
@@ -333,9 +392,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
 
-        mMapView.onCreate(mapViewBundle);
+        //mMapView.onCreate(mapViewBundle);
 
-        mMapView.getMapAsync(this);
+        //mMapView.getMapAsync(this);
     }
 
     @Override
@@ -356,7 +415,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     @Override
     public void onResume() {
         super.onResume();
-        mMapView.onResume();
+        //mMapView.onResume();
 
         //onBackPressed
         if (getView() == null){
@@ -387,14 +446,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     @Override
     public void onStart() {
         super.onStart();
-        mMapView.onStart();
+        //mMapView.onStart();
         adapterFire.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mMapView.onStop();
+        //mMapView.onStop();
         adapterFire.stopListening();
 
 
@@ -464,9 +523,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_full_screen_map:{
+            /*case R.id.btn_full_screen_map:{
 
-                /*
+
                 if(mMapLayoutState == MAP_LAYOUT_STATE_CONTRACTED){
                     mMapLayoutState = MAP_LAYOUT_STATE_EXPANDED;
                     expandMapAnimation();
@@ -475,12 +534,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     mMapLayoutState = MAP_LAYOUT_STATE_CONTRACTED;
                     contractMapAnimation();
                 }
-                */
+
                 break;
-            }
+             */
+
 
         }
+
     }
+
 
 
     public static void showSomething(){

@@ -126,13 +126,8 @@
 
         </LinearLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/C_P_places"
-            android:inputType="number"/>
-
         <LinearLayout
+            android:layout_margin="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -144,6 +139,7 @@
                 android:layout_height="wrap_content"
                 android:text="HOUR"/>
             <Spinner
+                android:scrollbarSize="50dp"
                 android:layout_weight="2"
                 android:id="@+id/hourCompletePosting"
                 android:layout_width="wrap_content"
