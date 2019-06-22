@@ -8,111 +8,182 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="100dp"
         android:layout_margin="@dimen/cardview_compat_inset_shadow">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:weightSum="1">
-
             <LinearLayout
-                android:layout_weight="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/time"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1.2">
+
 
                 <LinearLayout
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:orientation="horizontal"
+                    android:layout_weight="0.6"
+                    android:weightSum="1"
+                    >
+                    <TextView
+                        android:id="@+id/startTxtP"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Depart"
+                        android:textSize="18sp"
+
+                        android:drawableLeft="@drawable/ic_startpoint"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/endTxtP"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Arrive"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/ic_endpoint"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.3"
+                    android:weightSum="1"
                     android:gravity="center">
 
+
                     <TextView
-                        android:id="@+id/time_edit"
+                        android:text="4/4"
+                        android:id="@+id/nbr_passenger_places"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+
+                        android:id="@+id/conductorSign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="24:00"
-                        android:textStyle="bold"
-                        android:textSize="45sp"/>
+                        android:layout_gravity="center"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="NOTE taken"
+                        android:textSize="18sp" />
 
+                    <TextView
+                        android:text="00:00"
+                        android:id="@+id/hourTripID"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
 
                 </LinearLayout>
-
                 <LinearLayout
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="start"
-                    android:weightSum="1">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=  "0.3"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="7">
                     <TextView
-                        android:id="@+id/date_month_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="20 Dec"
-                        android:textSize="21sp"/>
-
+                        android:id="@+id/satID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="SAT"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
                     <TextView
-                        android:id="@+id/day_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Saturday"
-                        android:textSize="21sp"/>
-
+                        android:id="@+id/sunID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="SUN"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/monID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="MON"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/tueID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="TUE"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/wedID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="WED"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/thuID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="THU"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/friID"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:text="FRI"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:weightSum="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    T
-                    android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_weight="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <Button
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:id="@+id/actionBtn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Join"/>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-            </LinearLayout>
-
-
-
-
-
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

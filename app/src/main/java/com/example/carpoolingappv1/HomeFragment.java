@@ -87,6 +87,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     private DatabaseReference mRideReference ;
 
 
+    public boolean exist;
+
 
     /*
     public static final int MAP_LAYOUT_STATE_CONTRACTED = 0;
@@ -241,33 +243,79 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
 
             @Override
-            protected void onBindViewHolder(MyAdapter.ViewHolder holder, final int position, final ListItem model) {
+            protected void onBindViewHolder(final MyAdapter.ViewHolder holder, final int position, final ListItem model) {
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
-                if (MainActivity.isConductor){
-                    holder.ActionButton.setText("TAKE");
-                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            selectedTripID = model.getPostID();
-                            selectedPlacesTrip = model.getPlaces();
-                            takeTrip();
+
+                //boolean alreadyJoined = false;
+                DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts.child(model.getPostID());
+                databaseReferenceModel.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
+                                || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
+                                || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
+                                || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
+                        {
+                            //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
+
+                            holder.ActionButton.setText("CANCEL JOINING");
+                            holder.ActionButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    selectedTripID = model.getPostID();
+                                    selectedPlacesTrip = model.getPlaces();
+                                    //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
+                                    cancelJoiningTrip();
+                                }
+                            });
+                            return;
+
+                        }else {
+                            if (MainActivity.isConductor){
+                                holder.ActionButton.setText("TAKE");
+                                holder.ActionButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        selectedTripID = model.getPostID();
+                                        selectedPlacesTrip = model.getPlaces();
+                                        takeTrip();
+
+                                    }
+                                });
+                                return;
+                            }else {
+                                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
+                                        || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
+                                        || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
+                                        || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
+                                {
+                                    return;
+                                }
+                                    holder.ActionButton.setText("JOIN");
+                                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                    public void onClick(View v) {
+                                    selectedTripID = model.getPostID();
+                                    selectedPlacesTrip = model.getPlaces();
+                                    Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
+                                    joinTrip();
+                                }
+                                });
+                            }
 
                         }
-                    });
-                }else {
-                    holder.ActionButton.setText("JOIN");
-                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            selectedTripID = model.getPostID();
-                            selectedPlacesTrip = model.getPlaces();
-                            //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
-                            joinTrip();
-                        }
-                    });
-                }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
                 if (model.isTaken()){
                     holder.conductor.setText("TAKEN.");
@@ -327,40 +375,99 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         mRecyclerView.setAdapter(adapterFire);
     }
 
-    private void joinTrip() {
-
-        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(selectedTripID);
-        databaseReferenceP.addValueEventListener(new ValueEventListener() {
+    private void cancelJoiningTrip(){
+        final DatabaseReference databaseReferencePC = MainActivity.databaseReferencePosts.child(selectedTripID);
+        databaseReferencePC.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("isFull").getValue(Boolean.class)){
+                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining1").setValue("");
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining2").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining2").setValue("");
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining3").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining3").setValue("");
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining4").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining4").setValue("");
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
+                }
+                return;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void joinTrip() {
+
+
+        DatabaseReference databaseReferencePjt = MainActivity.databaseReferencePosts.child(selectedTripID);
+        databaseReferencePjt.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
+                    || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
+                    || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
+                    || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
+                {
+                    //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
+                    exist = true;
+                    return;
+
+                }
+
+
+
+                    if (dataSnapshot.child("isFull").getValue(Boolean.class)){
                     Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
                 }else {
                     MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
 
-                    if (selectedPlacesTrip==0){
+
+
+                    if (dataSnapshot.child("accountIDJoining1").getValue().equals("")){
                         MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining1")
                                 .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                    }
-                    if (selectedPlacesTrip==1){
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining2")
-                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                    }
-                    if (selectedPlacesTrip==2){
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining3")
-                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                    }
-                    if (selectedPlacesTrip==3){
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining4")
-                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                    }else{
+                        if (dataSnapshot.child("accountIDJoining2").getValue().equals("")){
+                            MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining2")
+                                    .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                        }else{
+                            if (dataSnapshot.child("accountIDJoining3").getValue().equals("")){
+                                MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining3")
+                                        .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                            }else{
+                                if (dataSnapshot.child("accountIDJoining4").getValue().equals("")){
+                                    MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining4")
+                                            .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                                }
+                            }
+                        }
                     }
 
 
 
                     if      ((selectedPlacesTrip+1)>=4){
                         MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(true);
+                    }else {
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(false);
                     }
                 }
+                    return;
             }
 
             @Override

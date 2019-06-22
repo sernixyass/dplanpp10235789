@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static String userID;
     public static Boolean isConductor = false;
     public static Boolean isTaken = false;
+    public static String currentUserID;
 
     private boolean mLocationPermissionGranted = false;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //
+        currentUserID = mAuth.getCurrentUser().getUid();
         userID = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         databaseReferencePosts = FirebaseDatabase.getInstance().getReference().child("posts");

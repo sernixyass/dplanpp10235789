@@ -231,8 +231,6 @@ public class CompeltPosting extends Activity {
                     finish();
 
                 }else {
-
-
                     return;
                 }
 
