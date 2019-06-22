@@ -30,6 +30,7 @@
                     android:layout_height="wrap_content"
                     android:text="saturday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/saturdayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -42,8 +43,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="sunday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/sundayCB"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -55,8 +58,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="monday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/mondayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -68,8 +72,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="tuesday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/tuesdayCB"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -81,8 +87,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="wednesday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/wednesdayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -94,10 +101,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"
+                    android:text="thursday"
                     />
 
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/thursdayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -109,8 +117,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="friday"/>
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/fridayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

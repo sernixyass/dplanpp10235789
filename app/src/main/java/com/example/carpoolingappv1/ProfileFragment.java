@@ -30,12 +30,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView fullName,fullNameGrand,email,phone;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         //return inflater.inflate(R.layout.fragment_profile,container,false);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
 
         view.findViewById(R.id.add_friend).setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();

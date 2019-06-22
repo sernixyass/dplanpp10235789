@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import Adapter.MyAdapter;
 import Model.ListItem;
@@ -159,7 +160,8 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("id").getValue().toString(),
                                         snapshot.child("tripPos").getValue(LatLng.class),
                                         snapshot.child("tripDesPos").getValue(LatLng.class),
-                                        snapshot.child("accountIDPostedIt").getValue().toString());
+                                        snapshot.child("accountIDPostedIt").getValue().toString(),
+                                        snapshot.child("weekDays").getValue(Map.class));
                             }
                         })
                         .build();

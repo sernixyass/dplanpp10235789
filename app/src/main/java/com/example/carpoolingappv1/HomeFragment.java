@@ -70,6 +70,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     private FirebaseRecyclerAdapter adapterFire;
     private FirebaseRecyclerAdapter adapterFireS;
 
+    public static String selectedTripID;
+    public static Integer selectedPlacesTrip;
+    public static String selectedIDPostedIt;
+
     //MAP
     public MapView mMapView;
     GoogleMap mapH;
@@ -191,10 +195,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("id").getValue().toString(),
                                         snapshot.child("tripPos").getValue(LatLng.class),
                                         snapshot.child("tripDesPos").getValue(LatLng.class),
-                                        snapshot.child("accountIDPostedIt").getValue().toString());
+                                        snapshot.child("accountIDPostedIt").getValue().toString(),
+                                        snapshot.child("weekDays").getValue(Map.class));
                             }
                         })
                         .build();
+
+
 
 
         adapterFire = new FirebaseRecyclerAdapter<ListItem, MyAdapter.ViewHolder>(options) {
@@ -207,12 +214,37 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             }
 
 
+
+
             @Override
-            protected void onBindViewHolder(MyAdapter.ViewHolder holder, final int position, ListItem model) {
+            protected void onBindViewHolder(MyAdapter.ViewHolder holder, final int position, final ListItem model) {
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
-                holder.ActionButton.setText("AAA");
+                if (MainActivity.isConductor){
+                    holder.ActionButton.setText("TAKE");
+                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            selectedTripID = model.getPostID();
+                            selectedPlacesTrip = model.getPlaces();
+                            takeTrip();
+
+                        }
+                    });
+                }else {
+                    holder.ActionButton.setText("JOIN");
+                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            selectedTripID = model.getPostID();
+                            selectedPlacesTrip = model.getPlaces();
+                            //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
+                            joinTrip();
+                        }
+                    });
+                }
+
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -221,6 +253,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
                         Fragment fra;
                         fra = new RidePostFragment();
+
 
 
                         getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
@@ -233,6 +266,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         mRecyclerView.setAdapter(adapterFire);
     }
 
+    private void joinTrip() {
+
+        MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
+    }
+
+    private void takeTrip() {
+        //MainActivity.databaseReference.child("places").get;
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -241,6 +283,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         //Do your stuff here
         LatLng somewhere = new  LatLng(0,10);
         mapH.addMarker(new MarkerOptions().position(somewhere).title("Marker Title").snippet("Marker Description"));
+
+
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED

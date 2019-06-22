@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,15 @@ public class CompeltPosting extends Activity {
 
     TextView placesText;
 
+    Map<String,Boolean> weekDays = new HashMap<>();
+
+    CheckBox satCB;
+    CheckBox sunCB;
+    CheckBox monCB;
+    CheckBox tueCB;
+    CheckBox wedCB;
+    CheckBox thuCB;
+    CheckBox friCB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,16 @@ public class CompeltPosting extends Activity {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        satCB =findViewById(R.id.saturdayCB);
+        sunCB =findViewById(R.id.sundayCB);
+        monCB =findViewById(R.id.mondayCB);
+        tueCB =findViewById(R.id.tuesdayCB);
+        wedCB =findViewById(R.id.wednesdayCB);
+        thuCB =findViewById(R.id.thursdayCB);
+        friCB =findViewById(R.id.fridayCB);
+
+
 
 
         placesText = findViewById(R.id.C_P_places);
@@ -55,8 +75,11 @@ public class CompeltPosting extends Activity {
         params.x= 0 ;
         params.y=-20;
 
+        params.dimAmount=0.0f;
+
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
 
 
@@ -72,6 +95,22 @@ public class CompeltPosting extends Activity {
             }
         });
 
+        if(satCB.isChecked()){
+            weekDays.put("saturday",true);
+        }
+
+        if(sunCB.isChecked()) weekDays.put("sunday",true);
+
+        if(monCB.isChecked()) weekDays.put("monday",true);
+
+        if(tueCB.isChecked()) weekDays.put("tuesday",true);
+
+        if(wedCB.isChecked()) weekDays.put("wednesday",true);
+
+        if(thuCB.isChecked()) weekDays.put("thursday",true);
+
+        if(friCB.isChecked()) weekDays.put("friday",true);
+
 
     }
 
@@ -84,6 +123,8 @@ public class CompeltPosting extends Activity {
         Integer places = Integer.valueOf(placesText.getText().toString());
         LatLng tripPos = AddPostActivity.startingPointLL;
         LatLng tripDesPos = AddPostActivity.endingPointLL;
+
+
 
         //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
@@ -102,6 +143,7 @@ public class CompeltPosting extends Activity {
         map.put("tripPosition", tripPos);
         map.put("tripDestinationPosition", tripDesPos);
         map.put("accountIDPostedIt",MainActivity.mAuth.getCurrentUser().getUid());
+        map.put("weekDays",weekDays);
 
 
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {

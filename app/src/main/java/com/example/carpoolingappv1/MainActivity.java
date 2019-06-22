@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseAuth mAuth;
 
     public static DatabaseReference databaseReference;
+    public static DatabaseReference databaseReferencePosts;
     public static String userID;
     public static Boolean isConductor = false;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         //
         userID = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        databaseReferencePosts = FirebaseDatabase.getInstance().getReference().child("posts");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         Intent enableGpsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
