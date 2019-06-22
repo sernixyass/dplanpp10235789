@@ -207,6 +207,8 @@ public class CompeltPosting extends Activity {
 
         }
 
+        map.put("isFull",false);
+
         if (MainActivity.isConductor){
             map.put("accountIDJoining1","");
         }else {

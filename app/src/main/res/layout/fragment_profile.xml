@@ -183,7 +183,7 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_edit"
         android:layout_margin="32dp"
-        android:id="@+id/btn_add_Post"
+        android:id="@+id/btn_edit_PProfile"
         />
 
 </RelativeLayout>

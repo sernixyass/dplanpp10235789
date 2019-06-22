@@ -210,6 +210,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("friday").getValue(Boolean.class),
 
                                         snapshot.child("isTaken").getValue(Boolean.class),
+                                        snapshot.child("isFull").getValue(Boolean.class),
 
                                         snapshot.child("accountIDTakedIt").getValue().toString(),
 
@@ -328,7 +329,29 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     private void joinTrip() {
 
-        MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
+        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(selectedTripID);
+        databaseReferenceP.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("isFull").getValue(Boolean.class)){
+                    Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
+                    if (selectedPlacesTrip==2){
+
+                    }
+                    if      ((selectedPlacesTrip+1)>=4){
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(true);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void takeTrip() {
@@ -407,7 +430,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
         }
 
-        mMapView.onSaveInstanceState(mapViewBundle);
+        //mMapView.onSaveInstanceState(mapViewBundle);
     }
 
 
@@ -461,13 +484,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     @Override
     public void onPause() {
-        mMapView.onPause();
+        //mMapView.onPause();
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
-        mMapView.onDestroy();
+        //mMapView.onDestroy();
         super.onDestroy();
     }
 

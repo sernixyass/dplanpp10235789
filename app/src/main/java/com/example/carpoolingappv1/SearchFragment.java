@@ -153,8 +153,7 @@ public class SearchFragment extends Fragment {
                             @NonNull
                             @Override
                             public ListItem parseSnapshot(@NonNull DataSnapshot snapshot) {
-                                return new ListItem(
-                                        snapshot.child("startingPoint").getValue().toString(),
+                                return new ListItem(snapshot.child("startingPoint").getValue().toString(),
                                         snapshot.child("endingPoint").getValue().toString(),
                                         snapshot.child("places").getValue(Integer.class),
                                         snapshot.child("id").getValue().toString(),
@@ -172,6 +171,7 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("friday").getValue(Boolean.class),
 
                                         snapshot.child("isTaken").getValue(Boolean.class),
+                                        snapshot.child("isFull").getValue(Boolean.class),
 
                                         snapshot.child("accountIDTakedIt").getValue().toString(),
 
@@ -180,7 +180,8 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("accountIDJoining3").getValue().toString(),
                                         snapshot.child("accountIDJoining4").getValue().toString(),
 
-                                        snapshot.child("hourTrip").getValue().toString());
+                                        snapshot.child("hourTrip").getValue().toString()
+                                );
                             }
                         })
                         .build();

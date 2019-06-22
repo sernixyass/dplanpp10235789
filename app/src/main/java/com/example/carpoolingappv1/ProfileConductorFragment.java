@@ -71,7 +71,7 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         });
 
 
-        view.findViewById(R.id.drop_down_option_menu);
+        view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
 
         buttonConducEditProfile = view.findViewById(R.id.edit_con_profile);
         buttonConducEditProfile.setOnClickListener(new View.OnClickListener() {

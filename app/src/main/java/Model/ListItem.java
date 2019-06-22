@@ -34,6 +34,7 @@ public class ListItem {
     private Boolean friday;
 
     private boolean isTaken;
+    private boolean isFull;
 
     //private float estimatedTime;
 
@@ -149,6 +150,7 @@ public class ListItem {
                     Boolean friday,
 
                     Boolean isTaken,
+                    Boolean isFull,
 
                     String accountIDTakedIt,
 
@@ -175,6 +177,7 @@ public class ListItem {
         this.friday = friday;
 
         this.isTaken = isTaken;
+        this.isFull = isFull;
 
         this.accountIDTakedIt = accountIDTakedIt;
 
@@ -253,6 +256,14 @@ public class ListItem {
 
     public void setTaken(boolean taken) {
         isTaken = taken;
+    }
+
+    public boolean isFull() {
+        return isFull;
+    }
+
+    public void setFull(boolean full) {
+        isFull = full;
     }
 
     public String getAccountIDPostedIt() {

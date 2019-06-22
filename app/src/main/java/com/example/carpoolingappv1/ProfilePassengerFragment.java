@@ -39,7 +39,7 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
 
 
         view.findViewById(R.id.add_friend).setOnClickListener(this);
-        buttonPassEditProfile = view.findViewById(R.id.edit_pass_profile);
+        buttonPassEditProfile = view.findViewById(R.id.edit_pass_Pprofile);
         buttonPassEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,15 +78,15 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
         });
 
 
-        view.findViewById(R.id.drop_down_option_menu);
+        view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
 
-        buttonPassEditProfile = view.findViewById(R.id.btn_add_Post);
+        /*buttonPassEditProfile = view.findViewById(R.id.edit_pass_Pprofile);
         buttonPassEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), Edit_profile_Passenger.class));
             }
-        });
+        });*/
 
         return view ;
     }
