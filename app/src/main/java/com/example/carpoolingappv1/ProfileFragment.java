@@ -40,67 +40,68 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
 
-        view.findViewById(R.id.add_friend).setOnClickListener(this);
-        mAuth = FirebaseAuth.getInstance();
-
-        //link
-        fullName = view.findViewById(R.id.fullName_profile);
-        fullNameGrand = view.findViewById(R.id.fullNameGrand_profile);
-        email = view.findViewById(R.id.email_profile);
-        phone = view.findViewById(R.id.phone_profile);
-
-
-
-//        logoutBtn = view.findViewById(R.id.P_LogoutBtn);
-//        logoutBtn.setOnClickListener(this);
+//        view.findViewById(R.id.add_friend).setOnClickListener(this);
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        //link
+//        fullName = view.findViewById(R.id.fullName_profile);
+//        fullNameGrand = view.findViewById(R.id.fullNameGrand_profile);
+//        email = view.findViewById(R.id.email_profile);
+//        phone = view.findViewById(R.id.phone_profile);
+//
+//
+//
+////        logoutBtn = view.findViewById(R.id.P_LogoutBtn);
+////        logoutBtn.setOnClickListener(this);
 
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        //retrieve data
+//        userID = mAuth.getCurrentUser().getUid();
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                showData(dataSnapshot);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
-        //retrieve data
-        userID = mAuth.getCurrentUser().getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                showData(dataSnapshot);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void showData(DataSnapshot dataSnapshot) {
-        fullName.setText(dataSnapshot.child("fullName").getValue().toString());
-        fullNameGrand.setText(dataSnapshot.child("fullName").getValue().toString());
-
-    }
+//    private void showData(DataSnapshot dataSnapshot) {
+//        fullName.setText(dataSnapshot.child("fullName").getValue().toString());
+//        fullNameGrand.setText(dataSnapshot.child("fullName").getValue().toString());
+//
+//
+//    }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.add_friend):
-                logout();
+               // logout();
                 break;
 
         }
-    }
-
-    private void logout() {
-        MainActivity.mAuth.getInstance().signOut();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
-    }
-
-}
+    }}
+//
+//    private void logout() {
+//        MainActivity.mAuth.getInstance().signOut();
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        getActivity().finish();
+//    }
+//
+//}

@@ -31,18 +31,6 @@
                 android:padding="20dp"
                 android:hint="Full Name" />
 
-            <EditText
-                android:id="@+id/con_edit_email"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:hint="Email"/>
 
             <EditText
                 android:id="@+id/con_edit_birth_date"
@@ -81,7 +69,7 @@
                 android:hint="Wilaya" />
 
             <EditText
-                android:id="@+id/con_edit_password"
+                android:id="@+id/con_edit_OldPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -89,10 +77,20 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:hint="Password" />
+                android:hint="Old Password" />
+            <EditText
+                android:id="@+id/con_edit_newPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:hint="enter New Password" />
 
             <EditText
-                android:id="@+id/con_edit_confirm_password"
+                android:id="@+id/con_edit_newPassword2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -100,7 +98,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:hint="Confirm Password"/>
+                android:hint="Confirm the new Password"/>
 
             <EditText
                 android:id="@+id/con_edit_car_model"

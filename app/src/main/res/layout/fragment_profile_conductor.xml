@@ -67,7 +67,7 @@
                         android:src="@drawable/ic_action_overflow" />
 
                     <TextView
-                        android:id="@+id/con_profile_name"
+                        android:id="@+id/con_big_profile_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -81,7 +81,7 @@
                         android:id="@+id/user_profile_short_bio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/con_profile_name"
+                        android:layout_below="@+id/con_big_profile_name"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="12dp"
                         android:text="Conductor"
