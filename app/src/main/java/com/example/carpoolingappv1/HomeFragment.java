@@ -336,11 +336,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 if (dataSnapshot.child("isFull").getValue(Boolean.class)){
                     Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
                 }else {
-
                     MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
-                    if (selectedPlacesTrip==2){
 
+                    if (selectedPlacesTrip==0){
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining1")
+                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
                     }
+                    if (selectedPlacesTrip==1){
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining2")
+                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                    }
+                    if (selectedPlacesTrip==2){
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining3")
+                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                    }
+                    if (selectedPlacesTrip==3){
+                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining4")
+                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                    }
+
+
+
                     if      ((selectedPlacesTrip+1)>=4){
                         MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(true);
                     }

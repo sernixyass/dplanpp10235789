@@ -182,9 +182,9 @@ public class CompeltPosting extends Activity {
         map.put("startingPoint", startP);
         map.put("endingPoint", endP);
         if (MainActivity.isConductor){
-            map.put("places", 4);
+            map.put("places", 0);
         }else {
-            map.put("places", 3);
+            map.put("places", 1);
         }
         map.put("tripPosition", tripPos);
         map.put("tripDestinationPosition", tripDesPos);
