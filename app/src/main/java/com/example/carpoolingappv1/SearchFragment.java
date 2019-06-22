@@ -161,7 +161,26 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("tripPos").getValue(LatLng.class),
                                         snapshot.child("tripDesPos").getValue(LatLng.class),
                                         snapshot.child("accountIDPostedIt").getValue().toString(),
-                                        snapshot.child("weekDays").getValue(Map.class));
+
+
+                                        snapshot.child("saturday").getValue(Boolean.class),
+                                        snapshot.child("sunday").getValue(Boolean.class),
+                                        snapshot.child("monday").getValue(Boolean.class),
+                                        snapshot.child("tuesday").getValue(Boolean.class),
+                                        snapshot.child("wednesday").getValue(Boolean.class),
+                                        snapshot.child("thursday").getValue(Boolean.class),
+                                        snapshot.child("friday").getValue(Boolean.class),
+
+                                        snapshot.child("isTaken").getValue(Boolean.class),
+
+                                        snapshot.child("accountIDTakedIt").getValue().toString(),
+
+                                        snapshot.child("accountIDJoining1").getValue().toString(),
+                                        snapshot.child("accountIDJoining2").getValue().toString(),
+                                        snapshot.child("accountIDJoining3").getValue().toString(),
+                                        snapshot.child("accountIDJoining4").getValue().toString(),
+
+                                        snapshot.child("hourTrip").getValue().toString());
                             }
                         })
                         .build();

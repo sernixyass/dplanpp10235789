@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="saturday"/>
+                    android:text="SAT"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/saturdayCB"
                     android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="sunday"/>
+                    android:text="SUN"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/sundayCB"
 
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="monday"/>
+                    android:text="MON"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/mondayCB"
                     android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="tuesday"/>
+                    android:text="TUE"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/tuesdayCB"
 
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="wednesday"/>
+                    android:text="WED"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/wednesdayCB"
                     android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="thursday"
+                    android:text="THU"
                     />
 
                 <android.support.v7.widget.AppCompatCheckBox
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="friday"/>
+                    android:text="FRI"/>
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/fridayCB"
                     android:layout_width="wrap_content"
@@ -131,6 +131,27 @@
             android:layout_height="40dp"
             android:id="@+id/C_P_places"
             android:inputType="number"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <TextView
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOUR"/>
+            <Spinner
+                android:layout_weight="2"
+                android:id="@+id/hourCompletePosting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                tools:ignore="Autofill" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

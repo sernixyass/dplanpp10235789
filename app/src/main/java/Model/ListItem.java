@@ -25,17 +25,27 @@ public class ListItem {
  private String accountIDJoining4;
 
 
+ private Boolean saturday;
+    private Boolean sunday;
+    private Boolean monday;
+    private Boolean tuesday;
+    private Boolean wednesday;
+    private Boolean thursday;
+    private Boolean friday;
+
     private boolean isTaken;
 
     //private float estimatedTime;
 
     private LatLng tripPosition;
     private LatLng tripDestinationPosition;
-    //private String accountIDTakedIt;
+    private String accountIDTakedIt;
+
+    private String hourTrip;
  //private String rideType;
  //private Date dateOfPosting;
 
-
+/*
  private Map<String,Boolean> weekDays = new Map<String, Boolean>(){
      @Override
      public int size() {
@@ -117,7 +127,7 @@ public class ListItem {
          put("friday",false);
      }
  } ;
-
+*/
 
 
  /*
@@ -129,7 +139,25 @@ public class ListItem {
     public ListItem(String startingPoint, String endPoint, Integer places,
                     String postID, LatLng tripPosition, LatLng tripDestinationPosition,
                     String accountIDPostedIt,
-                    Map<String, Boolean> weekDays) {
+
+                    Boolean saturday,
+                    Boolean sunday,
+                    Boolean monday,
+                    Boolean tuesday,
+                    Boolean wednesday,
+                    Boolean thursday,
+                    Boolean friday,
+
+                    Boolean isTaken,
+
+                    String accountIDTakedIt,
+
+                    String accountIDJoining1,
+                    String accountIDJoining2,
+                    String accountIDJoining3,
+                    String accountIDJoining4,
+
+                    String hourTrip) {
         this.startingPoint = startingPoint;
         this.endPoint = endPoint;
         this.places = places;
@@ -137,7 +165,26 @@ public class ListItem {
         this.tripPosition = tripPosition;
         this.tripDestinationPosition = tripDestinationPosition;
         this.accountIDPostedIt = accountIDPostedIt;
-        this.weekDays = weekDays;
+
+        this.saturday = saturday;
+        this.sunday = sunday;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+
+        this.isTaken = isTaken;
+
+        this.accountIDTakedIt = accountIDTakedIt;
+
+        this.accountIDJoining1 = accountIDJoining1;
+        this.accountIDJoining2 = accountIDJoining2;
+        this.accountIDJoining3 = accountIDJoining3;
+        this.accountIDJoining4 = accountIDJoining4;
+
+        this.hourTrip=hourTrip;
+
     }
 
     public ListItem(){
