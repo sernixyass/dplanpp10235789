@@ -109,6 +109,35 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                 }
                             });
                         }
+                    }else {
+
+
+                        //CONDUCTOR
+                        if (!dataSnapshot.child("isTaken").getValue(Boolean.class)){
+                            actionButton.setText("TAKE");
+                            actionButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    takeTrip();
+                                }
+                            });
+                        }else {
+                            //Toast.makeText(getContext(),"rrr",Toast.LENGTH_SHORT).show();
+                            if (dataSnapshot.child("accountIDTakedIt").getValue().equals(MainActivity.currentUserID)){
+
+                                actionButton.setText("CANCEL");
+                                actionButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        cancelTakingTrip();
+                                    }
+                                });
+
+                            }else {
+                                actionButton.setText("is TAKEN");
+                            }
+                        }
+
                     }
 
 
@@ -241,25 +270,17 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
     private void takeTrip() {
         //MainActivity.databaseReference.child("places").get;
-        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID);
-        databaseReferenceP.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
-                    Toast.makeText(getContext(),"already taken",Toast.LENGTH_SHORT).show();
-                }else {
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
+                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);
 
-                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);
-                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt").setValue(MainActivity.mAuth.getCurrentUser().getUid());
+    }
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    private void cancelTakingTrip() {
+        //MainActivity.databaseReference.child("places").get;
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
+                .setValue("");
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(false);
 
     }
 
