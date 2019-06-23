@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
@@ -85,10 +86,10 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
                     //lkj
 
-                    DatabaseReference mdataRef = MainActivity.databaseReference;
-
                     if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
 
+                        DatabaseReference mdataRef = FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(dataSnapshot.child("accountIDTakedIt").getValue().toString());
                         mdataRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
