@@ -36,7 +36,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     TextView startPoint,endPoint;
     Button actionButton;
 
-    public boolean isOperating = false;
+    public static boolean isOperating = false;
 
 
     @Nullable
