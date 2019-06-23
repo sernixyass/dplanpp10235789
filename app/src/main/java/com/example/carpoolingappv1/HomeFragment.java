@@ -311,8 +311,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
                 if (model.isTaken()){
                     holder.conductor.setText("TAKEN.");
-                }else
-                {
+                }else {
                     holder.conductor.setText("NOT taken.");
                 }
 

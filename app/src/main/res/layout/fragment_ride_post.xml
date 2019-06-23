@@ -39,7 +39,7 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/time_edit"
+                        android:id="@+id/hour_ride"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="24:00"
@@ -65,7 +65,7 @@
                         android:textSize="21sp"/>
 
                     <TextView
-                        android:id="@+id/day_edit"
+                        android:id="@+id/day_ride"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Saturday"
@@ -93,6 +93,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/driver_full_name"
                         android:text="Driver Name"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
@@ -112,6 +113,7 @@
 
 
                     <TextView
+                        android:id="@+id/car_model_in_ride"
                         android:gravity="center"
                         android:text="Car Model"
                         android:layout_weight="0.5"
@@ -129,22 +131,23 @@
             <LinearLayout
                 android:layout_weight="0.2"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:weightSum="1.2">
 
 
 
                 <LinearLayout
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
 
                     <TextView
                         android:id="@+id/fStartPoint"
                         android:gravity="center"
                         android:text="Start Point"
-                        android:layout_weight="0.5"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -152,18 +155,36 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
 
                     <TextView
                         android:id="@+id/fEndPoint"
                         android:gravity="center"
                         android:text="End Point"
-                        android:layout_weight="0.5"
                         android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+
+
+                    <TextView
+                        android:id="@+id/distance"
+                        android:gravity="center"
+                        android:text="Distance : 24km"
+                        android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
 
@@ -182,28 +203,19 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:gravity="center">
 
                     <TextView
+                        android:id="@+id/check_perssones_ride"
                         android:gravity="center"
-                        android:text="24 Km"
-                        android:layout_weight="0.5"
-                        android:textSize="20sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-
-                    <TextView
-                        android:gravity="center"
-                        android:text=""
-                        android:layout_weight="0.5"
-                        android:textSize="20sp"
+                        android:text="Check Passengers joined "
+                        android:textSize="25sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
 
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -218,7 +230,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:gravity="center">
 
                     <Button
                         android:id="@+id/fActionBtn"

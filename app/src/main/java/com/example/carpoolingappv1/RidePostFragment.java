@@ -33,7 +33,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mapH;
 
     //post data
-    TextView startPoint,endPoint;
+    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,checkPersoonesInRide;
     Button actionButton;
 
     public static boolean isOperating = false;
@@ -51,6 +51,21 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         startPoint = view.findViewById(R.id.fStartPoint);
         endPoint = view.findViewById(R.id.fEndPoint);
         actionButton = view.findViewById(R.id.fActionBtn);
+        rideHour=view.findViewById(R.id.hour_ride);
+        rideDay=view.findViewById(R.id.day_ride);
+        driverName=view.findViewById(R.id.driver_full_name);
+        carModel=view.findViewById(R.id.car_model_in_ride);
+        distance=view.findViewById(R.id.distance);
+
+
+        checkPersoonesInRide=view.findViewById(R.id.check_perssones_ride);
+        checkPersoonesInRide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Display the perssones in the ride
+            }
+        });
+
 
 
         DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts
@@ -62,6 +77,37 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     startPoint.setText(dataSnapshot.child("startingPoint").getValue().toString());
                     endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
+                    rideHour.setText(dataSnapshot.child("hourTrip").getValue().toString());
+                    //distance.serText(dataSnapshot.child("").getValue().toString());
+
+                    //rideDay.setText(dataSnapshot.child());
+
+
+
+                    DatabaseReference mdataRef = MainActivity.databaseReference;
+
+                    if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
+
+                        mdataRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                carModel.setText(dataSnapshot1.child("carModel").getValue().toString());
+                                driverName.setText(dataSnapshot1.child("fullName").getValue().toString());
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
+                        driverName.setText("No Driver available");
+                        carModel.setText("No car");
+                    }
+
+
+
+
 
                     int places = 0;
                     if (!dataSnapshot.child("accountIDJoining1").getValue().equals("")){
@@ -150,8 +196,6 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             });
 
         }
-
-
 
         return view;
     }
