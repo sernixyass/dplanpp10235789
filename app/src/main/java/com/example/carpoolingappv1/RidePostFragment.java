@@ -10,12 +10,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
@@ -25,24 +32,259 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public MapView mMapView;
     GoogleMap mapH;
 
+    //post data
+    TextView startPoint,endPoint;
+    Button actionButton;
+
+    public boolean isOperating = false;
 
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_ride_post,container,false);
 
-
-
-        mMapView = (MapView) view.findViewById(R.id.mapPost);
-
-
-
+        mMapView = view.findViewById(R.id.mapPost);
         initGoogleMap(savedInstanceState);
+
+        startPoint = view.findViewById(R.id.fStartPoint);
+        endPoint = view.findViewById(R.id.fEndPoint);
+        actionButton = view.findViewById(R.id.fActionBtn);
+
+
+        DatabaseReference databaseReferenceModelC = MainActivity.databaseReferencePosts
+                .child(HomeFragment.selectedTripID);
+
+        if (!isOperating){
+            databaseReferenceModelC.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    startPoint.setText(dataSnapshot.child("startingPoint").getValue().toString());
+                    endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
+
+
+                    if (!MainActivity.isConductor){
+                        //A C T I O N   B U T T O N
+                        if (dataSnapshot.child("accountIDJoining1").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid()))
+                        {
+                            //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
+                            actionButton.setText("CANCEL JOINING");
+                            actionButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    isOperating=true;
+
+                                    //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
+                                    cancelJoiningTrip();
+                                }
+                            });
+
+
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+
+
+        DatabaseReference databaseReferenceModelJ = MainActivity.databaseReferencePosts
+                .child(HomeFragment.selectedTripID);
+
+        if (!isOperating){
+            databaseReferenceModelJ.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    //fill data
+                    startPoint.setText(dataSnapshot.child("startingPoint").getValue().toString());
+                    endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
+
+
+                    if (!MainActivity.isConductor){
+                        //A C T I O N   B U T T O N
+                        if (dataSnapshot.child("accountIDJoining1").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid())
+                                || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.mAuth.getCurrentUser().getUid()))
+                        {
+                            //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
+
+                            return;
+                        }else {
+                            actionButton.setText("JOIN");
+                            actionButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    isOperating=true;
+                                    //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
+                                    joinTrip();
+                                }
+                            });
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+
 
 
         return view;
+    }
+
+
+
+
+    private void cancelJoiningTrip(){
+        final DatabaseReference databaseReferencePC = MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID);
+        databaseReferencePC.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining1").setValue("");
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places")
+                            .setValue(HomeFragment.selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining2").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining2").setValue("");
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places").setValue(HomeFragment.selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining3").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining3").setValue("");
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places").setValue(HomeFragment.selectedPlacesTrip-1);
+                }
+                if (dataSnapshot.child("accountIDJoining4").getValue().equals( MainActivity.currentUserID))
+                {
+                    databaseReferencePC.child("accountIDJoining4").setValue("");
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places").setValue(HomeFragment.selectedPlacesTrip-1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        isOperating=false;
+    }
+
+    private void joinTrip() {
+
+        DatabaseReference databaseReferencePjt = MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID);
+        databaseReferencePjt.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                boolean exist = true;
+
+                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
+                        || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
+                        || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
+                        || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
+                {
+                    //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
+                    exist = true;
+
+                    return;
+
+                }else{
+
+                    if (dataSnapshot.child("isFull").getValue(Boolean.class)){
+                        Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
+                    }else {
+
+                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places")
+                                .setValue((HomeFragment.selectedPlacesTrip+1));
+
+
+
+                        if (dataSnapshot.child("accountIDJoining1").getValue().equals("")){
+                            MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDJoining1")
+                                    .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                        }else{
+                            if (dataSnapshot.child("accountIDJoining2").getValue().equals("")){
+                                MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDJoining2")
+                                        .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                            }else{
+                                if (dataSnapshot.child("accountIDJoining3").getValue().equals("")){
+                                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDJoining3")
+                                            .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                                }else{
+                                    if (dataSnapshot.child("accountIDJoining4").getValue().equals("")){
+                                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDJoining4")
+                                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                                    }
+                                }
+                            }
+                        }
+
+
+
+                        if      ((HomeFragment.selectedPlacesTrip+1)>=4){
+                            MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(true);
+                        }else {
+                            MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(false);
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        isOperating=false;
+    }
+
+    private void takeTrip() {
+        //MainActivity.databaseReference.child("places").get;
+        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID);
+        databaseReferenceP.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
+                    Toast.makeText(getContext(),"already taken",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);
+                    MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt").setValue(MainActivity.mAuth.getCurrentUser().getUid());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

@@ -247,7 +247,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
-
+/*
                 //boolean alreadyJoined = false;
                 DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts.child(model.getPostID());
                 databaseReferenceModel.addValueEventListener(new ValueEventListener() {
@@ -270,7 +270,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                     cancelJoiningTrip();
                                 }
                             });
-                            return;
 
                         }else {
                             if (MainActivity.isConductor){
@@ -286,13 +285,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                 });
                                 return;
                             }else {
-                                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
-                                        || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
-                                        || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
-                                        || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
-                                {
-                                    return;
-                                }
                                     holder.ActionButton.setText("JOIN");
                                     holder.ActionButton.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -314,7 +306,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
                     }
                 });
-
+*/
 
 
                 if (model.isTaken()){
@@ -353,17 +345,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 }
 
 
-
-
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
 
+                        selectedPlacesTrip = model.getPlaces();
+                        selectedTripID = model.getPostID();
                         Fragment fra;
                         fra = new RidePostFragment();
-
-
 
                         getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
                                 fra).commit();
@@ -374,7 +363,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         };
         mRecyclerView.setAdapter(adapterFire);
     }
-
+/*
     private void cancelJoiningTrip(){
         final DatabaseReference databaseReferencePC = MainActivity.databaseReferencePosts.child(selectedTripID);
         databaseReferencePC.addValueEventListener(new ValueEventListener() {
@@ -408,7 +397,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
             }
         });
-
     }
 
     private void joinTrip() {
@@ -500,7 +488,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         });
 
     }
-
+*/
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
