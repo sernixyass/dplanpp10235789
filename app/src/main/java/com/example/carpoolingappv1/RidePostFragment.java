@@ -83,6 +83,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     //rideDay.setText(dataSnapshot.child());
 
 
+                    //lkj
 
                     DatabaseReference mdataRef = MainActivity.databaseReference;
 
