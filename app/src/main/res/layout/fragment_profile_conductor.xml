@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileConductorFragment">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -19,15 +14,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardVV"
-                    android:layout_margin="15dp"
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/White"
-                    android:elevation="4dp"
-                    android:paddingBottom="3dp"
-                    android:paddingTop="5dp">
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/profile_layout"
@@ -36,21 +29,52 @@
                         android:orientation="vertical"
                         android:weightSum="100">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                        <ImageButton
                             android:layout_gravity="center"
-                            android:layout_weight="30">
+                            android:id="@+id/con_profile_photo"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:background="@drawable/profile_circular_border_imageview" />
 
-                            <ImageButton
-                                android:id="@+id/con_profile_photo"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:background="@drawable/profile_circular_border_imageview"
-                                android:elevation="5dp"/>
+                        <RatingBar
+                            android:id="@+id/rating_bar_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            android:stepSize=".2"
+                            android:rating="3"
+                            android:layout_gravity="center"
+                            />
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.5"
+                            android:textSize="25sp"/>
+                        <TextView
+                            android:id="@+id/con_big_profile_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Nix MAlONE"
+                            android:textColor="#070303"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/con_add_friend"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_action_user_add" />
 
-                        </LinearLayout>
-
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/drop_down_option_menu"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_action_overflow" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -68,29 +92,6 @@
                                 android:layout_gravity="center"
                                 >
 
-                                <RatingBar
-                                    android:id="@+id/rating_bar_profile"
-                                    android:scaleX=".8"
-                                    android:scaleY=".8"
-                                    android:transformPivotX="0dp"
-                                    android:transformPivotY="0dp"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.7"
-                                    android:numStars="5"
-                                    android:stepSize=".2"
-                                    android:rating="3"
-                                    android:layout_gravity="center"
-                                    />
-                                <TextView
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.3"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="3.5"
-                                    android:gravity="start"
-                                    android:textSize="25sp"/>
-
                             </LinearLayout>
 
                             <LinearLayout
@@ -98,15 +99,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="0.5">
 
-                                <TextView
-                                    android:id="@+id/con_big_profile_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:text="Nix MAlONE"
-                                    android:textColor="#070303"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:gravity="center" />
+
 
                             </LinearLayout>
 
@@ -121,36 +114,13 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
 
-                            <ImageView
-                                android:id="@+id/con_add_friend"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:clickable="true"
-                                android:src="@drawable/ic_action_user_add"
-                                android:layout_weight="0.5"/>
 
-                            <ImageView
-                                android:id="@+id/drop_down_option_menu"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:clickable="true"
-                                android:src="@drawable/ic_action_overflow"
-                                android:layout_weight="0.5"/>
 
                         </LinearLayout>
 
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/cardVV"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/con_full_name"
@@ -263,6 +233,4 @@
             android:layout_margin="32dp"
             android:src="@drawable/ic_edit" />
 
-    </RelativeLayout>
-
-</FrameLayout>
+</RelativeLayout>

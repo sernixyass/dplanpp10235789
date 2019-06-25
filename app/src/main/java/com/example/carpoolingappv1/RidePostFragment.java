@@ -170,6 +170,13 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
                                                 "-" + MainActivity.currentUserFullName +"- exit this trip ");
                                     }
+                                    //conductor
+                                    if (!dataSnapshot.child("accountIDTakedIt").getValue().equals("") )
+                                    {
+                                        MainActivity.sendNotification(dataSnapshot.child("accountIDTakedIt").getValue().toString(),
+                                                dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
+                                                "-" + MainActivity.currentUserFullName +"- exit Your trip ");
+                                    }
 
                                     cancelJoiningTrip();
                                 }
@@ -211,6 +218,13 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining4").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
                                                 "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ");
+                                    }
+                                    //conductor
+                                    if (!dataSnapshot.child("accountIDTakedIt").getValue().equals(""))
+                                    {
+                                        MainActivity.sendNotification(dataSnapshot.child("accountIDTakedIt").getValue().toString(),
+                                                dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join Your trip ");
                                     }
                                 }
                             });
