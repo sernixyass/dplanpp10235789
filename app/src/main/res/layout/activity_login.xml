@@ -7,66 +7,81 @@
     android:orientation="vertical"
     tools:context=".LoginActivity"
     android:gravity="center"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark">
 
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/input_white_bg"
             android:id="@+id/emailLoginId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:drawableLeft="@drawable/ic_mai_24dp"
-            android:drawablePadding="5dp"
+            android:drawablePadding="8dp"
+            android:paddingLeft="10dp"
             android:hint="@string/emailTxt"
+            android:textColorHint="@color/gris"
             android:inputType="textEmailAddress"
-            tools:ignore="Autofill" />
-    </android.support.design.widget.TextInputLayout>
+            tools:ignore="Autofill"
+            android:textColor="@color/textInEditText"/>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:id="@+id/passwordLoginId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:hint="@string/passwordTxt"
+            android:textColorHint="@color/gris"
             android:inputType="textPassword"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
-            android:drawablePadding="5dp"
-            tools:ignore="Autofill" />
-    </android.support.design.widget.TextInputLayout>
+            android:drawablePadding="8dp"
+            android:paddingLeft="10dp"
+            tools:ignore="Autofill"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/input_white_bg"
+            android:textColor="@color/textInEditText"/>
+
 
     <Button
         android:id="@+id/LoginBtnId"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_margin="15dp"
         android:background="@drawable/button_bg"
-        android:textColor="#CCFFFFFF"
+        android:textColor="@color/generalTextCol"
         android:text="@string/loginTxt" />
 
     <TextView
-        android:id="@+id/SignUpTxtBtnId"
+        android:id="@+id/sSignUpTxtBtnId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:gravity="center"
+        android:textColor="@color/generalTextCol"
         android:text="@string/sign_up_txt_btn"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
+    <Button
+        android:id="@+id/SignUpTxtBtnId"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_bg_white"
+        android:textColor="@color/generalTextCol"
+        android:text="Sign Up" />
+
+
+
     <CheckBox
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="60dp"
         android:id="@+id/remember_email_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/generalTextCol"
         android:text="@string/remember"
         app:layout_constraintTop_toBottomOf="@+id/SignUpTxtBtnId" />
 

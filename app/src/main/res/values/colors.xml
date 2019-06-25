@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryDark">#FF9800</color>
+    <color name="colorPrimary">#F3F3F3</color>
+    <color name="colorPrimaryDark">#FFDC80</color>
     <color name="colorAccent">#1A1917</color>
 
     <color name="red">#D62842</color>
     <color name="blue">#2196F3</color>
-    <color name="gris">#3C3C3C</color>
+    <color name="gris">#424141</color>
     <color name="White">#EEEEEE</color>
+
+
+    <color name="generalTextCol">#4D4D50</color>
+    <color name="textColInBut">#CECECE</color>
+    <color name="butnBack">#FAFAFA</color>
+
+
+    <color name="drawableLeft">#D6D5DB</color>
+    <color name="textInEditText">#1A1917</color>
+
 
 </resources>
