@@ -247,6 +247,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
+
 /*
                 //boolean alreadyJoined = false;
                 DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts.child(model.getPostID());

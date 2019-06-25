@@ -38,9 +38,9 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         //link
 
         fullNameGrand = view.findViewById(R.id.con_big_profile_name);
-        fullName = view.findViewById(R.id.con_full_name);
-        email = view.findViewById(R.id.con_email);
-        birthDate = view.findViewById(R.id.con_birth_date);
+        //fullName = view.findViewById(R.id.con_full_name);
+        //email = view.findViewById(R.id.con_email);
+        //birthDate = view.findViewById(R.id.con_birth_date);
         phone = view.findViewById(R.id.con_phone);
         willaya = view.findViewById(R.id.con_wilaya);
         carModel = view.findViewById(R.id.con_car_model);
@@ -71,7 +71,7 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         });
 
 
-        view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
+        //view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
 
         buttonConducEditProfile = view.findViewById(R.id.edit_con_profile);
         buttonConducEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -86,11 +86,11 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
 
 
     private void showData(DataSnapshot dataSnapshot) {
-        fullName.setText(dataSnapshot.child("fullName").getValue().toString());
+        //fullName.setText(dataSnapshot.child("fullName").getValue().toString());
         fullNameGrand.setText(dataSnapshot.child("fullName").getValue().toString());
-        email.setText(dataSnapshot.child("email").getValue().toString());
+        //email.setText(dataSnapshot.child("email").getValue().toString());
         phone.setText(dataSnapshot.child("phone").getValue().toString());
-        birthDate.setText(dataSnapshot.child("bDate").getValue().toString());
+        //birthDate.setText(dataSnapshot.child("bDate").getValue().toString());
         willaya.setText(dataSnapshot.child("wilaya").getValue().toString());
         carModel.setText(dataSnapshot.child("carModel").getValue().toString());
         carNumber.setText(dataSnapshot.child("carKey").getValue().toString());

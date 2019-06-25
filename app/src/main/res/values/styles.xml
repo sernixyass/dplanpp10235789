@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
 
+        <item name="android:typeface">serif</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -12,6 +13,12 @@
     <style name="AppTheme.PopMe">
         <item name="android:windowIsTranslucent">true </item>
         <item name="android:windowCloseOnTouchOutside">true </item>
+
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorPrimaryDark </item>
+        <item name="colorControlActivated">@color/colorPrimary </item>
 
     </style>
 
