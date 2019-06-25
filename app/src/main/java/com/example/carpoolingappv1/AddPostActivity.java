@@ -61,7 +61,6 @@ public class AddPostActivity extends AppCompatActivity  {
         confermeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 setingDate();
             }
         });

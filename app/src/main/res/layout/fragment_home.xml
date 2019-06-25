@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/textColInBut">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -17,8 +16,7 @@
             android:id="@+id/posts_Container"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:layout_width="match_parent"
-            android:padding="20dp">
+            android:layout_width="match_parent">
 
 
             <android.support.v7.widget.RecyclerView
@@ -33,7 +31,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:src="@drawable/ic_add"
-                android:layout_margin="32dp"
+                android:layout_margin="15dp"
                 android:id="@+id/btn_add_Post"
                 />
 

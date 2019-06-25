@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,7 +120,7 @@ public class CompeltPosting extends Activity {
 
 
         conferm = findViewById(R.id.conferme_date_btn);
-       conferm.setOnClickListener(new View.OnClickListener() {
+        conferm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 savePoste();

@@ -80,7 +80,7 @@ public class MySearchAdapter extends RecyclerView.Adapter<MySearchAdapter.MySear
         public MySearchAdapterViewHolder(View itemView){
             super(itemView);
 
-            actionButton = itemView.findViewById(R.id.actionBtn);
+//            actionButton = itemView.findViewById(R.id.actionBtn);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             places = itemView.findViewById(R.id.nbr_passenger_places);

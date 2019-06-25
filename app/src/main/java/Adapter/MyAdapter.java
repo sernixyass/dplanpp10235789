@@ -152,12 +152,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 }*/
                 break;
             }
-            case R.id.actionBtn:{
-
-                Log.d(TAG,"you clicked on Action button");
-
-                break;
-            }
+//            case R.id.actionBtn:{
+//
+//                Log.d(TAG,"you clicked on Action button");
+//
+//                break;
+//            }
         }
     }
 
@@ -178,7 +178,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             super(itemView);
             //itemView to let us attatche the view
 
-            ActionButton = itemView.findViewById(R.id.actionBtn);
+//            ActionButton = itemView.findViewById(R.id.actionBtn);
             startPiont = itemView.findViewById(R.id.startTxtP);
             arrivePoint = itemView.findViewById(R.id.endTxtP);
             places = itemView.findViewById(R.id.nbr_passenger_places);
