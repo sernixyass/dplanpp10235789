@@ -362,7 +362,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         };
         mRecyclerView.setAdapter(adapterFire);
     }
-/*
+
+
+    /*
     private void cancelJoiningTrip(){
         final DatabaseReference databaseReferencePC = MainActivity.databaseReferencePosts.child(selectedTripID);
         databaseReferencePC.addValueEventListener(new ValueEventListener() {

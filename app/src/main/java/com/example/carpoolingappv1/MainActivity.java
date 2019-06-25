@@ -31,6 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Constants;
 import com.google.firebase.database.core.Tag;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.example.carpoolingappv1.util.Constants.ERROR_DIALOG_REQUEST;
 import static com.example.carpoolingappv1.util.Constants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
 import static com.example.carpoolingappv1.util.Constants.PERMISSIONS_REQUEST_ENABLE_GPS;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean isConductor = false;
     public static Boolean isTaken = false;
     public static String currentUserID;
+    public static String currentUserFullName;
 
     private boolean mLocationPermissionGranted = false;
 
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 isConductor = dataSnapshot.child("isConductor").getValue(Boolean.class);
+                currentUserFullName = dataSnapshot.child("fullName").getValue().toString();
 
             }
 
@@ -212,6 +217,14 @@ public class MainActivity extends AppCompatActivity {
     //end the copied area
 
 
+    public static void sendNotification(String userReciver, String title,String message){
+        DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("Users").child(userReciver).child("notification").push();
+        Map<String, Object> notMap = new HashMap<>();
+        notMap.put("title",title);
+        notMap.put("message",message);
+        databaseReferenceNot.setValue(notMap);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -242,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new SearchFragment();
                             break;
                         case R.id.nav_carte:
-                            selectedFragment = new CarteFragment();
+                            selectedFragment = new NotificationFragment();
                             break;
                         case R.id.nav_profile:
                             if (isConductor){
