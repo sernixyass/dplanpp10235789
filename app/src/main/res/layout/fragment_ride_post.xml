@@ -14,14 +14,14 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="@dimen/cardview_compat_inset_shadow">
+        android:layout_height="300dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_weight="0.2"
@@ -44,7 +44,8 @@
                         android:layout_height="wrap_content"
                         android:text="24:00"
                         android:textStyle="bold"
-                        android:textSize="45sp"/>
+                        android:textSize="45sp"
+                        android:textColor="@color/generalTextCol"/>
 
 
                 </LinearLayout>
@@ -62,14 +63,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20 Dec"
-                        android:textSize="21sp"/>
+                        android:textSize="21sp"
+                        android:textColor="@color/generalTextCol"/>
 
                     <TextView
                         android:id="@+id/day_ride"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Saturday"
-                        android:textSize="21sp"/>
+                        android:textSize="21sp"
+                        android:textColor="@color/generalTextCol"/>
 
 
                 </LinearLayout>
@@ -100,7 +103,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="20sp"
-                        />
+                        android:drawableLeft="@drawable/ic_driver_id"
+                        android:textColor="@color/generalTextCol"/>
 
 
                 </LinearLayout>
@@ -119,7 +123,9 @@
                         android:layout_weight="0.5"
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_car_model"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
@@ -150,7 +156,9 @@
                         android:text="Start Point"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_start_pp"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
@@ -168,7 +176,9 @@
                         android:text="End Point"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_end_pp"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
@@ -186,7 +196,8 @@
                         android:text="Distance : 24km"
                         android:textSize="18sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
@@ -212,8 +223,9 @@
                         android:text="Check Passengers joined "
                         android:textSize="25sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
+                        android:drawableLeft="@drawable/ic_person_black"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
@@ -238,7 +250,9 @@
                         android:layout_weight="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Take/Join"/>
+                        android:text="Take/Join"
+                        android:background="@drawable/button_bg"
+                        android:textColor="@color/generalTextCol"/>
 
                 </LinearLayout>
 
