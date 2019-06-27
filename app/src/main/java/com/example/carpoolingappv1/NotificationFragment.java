@@ -33,6 +33,11 @@ public class NotificationFragment extends Fragment {
     public List<NotificationModel> mNotificationItems;
     public FirebaseRecyclerAdapter notAdapterFire;
 
+
+
+    //Default constractor
+    public NotificationFragment(){}
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

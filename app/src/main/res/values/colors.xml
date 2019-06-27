@@ -8,6 +8,7 @@
     <color name="blue">#2196F3</color>
     <color name="gris">#424141</color>
     <color name="White">#EEEEEE</color>
+    <color name="Black">#000000</color>
 
 
     <color name="generalTextCol">#DDDDDD</color>
@@ -17,6 +18,7 @@
 
     <color name="drawableLeft">#D6D5DB</color>
     <color name="textInEditText">#1A1917</color>
+    <color name="tabIndicatorColor">#2d2d2d</color>
 
 
 </resources>
