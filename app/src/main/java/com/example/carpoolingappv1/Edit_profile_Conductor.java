@@ -40,8 +40,8 @@ public class Edit_profile_Conductor extends AppCompatActivity {
         phoneNumber=findViewById(R.id.con_edit_phone);
         wilaya=findViewById(R.id.con_edit_wilaya);
         oldPass=findViewById(R.id.con_edit_OldPassword);
-        password=findViewById(R.id.con_edit_newPassword);
-        confirmPassword=findViewById(R.id.con_edit_newPassword2);
+        //password=findViewById(R.id.con_edit_newPassword);
+        //confirmPassword=findViewById(R.id.con_edit_newPassword2);
         carModel=findViewById(R.id.con_edit_car_model);
         carUniqueNumber=findViewById(R.id.con_edit_car_unique_nbe);
 

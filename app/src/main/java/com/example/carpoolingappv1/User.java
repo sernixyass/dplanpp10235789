@@ -9,6 +9,8 @@ public class User {
     public Integer phone;
     public String wilaya;
 
+    public String profilePic;
+
     //conductor
     public String carModel;
     public String carKey;
@@ -82,16 +84,17 @@ public class User {
     }
 
 
-    public User(boolean isConductor, String fullName, String email, String bDate, Integer phone, String wilaya) {
+    public User(boolean isConductor, String fullName, String email, String bDate, Integer phone, String wilaya,String profilePic) {
         this.isConductor = isConductor;
         this.fullName = fullName;
         this.email = email;
         this.bDate = bDate;
         this.phone = phone;
         this.wilaya = wilaya;
+        this.profilePic = profilePic;
     }
 
-    public User(boolean isConductor, String fullName, String email, String bDate, Integer phone, String wilaya, String carModel, String carKey) {
+    public User(boolean isConductor, String fullName, String email, String bDate, Integer phone, String wilaya, String carModel, String carKey,String profilePic) {
         this.isConductor = isConductor;
         this.fullName = fullName;
         this.email = email;
@@ -100,5 +103,6 @@ public class User {
         this.wilaya = wilaya;
         this.carModel = carModel;
         this.carKey = carKey;
+        this.profilePic = profilePic;
     }
 }

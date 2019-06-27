@@ -38,6 +38,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     //post data
     TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,checkPersoonesInRide;
     Button actionButton;
+    TextView saturday,sunday,monday,tuesday,wednesday,thursday,friday;
 
     public static boolean isOperating = false;
 
@@ -54,20 +55,30 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         startPoint = view.findViewById(R.id.fStartPoint);
         endPoint = view.findViewById(R.id.fEndPoint);
         actionButton = view.findViewById(R.id.fActionBtn);
+
         rideHour=view.findViewById(R.id.hour_ride);
         rideDay=view.findViewById(R.id.day_ride);
         driverName=view.findViewById(R.id.driver_full_name);
         carModel=view.findViewById(R.id.car_model_in_ride);
         distance=view.findViewById(R.id.distance);
 
+        saturday = view.findViewById(R.id.satIDf);
+        sunday = view.findViewById(R.id.sunIDf);
+        monday = view.findViewById(R.id.monIDf);
+        tuesday = view.findViewById(R.id.tueIDf);
+        wednesday = view.findViewById(R.id.wedIDf);
+        thursday = view.findViewById(R.id.thuIDf);
+        friday = view.findViewById(R.id.friIDf);
 
-        checkPersoonesInRide=view.findViewById(R.id.check_perssones_ride);
+
+
+        /*checkPersoonesInRide=view.findViewById(R.id.check_perssones_ride);
         checkPersoonesInRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Display the perssones in the ride
             }
-        });
+        });*/
 
 
 
@@ -84,6 +95,30 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     //distance.serText(dataSnapshot.child("").getValue().toString());
 
                     //rideDay.setText(dataSnapshot.child());
+
+                    //WEEK days
+                    if (dataSnapshot.child("saturday").getValue(Boolean.class)){
+                        saturday.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                    }
+                    if (dataSnapshot.child("sunday").getValue(Boolean.class)){
+                        sunday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
+                    if (dataSnapshot.child("monday").getValue(Boolean.class)){
+                        monday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
+                    if (dataSnapshot.child("tuesday").getValue(Boolean.class)){
+                        tuesday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
+                    if (dataSnapshot.child("wednesday").getValue(Boolean.class)){
+                        wednesday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
+                    if (dataSnapshot.child("thursday").getValue(Boolean.class)){
+                        thursday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
+                    if (dataSnapshot.child("friday").getValue(Boolean.class)){
+                        friday.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    }
 
 
                     //lkj
@@ -447,9 +482,9 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
     private void cancelTakingTrip() {
         //MainActivity.databaseReference.child("places").get;
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(false);
         MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
                 .setValue("");
-        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(false);
 
     }
 

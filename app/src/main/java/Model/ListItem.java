@@ -190,6 +190,14 @@ public class ListItem {
 
     }
 
+    public String getHourTrip() {
+        return hourTrip;
+    }
+
+    public void setHourTrip(String hourTrip) {
+        this.hourTrip = hourTrip;
+    }
+
     public ListItem(){
 
     }

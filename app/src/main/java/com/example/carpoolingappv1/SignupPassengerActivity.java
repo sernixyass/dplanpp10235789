@@ -234,7 +234,7 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(false,fulNameS,emailS,bDateS,phoneS,wilayaS);
+                            User user = new User(false,fulNameS,emailS,bDateS,phoneS,wilayaS,"");
 
                             //put the account's data into (database) Users > "userID" > {}
                             FirebaseDatabase.getInstance().getReference("Users")

@@ -19,7 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation_bar"
-        android:background="?android:attr/windowBackground"/>
+        app:itemIconTint="@color/generalTextCol"
+        app:itemTextColor="@color/generalTextCol"
+        android:background="@color/colorPrimary"/>
 
 
 

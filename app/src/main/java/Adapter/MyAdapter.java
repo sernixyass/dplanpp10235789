@@ -170,6 +170,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public TextView places;
         public CardView cardViewRow;
         public TextView conductor;
+        public TextView hourTrip;
 
         public TextView satTxt,sunTxt,monTxt,tueTxt,wedTxt,thuTxt,friTxt;
 
@@ -184,6 +185,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             places = itemView.findViewById(R.id.nbr_passenger_places);
             cardViewRow = itemView.findViewById(R.id.cardView);
             conductor = itemView.findViewById(R.id.conductorSign);
+            hourTrip = itemView.findViewById(R.id.hourTripID);
 
             satTxt = itemView.findViewById(R.id.satID);
             sunTxt = itemView.findViewById(R.id.sunID);
@@ -200,24 +202,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         }
 
         public void setSatTxt(int color) {
+            this.satTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.satTxt.setTextColor(color);
         }
         public void setSunTxt(int color) {
+            this.sunTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.sunTxt.setTextColor(color);
         }
         public void setMonTxt(int color) {
+            this.monTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.monTxt.setTextColor(color);
         }
         public void setTueTxt(int color) {
+            this.tueTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.tueTxt.setTextColor(color);
         }
         public void setWedTxt(int color) {
+            this.wedTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.wedTxt.setTextColor(color);
         }
         public void setThuTxt(int color) {
+            this.thuTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.thuTxt.setTextColor(color);
         }
         public void setFriTxt(int color) {
+            this.friTxt.setTypeface(Typeface.DEFAULT_BOLD);
             this.friTxt.setTextColor(color);
         }
 
@@ -235,8 +244,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         }
 
         public void setPlaces(Integer places) {
-            this.places.setText(places.toString());
+            this.places.setText(places.toString()+"/4");
         }
+
+        public void setHourTrip(String hourTrip) {
+            this.hourTrip.setText(hourTrip);
+        }
+
 
         public Button getTakeButton() {
             return ActionButton;

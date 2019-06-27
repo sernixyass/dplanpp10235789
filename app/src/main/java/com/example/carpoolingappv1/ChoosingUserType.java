@@ -38,6 +38,7 @@ public class ChoosingUserType extends Activity implements View.OnClickListener {
         params.x= 0 ;
         params.y= -20;
 
+
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 

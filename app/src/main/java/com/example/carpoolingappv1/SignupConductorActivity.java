@@ -231,7 +231,7 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(true,fulNameS,emailS,bDateS,phoneS,wilayaS,carModelS,carKey4);
+                            User user = new User(true,fulNameS,emailS,bDateS,phoneS,wilayaS,carModelS,carKey4,"");
 
                             //put the account's data into (database) Users > "userID" > {}
                             FirebaseDatabase.getInstance().getReference("Users")
@@ -253,7 +253,6 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                                             if (task.isSuccessful()){
 
                                                 Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
-
                                             }else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }

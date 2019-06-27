@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -247,6 +248,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces());
+                holder.setHourTrip(model.getHourTrip());
 
 /*
                 //boolean alreadyJoined = false;
@@ -317,31 +319,31 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 }
 
                 if (model.getSaturday()){
-                    holder.setSatTxt(Color.RED);
+                    holder.setSatTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getSunday()){
-                    holder.setSunTxt(Color.RED);
+                    holder.setSunTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getMonday()){
-                    holder.setMonTxt(Color.RED);
+                    holder.setMonTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getTuesday()){
-                    holder.setTueTxt(Color.RED);
+                    holder.setTueTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getWednesday()){
-                    holder.setWedTxt(Color.RED);
+                    holder.setWedTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getThursday()){
-                    holder.setThuTxt(Color.RED);
+                    holder.setThuTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (model.getFriday()){
-                    holder.setFriTxt(Color.RED);
+                    holder.setFriTxt(getResources().getColor(R.color.colorPrimary));
                 }
 
 

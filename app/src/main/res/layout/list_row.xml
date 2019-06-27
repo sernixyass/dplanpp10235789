@@ -4,180 +4,193 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:elevation="4dp">
 
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="8dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:orientation="vertical"
-            android:weightSum="1.2">
+            android:weightSum="1.5">
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="0.4"
-                    android:weightSum="1"
-                    android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="horizontal"
+                android:weightSum="1.2">
 
-                    <TextView
-                        android:id="@+id/startTxtP"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="Depart"
-                        android:textSize="18sp"
-                        android:drawableLeft="@drawable/ic_startpoint"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
-
-                    <ImageView
-                        android:id="@+id/arrow_123"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:src="@drawable/ic_arrow"
-                        android:layout_gravity="center" />
-
-                    <TextView
-                        android:id="@+id/endTxtP"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="Arrive"
-                        android:textSize="18sp"
-                        android:drawableLeft="@drawable/ic_endpoint"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="0.4"
-                    android:weightSum="1"
-                    android:gravity="center">
-
-
-                    <TextView
-                        android:text="4/4"
-                        android:id="@+id/nbr_passenger_places"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:drawableLeft="@drawable/ic_person_black"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        />
-
-
-
-                    <TextView
-                        android:id="@+id/conductorSign"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.3"
-                        android:drawableLeft="@drawable/ic_car_mod"
-                        android:gravity="center"
-                        />
-
-                    <TextView
-                        android:text="00:00"
-                        android:id="@+id/hourTripID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        />
-
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=  "0.4"
-                    android:orientation="horizontal"
+                <TextView
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/startTxtP"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                        android:layout_weight="0.5"
                     android:gravity="center"
-                    android:weightSum="7">
-                    <TextView
-                        android:id="@+id/satID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="SAT"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/sunID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="SUN"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/monID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="MON"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/tueID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="TUE"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/wedID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="WED"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/thuID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="THU"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/friID"
-                        android:gravity="center"
-                        android:textSize="12dp"
-                        android:text="FRI"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
+                    android:text="alger centre"
+                    android:textSize="25sp"
+                    android:textStyle="normal" />
 
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/arrow_123"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                    android:src="@drawable/ic_arrow" />
+
+                <TextView
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/endTxtP"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="Tizi ouezok  kj,nnkjn jn;,jhn h"
+                    android:textSize="25sp"
+                    android:textStyle="normal" />
 
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/nbr_passenger_places"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:drawableLeft="@drawable/ic_person_black"
+                    android:gravity="center"
+                    android:text="4/4"
+                    android:textSize="25sp" />
+
+
+
+                <TextView
+                    android:id="@+id/conductorSign"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:text="YES"
+                    android:drawableLeft="@drawable/ic_car_mod"
+                    android:gravity="center" />
+
+
+
+                <TextView
+                    android:id="@+id/hourTripID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="7">
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/satID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SAT"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/sunID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SUN"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/monID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="MON"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/tueID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TUE"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/wedID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="WED"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/thuID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="THU"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textColor="@color/drawableLeft"
+                    android:id="@+id/friID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="FRI"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
