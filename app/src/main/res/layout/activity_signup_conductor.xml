@@ -178,8 +178,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="1"
-            >
+            android:weightSum="1">
 
 
 
@@ -292,6 +291,8 @@
 
             </LinearLayout>
         </LinearLayout>
+
+
         <Button
             android:id="@+id/SignUpCBtnId"
             android:layout_width="300dp"
