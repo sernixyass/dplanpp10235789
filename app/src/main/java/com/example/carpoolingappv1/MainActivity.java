@@ -60,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
     private boolean mLocationPermissionGranted = false;
 
 
+    public Fragment fragment1;
+    public Fragment fragment2;
+    public Fragment fragment3;
+    public Fragment fragment4;
+    public Fragment activeFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +109,20 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //default fragment to start at the beginning
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
 
+        fragment1 = new HomeFragment();
+        fragment2=new SearchFragment();
+        fragment3=new ChatNotfFragment();
+        if (isConductor) fragment4=new ProfileConductorFragment();
+        else fragment4=new ProfilePassengerFragment();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment1,"1").hide(fragment1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment2,"2").hide(fragment2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment3,"3").hide(fragment3).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment4,"4").hide(fragment4).commit();
+
+        getSupportFragmentManager().beginTransaction().show(fragment1).commit();
+        activeFragment = fragment1;
     }
 
 
@@ -259,30 +277,29 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectedFragment = null;
+                    //Fragment selectedFragment = null;
 
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
+                            getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment1).commit();
+                            activeFragment=fragment1;
                             break;
                         case R.id.nav_chat:
-                            selectedFragment = new SearchFragment();
+                            getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment2).commit();
+                            activeFragment=fragment2;
                             break;
                         case R.id.nav_carte:
 
-                            selectedFragment = new ChatNotfFragment();
+                            getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment3).commit();
+                            activeFragment=fragment3;
                             break;
                         case R.id.nav_profile:
-                            if (isConductor){
-                                selectedFragment = new ProfileConductorFragment();
-                            }else {
-                                selectedFragment = new ProfilePassengerFragment();
-                            }
+                            getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment4).commit();
+                            activeFragment=fragment4;
                             break;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
                     return true;
                 }

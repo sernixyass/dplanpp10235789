@@ -175,10 +175,10 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
         final int phoneS;
         if (phone.getText().toString()== ""){
-            phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
+            phoneS = 0;
         }
         else {
-            phoneS = 0;
+            phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
         }
 
         final String bDateS = bdate.getText().toString().trim();

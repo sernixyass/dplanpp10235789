@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //mCheckBox = (CheckBox) findViewById(R.id.remember_email_pass);
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
-        checkSharedPreferences();
+        //checkSharedPreferences();
 
     }
 
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (mAuth.getCurrentUser().isEmailVerified()) {
 
                         //save or don't save the information tayped in
-                        if (mCheckBox.isChecked()) {
+                        /*if (mCheckBox.isChecked()) {
 
                             mEditor.putString(getString(R.string.checkBoxSH), "True");
                             mEditor.commit();
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             mEditor.commit();
                             mEditor.putString(getString(R.string.passwordSH), "");
                             mEditor.commit();
-                        }
+                        }*/
 
                         //GO TO THE ACCOUNT PAGE
 
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     //Shared Preferences
-    private void checkSharedPreferences() {
+    /*private void checkSharedPreferences() {
         String checkboxSP = mPreferences.getString(getString(R.string.checkBoxSH), "false");
         String emailSP = mPreferences.getString(getString(R.string.emailSH), "");
         String passwordSP = mPreferences.getString(getString(R.string.passwordSH), "");
@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             mCheckBox.setChecked(false);
         }
-    }
+    }*/
 
 
 }

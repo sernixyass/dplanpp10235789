@@ -38,7 +38,7 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
 
 
 
-        view.findViewById(R.id.add_friend).setOnClickListener(this);
+        //view.findViewById(R.id.add_friend).setOnClickListener(this);
         buttonPassEditProfile = view.findViewById(R.id.edit_pass_Pprofile);
         buttonPassEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +50,6 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
         //link
 
         fullNameGrand = view.findViewById(R.id.user_big_profile_name);
-        fullName = view.findViewById(R.id.pass_full_name);
-        email = view.findViewById(R.id.pass_email);
-        birthDate = view.findViewById(R.id.pass_birth_date);
         phone = view.findViewById(R.id.pass_phone);
         willaya = view.findViewById(R.id.pass_wilaya);
 
@@ -78,7 +75,7 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
         });
 
 
-        view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
+        //view.findViewById(R.id.drop_down_option_menu).setOnClickListener(this);
 
         /*buttonPassEditProfile = view.findViewById(R.id.edit_pass_Pprofile);
         buttonPassEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +90,11 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
 
 
     private void showData(DataSnapshot dataSnapshot) {
-        fullName.setText(dataSnapshot.child("fullName").getValue().toString());
+        //fullName.setText(dataSnapshot.child("fullName").getValue().toString());
         fullNameGrand.setText(dataSnapshot.child("fullName").getValue().toString());
-        email.setText(dataSnapshot.child("email").getValue().toString());
+        //email.setText(dataSnapshot.child("email").getValue().toString());
         phone.setText(dataSnapshot.child("phone").getValue().toString());
-        birthDate.setText(dataSnapshot.child("bDate").getValue().toString());
+        //birthDate.setText(dataSnapshot.child("bDate").getValue().toString());
         willaya.setText(dataSnapshot.child("wilaya").getValue().toString());
     }
 
@@ -105,7 +102,7 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.add_friend:
+            case R.id.logout_P:
                 logout();
                 break;
         }
