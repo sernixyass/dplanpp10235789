@@ -76,7 +76,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     public static String selectedTripID;
     public static Integer selectedPlacesTrip;
-    public static String selectedIDPostedIt;
 
     //MAP
     public MapView mMapView;

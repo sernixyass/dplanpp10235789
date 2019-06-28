@@ -4,7 +4,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.example.carpoolingappv1.ChatFragment;
 import com.example.carpoolingappv1.NotificationFragment;
 
@@ -25,9 +24,14 @@ public class PagerAdapterChatNotification extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ChatFragment();
+                NotificationFragment notificationFragment = new NotificationFragment();
+                return notificationFragment;
+
+
             case 1:
-                return new NotificationFragment();
+                ChatFragment chatFragment = new ChatFragment();
+                return chatFragment;
+
             default:
                 return null;
         }
@@ -46,9 +50,9 @@ public class PagerAdapterChatNotification extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "CHAT";
-            case 1:
                 return "Notification";
+            case 1:
+                return "Chat";
             default:
                 return null;
         }

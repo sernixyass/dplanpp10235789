@@ -19,7 +19,7 @@ public class ChatNotfFragment extends Fragment {
 
   private   TabLayout tabLayoutChatNotf;
   private   ViewPager mViewPager ;
-  private TabItem chatTab ,NotficationTab ;
+  private TabItem chatTab ,NotficationTab , groupTab ;
 
 
     public ChatNotfFragment() {
@@ -33,12 +33,11 @@ public class ChatNotfFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_chat_notf,container,false);
 
 
-
         //ViewPager
         tabLayoutChatNotf = view.findViewById(R.id.tab_layout_chat);
         mViewPager=view.findViewById(R.id.view_pager_chat_tab);
-        chatTab =view.findViewById(R.id.chat_tab);
         NotficationTab = view.findViewById(R.id.notification_tab);
+        chatTab =view.findViewById(R.id.chat_tab);
 
 
 
@@ -50,19 +49,10 @@ public class ChatNotfFragment extends Fragment {
         return view;
 
     }
-
-
     public void setUpViewPageAdapter (ViewPager viewPager){
         PagerAdapterChatNotification Adapter = new PagerAdapterChatNotification(getActivity().getSupportFragmentManager(),tabLayoutChatNotf.getTabCount());
         viewPager.setAdapter(Adapter);
 
-//        //Adding fragments
-//        Adapter.AddPagerFragmentPage(new ChatFragment(),"Chat");
-//        Adapter.AddPagerFragmentPage(new NotificationFragment(),"Notification");
-//
-//        //Adapter setup
-//        viewPager.setAdapter(Adapter);
-//        tabLayoutChatNotf.setupWithViewPager(mViewPager);
 
     }
 
