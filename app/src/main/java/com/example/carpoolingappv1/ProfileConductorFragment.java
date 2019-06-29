@@ -46,7 +46,7 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     String userID;
-    TextView fullName,fullNameGrand,email,phone,birthDate,willaya,carModel,carNumber;
+    TextView fullNameGrand,phone,willaya,carModel,carNumber;
     ImageButton profilPicC;
 
 
@@ -56,8 +56,6 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
 
 
     final static int Gallery_Pick = 1;
-
-    //final static int RESULT_OK = -1;
 
     @Nullable
     @Override
@@ -127,14 +125,9 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
 
         return view ;
 
-
-
     }
 
-
     public void chooseImg(){
-        Toast.makeText(getContext(), "000000", Toast.LENGTH_SHORT).show();
-
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(android.content.Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -146,11 +139,11 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         //startActivityForResult(Intent.createChooser(galleryIntent,"select Picture"),Gallery_Pick);
     }
 
-    public String getFileExtension(Uri uri){
+    /*public String getFileExtension(Uri uri){
         ContentResolver contentResolver = getContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
+    }*/
 
 
     public void uploadImg(){
@@ -235,7 +228,6 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
                 Glide.with(getContext()).load(dataSnapshot.child("profilePic").getValue())
                         .apply(RequestOptions.circleCropTransform())
                         .into(profilPicC);
-
             }
         }
     }

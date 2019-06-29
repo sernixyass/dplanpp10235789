@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".carpoolingappv1"
@@ -21,8 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Edit_profile_Conductor"></activity>
+        <activity android:name=".ProfilePassengerPopupActivity"
+            android:theme="@style/AppTheme.PopMe" />
+        <activity
+            android:name=".ProfileConductorPopupActivity"
+            android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".Edit_profile_Conductor" />
         <activity android:name=".Edit_profile_Passenger" />
         <activity android:name=".SignupPassengerActivity" />
         <activity android:name=".SignupConductorActivity" />

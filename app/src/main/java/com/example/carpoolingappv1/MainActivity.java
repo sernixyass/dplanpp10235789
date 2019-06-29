@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -56,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean isTaken = false;
     public static String currentUserID;
     public static String currentUserFullName;
+
+
+    public static String selectedDriverAccountID = "";
+    public static String selectedJoinAccountID = "";
+
+
 
     private boolean mLocationPermissionGranted = false;
 
@@ -113,8 +122,13 @@ public class MainActivity extends AppCompatActivity {
         fragment1 = new HomeFragment();
         fragment2=new SearchFragment();
         fragment3=new ChatNotfFragment();
-        if (isConductor) fragment4=new ProfileConductorFragment();
-        else fragment4=new ProfilePassengerFragment();
+        if (isConductor){
+            fragment4=new ProfileConductorFragment();
+        }
+        else{
+            fragment4=new ProfilePassengerFragment();
+        }
+
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment1,"1").hide(fragment1).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment2,"2").hide(fragment2).commit();
@@ -304,6 +318,14 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+
+    public Boolean isNetworkAvailable(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) carpoolingappv1.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 
 
 

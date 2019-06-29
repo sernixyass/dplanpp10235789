@@ -1,6 +1,7 @@
 package com.example.carpoolingappv1;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -25,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 
 public class RidePostFragment extends Fragment implements OnMapReadyCallback {
@@ -33,12 +39,14 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public MapView mMapView;
     GoogleMap mapH;
 
+    String join1AccountID,join2AccountID,join3AccountID,join4AccountID;
 
 
     //post data
-    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,checkPersoonesInRide;
+    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance;
     Button actionButton;
     TextView saturday,sunday,monday,tuesday,wednesday,thursday,friday;
+    ImageButton driverIcon,passengerIcon1,passengerIcon2,passengerIcon3,passengerIcon4;
 
     public static boolean isOperating = false;
 
@@ -47,7 +55,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_ride_post,container,false);
+        final View view = inflater.inflate(R.layout.fragment_ride_post,container,false);
 
         mMapView = view.findViewById(R.id.mapPost);
         initGoogleMap(savedInstanceState);
@@ -70,6 +78,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         thursday = view.findViewById(R.id.thuIDf);
         friday = view.findViewById(R.id.friIDf);
 
+        driverIcon = view.findViewById(R.id.driver_icon);
+
+        passengerIcon1 = view.findViewById(R.id.passenger_joining1);
+        passengerIcon2 = view.findViewById(R.id.passenger_joining2);
+        passengerIcon3 = view.findViewById(R.id.passenger_joining3);
+        passengerIcon4 = view.findViewById(R.id.passenger_joining4);
 
 
         /*checkPersoonesInRide=view.findViewById(R.id.check_perssones_ride);
@@ -85,6 +99,47 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         final DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts
                 .child(HomeFragment.selectedTripID);
 
+
+        //conductor
+        driverIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),ProfileConductorPopupActivity.class));
+            }
+        });
+
+
+
+        // 4 passengers
+        view.findViewById(R.id.passenger_joining1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join1AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+        view.findViewById(R.id.passenger_joining2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join2AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+        view.findViewById(R.id.passenger_joining3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join3AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+        view.findViewById(R.id.passenger_joining4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join4AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+
         if (!isOperating){
             databaseReferenceModel.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -93,6 +148,128 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
                     rideHour.setText(dataSnapshot.child("hourTrip").getValue().toString());
                     //distance.serText(dataSnapshot.child("").getValue().toString());
+
+                    //ICONS
+                    //selectedDriverAccountID = dataSnapshot.child("accountIDTakedIt").getValue().toString();
+
+                    //ICON PASSENGER 1
+                    if (!dataSnapshot.child("accountIDJoining1").getValue().toString().equals("")){
+                        passengerIcon1.setVisibility(view.VISIBLE);
+                        join1AccountID = dataSnapshot.child("accountIDJoining1").getValue().toString();
+
+                        DatabaseReference databaseReferenceUJ1 = FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(join1AccountID);
+                        databaseReferenceUJ1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshotUJ1) {
+                                if (!Objects.equals(dataSnapshotUJ1.child("profilePic").getValue(), "") ){
+                                    //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                                    if (carpoolingappv1.getAppContext()!=null){
+                                        Toast.makeText(getContext(), "HAAHOOAAA  ", Toast.LENGTH_SHORT).show();
+                                        Glide.with(carpoolingappv1.getAppContext()).load(dataSnapshotUJ1.child("profilePic").getValue())
+                                                .apply(RequestOptions.circleCropTransform())
+                                                .into(passengerIcon1);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
+                        passengerIcon1.setVisibility(view.GONE);
+                    }
+
+                    if (!dataSnapshot.child("accountIDJoining2").getValue().toString().equals("")){
+                        passengerIcon2.setVisibility(view.VISIBLE);
+                        join2AccountID = dataSnapshot.child("accountIDJoining2").getValue().toString();
+
+                        DatabaseReference databaseReferenceUJ2 = FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(join2AccountID);
+                        databaseReferenceUJ2.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshotUJ2) {
+                                if (!Objects.equals(dataSnapshotUJ2.child("profilePic").getValue(), "") ){
+                                    //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                                    if (carpoolingappv1.getAppContext()!=null){
+                                        Glide.with(carpoolingappv1.getAppContext()).load(dataSnapshotUJ2.child("profilePic").getValue())
+                                                .apply(RequestOptions.circleCropTransform())
+                                                .into(passengerIcon2);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
+                        passengerIcon2.setVisibility(view.GONE);
+                    }
+
+                    if (!dataSnapshot.child("accountIDJoining3").getValue().toString().equals("")){
+                        passengerIcon3.setVisibility(view.VISIBLE);
+                        join3AccountID = dataSnapshot.child("accountIDJoining3").getValue().toString();
+
+                        DatabaseReference databaseReferenceUJ3 = FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(join3AccountID);
+                        databaseReferenceUJ3.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshotUJ3) {
+                                if (!Objects.equals(dataSnapshotUJ3.child("profilePic").getValue(), "") ){
+                                    //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                                    if (carpoolingappv1.getAppContext()!=null){
+                                        Glide.with(carpoolingappv1.getAppContext()).load(dataSnapshotUJ3.child("profilePic").getValue())
+                                                .apply(RequestOptions.circleCropTransform())
+                                                .into(passengerIcon3);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
+                        passengerIcon3.setVisibility(view.GONE);
+                    }
+
+                    if (!dataSnapshot.child("accountIDJoining4").getValue().toString().equals("")){
+                        passengerIcon4.setVisibility(view.VISIBLE);
+                        join4AccountID = dataSnapshot.child("accountIDJoining4").getValue().toString();
+
+                        DatabaseReference databaseReferenceUJ4 = FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(join4AccountID);
+                        databaseReferenceUJ4.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshotUJ4) {
+                                if (!Objects.equals(dataSnapshotUJ4.child("profilePic").getValue(), "") ){
+                                    //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                                    if (carpoolingappv1.getAppContext()!=null){
+                                        Glide.with(carpoolingappv1.getAppContext()).load(dataSnapshotUJ4.child("profilePic").getValue())
+                                                .apply(RequestOptions.circleCropTransform())
+                                                .into(passengerIcon4);
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
+                        passengerIcon4.setVisibility(view.GONE);
+                    }
+
 
                     //rideDay.setText(dataSnapshot.child());
 
@@ -125,6 +302,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
                     if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
 
+                        MainActivity.selectedDriverAccountID = dataSnapshot.child("accountIDTakedIt").getValue().toString();
+
                         DatabaseReference mdataRef = FirebaseDatabase.getInstance().getReference().child("Users")
                                 .child(dataSnapshot.child("accountIDTakedIt").getValue().toString());
                         mdataRef.addValueEventListener(new ValueEventListener() {
@@ -132,6 +311,16 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
                                 carModel.setText(dataSnapshot1.child("carModel").getValue().toString());
                                 driverName.setText(dataSnapshot1.child("fullName").getValue().toString());
+
+                                if (!Objects.equals(dataSnapshot1.child("profilePic").getValue(), "") ){
+                                    //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                                    if (carpoolingappv1.getAppContext()!=null){
+                                        Glide.with(getContext()).load(dataSnapshot1.child("profilePic").getValue())
+                                                .apply(RequestOptions.circleCropTransform())
+                                                .into(driverIcon);
+
+                                    }
+                                }
                             }
 
                             @Override
@@ -142,6 +331,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     }else {
                         driverName.setText("No Driver available");
                         carModel.setText("No car");
+
+                        MainActivity.selectedDriverAccountID = "";
                     }
 
 
