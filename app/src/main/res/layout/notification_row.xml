@@ -9,14 +9,15 @@
         android:id="@+id/notCardView"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:layout_margin="@dimen/cardview_compat_inset_shadow">
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="5"
-            android:background="#CECECE">
+            android:background="#CFCFCF"
+            android:layout_margin="1dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -30,44 +31,53 @@
                     android:layout_margin="5dp"
                     android:background="@drawable/profile_circular_border_imageview"
                     android:scaleType="centerCrop"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp" />
-
+                    android:layout_width="55dp"
+                    android:layout_height="55dp" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="5dp"
+                android:weightSum="3">
+
 
 
                 <TextView
                     android:id="@+id/notTitle"
-                    android:textSize="25sp"
+                    android:textSize="17sp"
                     android:text="Alger TO Constantine"
-                    android:layout_weight="1.5"
+                    android:layout_weight="0.9"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="start"/>
+                    android:gravity="center|start"
+                    android:textStyle="bold"
+                    />
+
                 <TextView
                     android:id="@+id/notMessage"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:text="Yasser Sedrati now join with you this trip"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="start"
-                    android:layout_marginStart="1dp"/>
+                    android:gravity="center|start" />
 
-
-
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9"
+                    android:text="Thu at 18:02"
+                    android:textSize="10sp"
+                    android:textColor="#546E7A"
+                    android:gravity="center|start"
+                    />
             </LinearLayout>
-
-
 
         </LinearLayout>
 
