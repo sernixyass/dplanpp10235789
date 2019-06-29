@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static String selectedDriverAccountID = "";
     public static String selectedJoinAccountID = "";
+    public static String iconSender = "";
 
 
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                 isConductor = dataSnapshot.child("isConductor").getValue(Boolean.class);
                 currentUserFullName = dataSnapshot.child("fullName").getValue().toString();
-
+                iconSender = dataSnapshot.child("profilePic").getValue().toString();
             }
 
             @Override
@@ -263,12 +264,13 @@ public class MainActivity extends AppCompatActivity {
     //end the copied area
 
 
-    public static void sendNotification(String userReciver, String title,String message){
+    public static void sendNotification(String userReciver, String title,String message,String iconeUserID){
         DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("Users").child(userReciver).child("notification").push();
-        Map<String, Object> notMap = new HashMap<>();
-        notMap.put("title",title);
-        notMap.put("message",message);
-        databaseReferenceNot.setValue(notMap);
+        Map<String, Object> notifMap = new HashMap<>();
+        notifMap.put("title",title);
+        notifMap.put("message",message);
+        notifMap.put("iconUserID",iconeUserID);
+        databaseReferenceNot.setValue(notifMap);
     }
 
     @Override

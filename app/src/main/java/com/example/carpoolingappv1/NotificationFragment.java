@@ -77,7 +77,8 @@ public class NotificationFragment extends Fragment {
                             public NotificationModel parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new NotificationModel(
                                         snapshot.child("title").getValue().toString(),
-                                        snapshot.child("message").getValue().toString()
+                                        snapshot.child("message").getValue().toString(),
+                                        snapshot.child("iconUserID").getValue().toString()
                                 );
                             }
                         })
@@ -96,11 +97,9 @@ public class NotificationFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position, @NonNull NotificationModel model) {
-
                 holder.setTitle(model.getTitle());
                 holder.setMessage(model.getBodyMessage());
-
-
+                holder.setIcon(model.getIconUserID());
             }
 
 

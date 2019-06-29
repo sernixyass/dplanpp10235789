@@ -104,6 +104,8 @@ public class ProfilePassengerFragment extends Fragment implements View.OnClickLi
         profilPicP = view.findViewById(R.id.pass_profile_pic);
 
         profilPicP.setOnClickListener(this);
+
+        view.findViewById(R.id.logout_P).setOnClickListener(this);
         return view ;
     }
 

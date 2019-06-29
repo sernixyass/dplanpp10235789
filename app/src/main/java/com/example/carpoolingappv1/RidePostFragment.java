@@ -373,35 +373,40 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining1").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "-" + MainActivity.currentUserFullName +"- exit this trip ");
+                                                "-" + MainActivity.currentUserFullName +"- exit this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining2").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining2").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "-" + MainActivity.currentUserFullName +"- exit this trip ");
+                                                "-" + MainActivity.currentUserFullName +"- exit this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining3").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining3").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "-" + MainActivity.currentUserFullName +"- exit this trip ");
+                                                "-" + MainActivity.currentUserFullName +"- exit this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining4").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining4").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "-" + MainActivity.currentUserFullName +"- exit this trip ");
+                                                "-" + MainActivity.currentUserFullName +"- exit this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     //conductor
                                     if (!dataSnapshot.child("accountIDTakedIt").getValue().equals("") )
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDTakedIt").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "-" + MainActivity.currentUserFullName +"- exit Your trip ");
+                                                "-" + MainActivity.currentUserFullName +"- exit Your trip ",
+                                                MainActivity.iconSender);
                                     }
 
                                     cancelJoiningTrip();
@@ -422,35 +427,40 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining1").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ");
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining2").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining2").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ");
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining3").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining3").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ");
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining4").getValue().equals("") &&
                                             !dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining4").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ");
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join with you this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     //conductor
                                     if (!dataSnapshot.child("accountIDTakedIt").getValue().equals(""))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDTakedIt").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join Your trip ");
+                                                "New Passenger -" + MainActivity.currentUserFullName +"- Join Your trip ",
+                                                MainActivity.iconSender);
                                     }
                                 }
                             });
@@ -470,25 +480,29 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining1").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining2").getValue().equals(""))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining2").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip "
+                                        ,MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining3").getValue().equals(""))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining3").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip "
+                                        ,MainActivity.iconSender);
                                     }
                                     if (!dataSnapshot.child("accountIDJoining4").getValue().equals(""))
                                     {
                                         MainActivity.sendNotification(dataSnapshot.child("accountIDJoining4").getValue().toString(),
                                                 dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                "New Conductor -" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                MainActivity.iconSender);
                                     }
                                 }
                             });
@@ -505,25 +519,29 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                         {
                                             MainActivity.sendNotification(dataSnapshot.child("accountIDJoining1").getValue().toString(),
                                                     dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                    MainActivity.iconSender);
                                         }
                                         if (!dataSnapshot.child("accountIDJoining2").getValue().equals(""))
                                         {
                                             MainActivity.sendNotification(dataSnapshot.child("accountIDJoining2").getValue().toString(),
                                                     dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                    MainActivity.iconSender);
                                         }
                                         if (!dataSnapshot.child("accountIDJoining3").getValue().equals(""))
                                         {
                                             MainActivity.sendNotification(dataSnapshot.child("accountIDJoining3").getValue().toString(),
                                                     dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                    MainActivity.iconSender);
                                         }
                                         if (!dataSnapshot.child("accountIDJoining4").getValue().equals(""))
                                         {
                                             MainActivity.sendNotification(dataSnapshot.child("accountIDJoining4").getValue().toString(),
                                                     dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
-                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ");
+                                                    "-" + MainActivity.currentUserFullName +"- Take this trip ",
+                                                    MainActivity.iconSender);
                                         }
                                         cancelTakingTrip();
 

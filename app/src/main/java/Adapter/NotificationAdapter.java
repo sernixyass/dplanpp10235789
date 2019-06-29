@@ -6,13 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.carpoolingappv1.HomeFragment;
 import com.example.carpoolingappv1.R;
+import com.example.carpoolingappv1.carpoolingappv1;
 
 
 import java.util.List;
+import java.util.Objects;
 
 import Model.ListItem;
 
@@ -83,6 +88,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title,message;
+        public ImageView icon;
 
         public ViewHolder(@NonNull View view)
         {
@@ -90,11 +96,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             title = view.findViewById(R.id.notTitle);
             message = view.findViewById(R.id.notMessage);
-
+            icon = view.findViewById(R.id.notIcon);
         }
 
         public TextView getTitle() {
             return title;
+        }
+
+        public void setIcon(String mm){
+            if (!Objects.equals(mm, "") ){
+                //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
+                if (carpoolingappv1.getAppContext()!=null){
+                    Glide.with(carpoolingappv1.getAppContext()).load(mm)
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(icon);
+                }
+            }
         }
 
         public void setTitle(String title) {
