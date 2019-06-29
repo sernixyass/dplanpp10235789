@@ -4,156 +4,220 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/generalTextCol"
     tools:context=".SignupPassengerActivity">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp"
+        android:layout_height="match_parent">
 
-        android:gravity="center_horizontal"
-        >
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/fullNameSignupPId"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:hint="Full Name"
-                android:inputType="textPersonName"
-                tools:ignore="Autofill"
-                android:layout_marginHorizontal="11dp"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/emailSignupPId"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                tools:ignore="Autofill"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <TextView
-            android:id="@+id/birthdateSignupPId"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/birth_date"
-            android:textAlignment="center"
-            android:textSize="18dp"
-            tools:ignore="Autofill"
-            />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/phoneSignupPId"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/phone"
-                android:inputType="phone"
-                tools:ignore="Autofill" />
-        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="Full Name:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/fullNameSignupPId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:padding="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="Email:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/emailSignupPId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/birthdateSignupPId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:text="@string/birth_date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="Phone:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/phoneSignupPId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:inputType="phone"
+                    android:padding="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:background="@drawable/input_white_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:gravity="center_vertical"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:text="Wilaya:"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/wilayaSignupPId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:inputType="text"
+                    tools:ignore="Autofill" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="Password:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/passwordSignupPId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:inputType="textPassword"
+                    android:padding="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="-retype- Password:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/passwordSignupPId2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/input_white_bg"
+                    android:inputType="textPassword"
+                    android:padding="15dp" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/SignUpPBtnId"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_bg"
+                android:paddingVertical="10dp"
+                android:text="@string/signup_txt"
+                android:textColor="@color/generalTextCol" />
+
             <TextView
-                android:layout_weight="1"
+                android:id="@+id/LogInPTxtBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wilaya"/>
-            <Spinner
-                android:layout_weight="2"
-                android:id="@+id/wilayaSignupPId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                tools:ignore="Autofill" />
+                android:layout_marginBottom="60dp"
+                android:text="@string/login_txt_btn" />
+
+
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/passwordSignupPId"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/passwordTxt"
-                android:inputType="textPassword"
-                tools:ignore="Autofill"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/passwordSignupPId2"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:hint="Retype Password"
-                android:inputType="textPassword"
-                tools:ignore="Autofill"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="30dp">
-
-        <Button
-            android:id="@+id/SignUpPBtnId"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:text="@string/signup_txt"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="#CCFFFFFF"
-            android:background="@drawable/button_bg"
-            />
-        <TextView
-            android:id="@+id/LogInPTxtBtnId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_txt_btn"
-            />
-
-    </LinearLayout>
 
 
 
+    </ScrollView>
 </RelativeLayout>
