@@ -126,6 +126,8 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
     public static void MoveCameraAndMarker(String key, LatLng latLng, float zoom){
         mapS.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
 
+
+
         //removing
         if (hashMapMarker.get(key) != null){
             Marker marker = hashMapMarker.get(key);
