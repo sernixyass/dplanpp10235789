@@ -1,6 +1,8 @@
 package com.example.carpoolingappv1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -124,6 +126,31 @@ public class CompeltPosting extends Activity {
             @Override
             public void onClick(View v) {
                 savePoste();
+
+
+
+
+//
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                builder.setMessage("Do you really want to create this ride ?")
+//                        .setCancelable(false)
+//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                savePoste();
+//                            }
+//                        })
+//                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        }).setTitle("Confermation !!")
+//                        .show();
+//
+//                AlertDialog alertDialog = builder.create();
+//
 
                 Intent intent = new Intent(getApplicationContext(),AddPostActivity.class);
                 startActivity(intent);

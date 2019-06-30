@@ -226,7 +226,7 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
                 //Log.d("DURATION  ******       ","test 4");
                 //Log.d(TAG, "calculateDirections: routes: " + result.routes[0].toString());
                 //Log.d(TAG, "calculateDirections: duration: " + result.routes[0].legs[0].duration);
-                Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
+                //Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
 
                 //Log.d(TAG, "calculateDirections: distance: " + result.routes[0].legs[0].distance);
                 //Log.d(TAG, "calculateDirections: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());

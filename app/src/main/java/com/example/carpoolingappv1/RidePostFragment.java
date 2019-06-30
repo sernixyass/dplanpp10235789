@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -59,7 +60,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public Polyline mPolyline;
 
     //post data
-    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance;
+    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,estimatedTime;
     Button actionButton;
     TextView saturday,sunday,monday,tuesday,wednesday,thursday,friday;
     ImageButton driverIcon,passengerIcon1,passengerIcon2,passengerIcon3,passengerIcon4;
@@ -91,6 +92,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         driverName=view.findViewById(R.id.driver_full_name);
         carModel=view.findViewById(R.id.car_model_in_ride);
         distance=view.findViewById(R.id.distance);
+        estimatedTime = view.findViewById(R.id.estimatedTime);
 
         saturday = view.findViewById(R.id.satIDf);
         sunday = view.findViewById(R.id.sunIDf);
@@ -117,6 +119,35 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         });*/
 
 
+        final DatabaseReference databaseReferenceStart = MainActivity.databaseReferencePosts
+                .child(HomeFragment.selectedTripID).child("tripPosition");
+        databaseReferenceStart.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tripPos = new LatLng( dataSnapshot.child("latitude").getValue(double.class),
+                        dataSnapshot.child("longitude").getValue(double.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference databaseReferenceEnd = MainActivity.databaseReferencePosts
+                .child(HomeFragment.selectedTripID).child("tripDestinationPosition");
+        databaseReferenceEnd.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tripDestPos = new LatLng( dataSnapshot.child("latitude").getValue(double.class),
+                        dataSnapshot.child("longitude").getValue(double.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         final DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts
                 .child(HomeFragment.selectedTripID);
@@ -545,6 +576,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
                                         if (!dataSnapshot.child("accountIDJoining1").getValue().equals(""))
                                         {
+
                                             MainActivity.sendNotification(dataSnapshot.child("accountIDJoining1").getValue().toString(),
                                                     dataSnapshot.child("startingPoint").getValue()+" TO "+dataSnapshot.child("endingPoint").getValue(),
                                                     "-" + MainActivity.currentUserFullName +"- Take this trip ",
@@ -604,19 +636,18 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         //clear old polylines for creating the new one .. and retrieve the markers
         //mapH.clear();
 
-        Toast.makeText(getContext(), "jak " + markerStart.latitude +markerStart.longitude, Toast.LENGTH_SHORT).show();
-
+        mapH.clear();
         mapH.addMarker(new MarkerOptions().position(new LatLng(markerStart.latitude,markerStart.longitude)));
         mapH.addMarker(new MarkerOptions().position(new LatLng(markerEnd.latitude,markerEnd.longitude)));
 
 
-        final com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
-                markerStart.latitude,
-                markerEnd.longitude
+        com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
+                tripDestPos.latitude,
+                tripDestPos.longitude
         );
         final com.google.maps.model.LatLng startOrigine = new com.google.maps.model.LatLng(
-                markerEnd.latitude,
-                markerEnd.longitude
+                tripPos.latitude,
+                tripPos.longitude
         );
         DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
 
@@ -631,6 +662,9 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 //Log.d(TAG, "calculateDirections: routes: " + result.routes[0].toString());
                 //Log.d(TAG, "calculateDirections: duration: " + result.routes[0].legs[0].duration);
                 Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
+
+                //distance.setText(result.routes[0].legs[0].distance.toString());
+                //estimatedTime.setText(result.routes[0].legs[0].duration.toString());
 
                 //Log.d(TAG, "calculateDirections: distance: " + result.routes[0].legs[0].distance);
                 //Log.d(TAG, "calculateDirections: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
@@ -650,6 +684,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("ERROR    *** ",e.getMessage());
             }
         });
+
+
+        mapH.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(tripPos.latitude,tripPos.longitude),
+                10.0f));
+
     }
 
     public void addPolylinesToMap(final DirectionsResult result){
@@ -677,7 +717,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     }
                     mPolyline = mapH.addPolyline(new PolylineOptions().addAll(newDecodedPath));
                     mPolyline.setColor(ContextCompat.getColor( carpoolingappv1.getAppContext() , R.color.blue));
-                    mPolyline.setClickable(true);
+                    //mPolyline.setClickable(false);
                 }
             }
         });
@@ -859,6 +899,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         mMapView.onCreate(mapViewBundle);
 
         mMapView.getMapAsync(this);
+
+        if (mGeoApiContext == null){
+            mGeoApiContext = new GeoApiContext.Builder()
+                    .apiKey(getString(R.string.google_api_key))
+                    .build();
+        }
     }
 
 

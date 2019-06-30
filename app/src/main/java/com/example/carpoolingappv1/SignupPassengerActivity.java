@@ -175,6 +175,7 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
         final String fulNameS = fullName.getText().toString().trim();
 
 
+
         final Integer phoneS;
         if (phone.getText().toString() == ""){
             phoneS = 0 ;
@@ -186,6 +187,11 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
 
 
 
+        if (!oldAgeUser){
+            bdate.setError("this application is destinated to old people");
+            bdate.requestFocus();
+            return;
+        }
 
         //email check
         if(emailS.isEmpty()){
