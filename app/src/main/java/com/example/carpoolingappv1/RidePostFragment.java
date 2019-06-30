@@ -233,6 +233,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                                 }
                             }
 
+
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
