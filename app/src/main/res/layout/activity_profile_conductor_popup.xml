@@ -4,137 +4,194 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileConductorPopupActivity"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".ProfileConductorPopupActivity">
 
     <android.support.v7.widget.CardView
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="5dp">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="5"
+            android:gravity="center">
+
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageButton
-                    android:elevation="5dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_gravity="center"
-                    android:id="@+id/con_profile_pic_pup"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/profile_circular_border_imageview" />
-                <RatingBar
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/rating_bar_profile"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
+                android:id="@+id/profile_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:progressTint="@color/colorPrimary"
-                    android:rating="3"
-                    android:secondaryProgressTint="@color/colorPrimary" />
-                <TextView
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginVertical="5dp"
-                    android:id="@+id/con_big_profile_name_pup"
-                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/con_profile_pic_pup"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="5dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/profile_circular_border_imageview"
+                        android:elevation="5dp"
+                        android:scaleType="centerCrop" />
+
+
+                    <RatingBar
+                        android:id="@+id/rating_bar_profile"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:numStars="5"
+                        android:stepSize="0.5"
+                        android:progressTint="@color/colorPrimary"
+                        android:secondaryProgressTint="@color/colorPrimary"/>
+
+
+                    <TextView
+                        android:id="@+id/con_big_profile_name_pup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="5dp"
+                        android:gravity="center"
+                        android:text="Nix MAlONE"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_type_pup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="4dp"
+                        android:background="@color/colorPrimary"
+                        android:paddingHorizontal="10dp"
+                        android:text="CONDUCTOR"
+                        android:textColor="@color/butnBack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/rate_conductor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:drawableLeft="@drawable/ic_stars"
+                        android:gravity="center"
+                        android:text="Rate" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Nix MAlONE"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    />
-                <TextView
-                    android:layout_marginBottom="4dp"
-                    android:layout_gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:id="@+id/user_type_pup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="CONDUCTOR"
-                    android:background="@color/colorPrimary"
-                    android:textColor="@color/butnBack"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <Button
-                    android:id="@+id/rate_conductor"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:text="Rate"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/con_phone_pup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/input_white_bg"
+                        android:drawableLeft="@drawable/ic_phone_nmbr"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="10dp"
+                        android:text="Phone number" />
+
+                    <TextView
+                        android:id="@+id/con_wilaya_pup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/input_white_bg"
+                        android:drawableLeft="@drawable/ic_willaya"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="10dp"
+                        android:text="Wilaya" />
+
+                    <TextView
+                        android:id="@+id/con_car_model_pup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/input_white_bg"
+                        android:drawableLeft="@drawable/ic_car_model"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="10dp"
+                        android:text="Car Model" />
+
+                    <TextView
+                        android:id="@+id/con_car_unique_nbe_pup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/input_white_bg"
+                        android:drawableLeft="@drawable/ic_car_plate"
+                        android:drawablePadding="5dp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="10dp"
+                        android:text="12345 - 123 - 12" />
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:id="@+id/rating_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <TextView
-                    android:drawableTint="@color/colorPrimary"
-                    android:id="@+id/con_phone_pup"
-                    android:layout_width="match_parent"
+                <RatingBar
+                    android:id="@+id/rate_conductor_popup"
+                    style="?android:attr/ratingBarStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_phone_nmbr"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"
-                    android:background="@drawable/input_white_bg"
-                    android:text="Phone number" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:progressTint="@color/colorPrimary"
+                    android:secondaryProgressTint="@color/colorPrimary"
+                    android:layout_margin="10dp"/>
 
-                <TextView
-                    android:drawableTint="@color/colorPrimary"
-                    android:id="@+id/con_wilaya_pup"
-                    android:layout_width="match_parent"
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_willaya"
+                <EditText
+                    android:id="@+id/comment_on_conductor"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/input_white_bg"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"
-                    android:text="Wilaya" />
+                    android:hint="What do you Think in this Driver ?"
+                    android:layout_margin="10dp"/>
 
-                <TextView
-                    android:drawableTint="@color/colorPrimary"
-                    android:id="@+id/con_car_model_pup"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/share_rating"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_car_model"
-                    android:background="@drawable/input_white_bg"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"
-                    android:text="Car Model" />
+                    android:layout_gravity="center"
+                    android:text="Share"
+                    android:background="@drawable/button_bg"
+                    android:layout_margin="10dp"/>
 
-                <TextView
-                    android:drawableTint="@color/colorPrimary"
-                    android:id="@+id/con_car_unique_nbe_pup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_car_plate"
-                    android:background="@drawable/input_white_bg"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"
-                    android:text="12345 - 123 - 12" />
             </LinearLayout>
 
         </LinearLayout>

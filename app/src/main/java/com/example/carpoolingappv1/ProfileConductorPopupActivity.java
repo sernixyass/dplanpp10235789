@@ -7,29 +7,54 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.stepstone.apprating.listener.RatingDialogListener;
 
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import Model.Rating;
 
 import static com.example.carpoolingappv1.MainActivity.databaseReference;
 
-public class ProfileConductorPopupActivity extends AppCompatActivity {
+public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
     DatabaseReference databaseReferenceCon;
     TextView fullNameGrand,phone,willaya,carModel,carNumber;
     ImageView profilPicC;
+
+
+    Button rateBut;
+    RatingBar rateConBar , ratingBarProfile ;
+    LinearLayout mainLayout;
+    Button confirmBtn;
+    EditText commentField ;
+
+
+    FirebaseDatabase mDatabase;
+    DatabaseReference ratingTbl;
 
 
 
@@ -44,7 +69,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.95),(int)(height*.5));
+        getWindow().setLayout((int)(width*.95),(int)(height*.8));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -61,12 +86,27 @@ public class ProfileConductorPopupActivity extends AppCompatActivity {
         willaya = findViewById(R.id.con_wilaya_pup);
         carModel = findViewById(R.id.con_car_model_pup);
         carNumber = findViewById(R.id.con_car_unique_nbe_pup);
-
         profilPicC = findViewById(R.id.con_profile_pic_pup);
+
+        rateBut=findViewById(R.id.rate_conductor);
+        rateConBar = findViewById(R.id.rate_conductor_popup);
+        mainLayout= findViewById(R.id.rating_layout);
+        confirmBtn=findViewById(R.id.share_rating);
+        commentField=findViewById(R.id.comment_on_conductor);
+        ratingBarProfile=findViewById(R.id.rating_bar_profile);
+
+
 
 
         //GET and SHOW DATA
-        databaseReferenceCon = FirebaseDatabase.getInstance().getReference().child("Users").child(MainActivity.selectedDriverAccountID);
+        mDatabase = FirebaseDatabase.getInstance();
+        databaseReferenceCon = mDatabase.getReference().child("Users").child(MainActivity.selectedDriverAccountID);
+
+        ratingTbl = databaseReferenceCon.child("Rating");
+//        .child(MainActivity.currentUserID)
+
+
+//        mDatabase.getReference().child("Users").child(MainActivity.selectedDriverAccountID)
 
 
         databaseReferenceCon.addValueEventListener(new ValueEventListener() {
@@ -94,5 +134,86 @@ public class ProfileConductorPopupActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        rateBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainLayout.setVisibility(View.VISIBLE);
+
+
+                confirmBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        //getRatingConductor(databaseReferenceCon);
+                        //Get Rating ,Create rating obj and upload to firebase
+                        //String comment=commentField.getText().toString();
+                        //float value = rateConBar.getNumStars();
+                        Toast.makeText(ProfileConductorPopupActivity.this, "nbr = "+rateConBar.getRating(), Toast.LENGTH_SHORT).show();
+                        //set the profile rating bar
+                        ratingBarProfile.setRating(rateConBar.getRating());
+
+
+
+
+//                        final Rating rating = new Rating(
+//                        MainActivity.mAuth.getCurrentUser().getUid(),//id user
+////                      MainActivity.selectedDriverAccountID,//id Con
+//                        value,
+//                        comment);
+//
+//
+//                        ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                                if (dataSnapshot.child(MainActivity.mAuth.getCurrentUser().getUid()).exists()){
+//
+////                               //Remove old Value
+////                                  ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).removeValue();
+//                                    //Update new Value
+//                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
+//
+//                                }else{
+//                                    //Update new Value
+//                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                            }
+//                        });
+
+                    }
+                });
+            }
+        });
     }
+
+    private void getRatingConductor(DatabaseReference databaseReferenceCon) {
+//
+////        Query foodRating = ratingTbl.orderByChild("databaseReferenceCon").equalTo(String.valueOf(databaseReferenceCon));
+//
+//        double foodRating =
+////                dataSnapshot.child("fullName").getValue().toString();
+    }
+
+
+    private void saveNewConducProfile() {
+        //savng to database
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Rating").push();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("idPassager", );
+//        map.put("id", databaseReference.getKey());
+//        map.put("note", startP);
+//        map.put("Comment", endP);
+
+    }
+
+
 }

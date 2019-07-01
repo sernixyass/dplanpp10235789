@@ -47,4 +47,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-storage:17.0.0'
 
+    //Material Rating Bar
+    implementation 'com.stepstone.apprating:app-rating:2.0.0'
+
 }

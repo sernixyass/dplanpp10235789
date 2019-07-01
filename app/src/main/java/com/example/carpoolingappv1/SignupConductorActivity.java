@@ -67,7 +67,7 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
         password = findViewById(R.id.passwordSignupCId);
         password2 = findViewById(R.id.passwordSignupCId2);
         fullName = findViewById(R.id.fullNameSignupCId);
-            phone = findViewById(R.id.phoneSignupCId);
+        phone = findViewById(R.id.phoneSignupCId);
         carModel =findViewById(R.id.carModelSignupId);
 
         carKey1 = findViewById(R.id.carKey1SignupId);
@@ -150,9 +150,6 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
                 //calculate Age
 
-                //Toast.makeText(getApplicationContext(), "year:  "+year, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getApplicationContext(), "Calendar year:  "+Calendar.getInstance().get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getApplicationContext(), "age:  "+age, Toast.LENGTH_SHORT).show();
 
             }
         };

@@ -195,13 +195,12 @@ public class CompeltPosting extends Activity {
         }
 
 
-
-        //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (startP.trim().isEmpty() || endP.trim().isEmpty()) {
             Toast.makeText(this, "please insert a startingPoint and endingPoint", Toast.LENGTH_SHORT).show();
             return;
             //this return without executing any code below
         }
+
         //save to firebase table .............................
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();
@@ -236,7 +235,6 @@ public class CompeltPosting extends Activity {
         }
 
         map.put("isFull",false);
-
         if (MainActivity.isConductor){
             map.put("accountIDJoining1","");
         }else {
@@ -257,7 +255,6 @@ public class CompeltPosting extends Activity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     finish();
-
                 }else {
                     return;
                 }
