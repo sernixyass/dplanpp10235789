@@ -60,7 +60,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public Polyline mPolyline;
 
     //post data
-    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,estimatedTime;
+    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,estimatedTime,price;
     Button actionButton;
     TextView saturday,sunday,monday,tuesday,wednesday,thursday,friday;
     ImageButton driverIcon,passengerIcon1,passengerIcon2,passengerIcon3,passengerIcon4;
@@ -70,6 +70,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public LatLng tripPos,tripDestPos;
     MarkerOptions optionsPos,optionDestPos;
     public static GeoApiContext mGeoApiContext = null;
+
 
 
     Boolean isMapReady = false;
@@ -109,6 +110,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         passengerIcon3 = view.findViewById(R.id.passenger_joining3);
         passengerIcon4 = view.findViewById(R.id.passenger_joining4);
 
+        price = view.findViewById(R.id.ride_price);
 
         /*checkPersoonesInRide=view.findViewById(R.id.check_perssones_ride);
         checkPersoonesInRide.setOnClickListener(new View.OnClickListener() {
@@ -199,11 +201,16 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     startPoint.setText(dataSnapshot.child("startingPoint").getValue().toString());
                     endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
                     rideHour.setText(dataSnapshot.child("hourTrip").getValue().toString());
-                    //distance.serText(dataSnapshot.child("").getValue().toString());
+
+                    distance.setText(dataSnapshot.child("distance").getValue().toString());
+                    estimatedTime.setText(dataSnapshot.child("estimatedTime").getValue().toString());
+
+                    price.setText(dataSnapshot.child("price").getValue().toString());
 
                     //LATLNG
                     //tripPos = dataSnapshot.child("tripPosition").getValue(LatLng.class);
                     //tripDestPos = dataSnapshot.child("tripDestinationPosition").getValue(LatLng.class);
+
 
                     if (isMapReady){
                         calculateDirections(tripPos,tripDestPos);
@@ -375,7 +382,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
                                 if (!Objects.equals(dataSnapshot1.child("profilePic").getValue(), "") ){
                                     //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
-                                    if (carpoolingappv1.getAppContext()!=null){
+                                    if (carpoolingappv1.getApplication().getApplicationContext()!=null){
                                         Glide.with(getContext()).load(dataSnapshot1.child("profilePic").getValue())
                                                 .apply(RequestOptions.circleCropTransform())
                                                 .into(driverIcon);
@@ -663,7 +670,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 //Log.d("DURATION  ******       ","test 4");
                 //Log.d(TAG, "calculateDirections: routes: " + result.routes[0].toString());
                 //Log.d(TAG, "calculateDirections: duration: " + result.routes[0].legs[0].duration);
-                Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
+                //Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
 
                 //distance.setText(result.routes[0].legs[0].distance.toString());
                 //estimatedTime.setText(result.routes[0].legs[0].duration.toString());
@@ -925,7 +932,6 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -937,6 +943,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public void onStart() {
         super.onStart();
         mMapView.onStart();
+        MainActivity.ridePostIsDisplaying = true;
     }
 
     @Override

@@ -110,7 +110,7 @@ public class search_pop_up extends Activity {
             protected void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, final int position, @NonNull ListItem model) {
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
-                holder.setPlaces(model.getPlaces());
+                holder.setPlaces(model.getPlaces(),model.getTotalPlaces());
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
                     @Override

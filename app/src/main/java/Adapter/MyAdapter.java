@@ -109,7 +109,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         viewHolder.cardViewRow.setOnClickListener(this);
 
-        viewHolder.ActionButton.setOnClickListener(this);
+        //viewHolder.ActionButton.setOnClickListener(this);
 
 
     }
@@ -243,8 +243,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             return places;
         }
 
-        public void setPlaces(Integer places) {
-            this.places.setText(places.toString()+"/4");
+        public void setPlaces(Integer places,Integer totalPlaces) {
+            this.places.setText(places.toString()+"/"+totalPlaces.toString());
         }
 
         public void setHourTrip(String hourTrip) {

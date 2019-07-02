@@ -79,6 +79,8 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+
 
         //LINK
         fullNameGrand = findViewById(R.id.con_big_profile_name_pup);

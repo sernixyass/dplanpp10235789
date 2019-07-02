@@ -42,7 +42,7 @@ public class ProfilePassengerPopupActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.95),(int)(height*.5));
+        getWindow().setLayout((int)(width*1),(int)(height*1));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -52,6 +52,7 @@ public class ProfilePassengerPopupActivity extends AppCompatActivity {
 
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
 
         //LINK

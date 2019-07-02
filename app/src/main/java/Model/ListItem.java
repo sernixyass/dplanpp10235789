@@ -17,6 +17,7 @@ public class ListItem {
  private String startingPoint ;
  private String endPoint ;
  private Integer places;
+    private Integer totalPlaces;
  private String postID;
  private String accountIDPostedIt;
  private String accountIDJoining1;
@@ -43,6 +44,9 @@ public class ListItem {
     private String accountIDTakedIt;
 
     private String hourTrip;
+
+    private Integer price;
+
  //private String rideType;
  //private Date dateOfPosting;
 
@@ -137,7 +141,7 @@ public class ListItem {
  private Integer places;
  */
 
-    public ListItem(String startingPoint, String endPoint, Integer places,
+    public ListItem(String startingPoint, String endPoint, Integer places,Integer totalPlaces,
                     String postID, LatLng tripPosition, LatLng tripDestinationPosition,
                     String accountIDPostedIt,
 
@@ -159,10 +163,12 @@ public class ListItem {
                     String accountIDJoining3,
                     String accountIDJoining4,
 
-                    String hourTrip) {
+                    String hourTrip,
+                    Integer price) {
         this.startingPoint = startingPoint;
         this.endPoint = endPoint;
         this.places = places;
+        this.totalPlaces = totalPlaces;
         this.postID = postID;
         this.tripPosition = tripPosition;
         this.tripDestinationPosition = tripDestinationPosition;
@@ -187,6 +193,7 @@ public class ListItem {
         this.accountIDJoining4 = accountIDJoining4;
 
         this.hourTrip=hourTrip;
+        this.price = price;
 
     }
 
@@ -284,6 +291,13 @@ public class ListItem {
 
     public Integer getPlaces() {
         return places;
+    }
+    public Integer getTotalPlaces() {
+        return totalPlaces;
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 
     public void setPlaces(Integer places) {

@@ -43,8 +43,8 @@ public class Edit_profile_Passenger extends AppCompatActivity {
         phoneNumber=findViewById(R.id.pass_edit_phone);
         wilaya=findViewById(R.id.pass_edit_wilaya);
         oldPass=findViewById(R.id.pass_edit_OldPassword);
-        password=findViewById(R.id.pass_new_edit_password);
-        confirmPassword=findViewById(R.id.pass_edit_confirm_new_password);
+        //password=findViewById(R.id.pass_new_edit_password);
+        //confirmPassword=findViewById(R.id.pass_edit_confirm_new_password);
 
 
         MainActivity.databaseReference.addValueEventListener(new ValueEventListener() {
@@ -77,7 +77,8 @@ public class Edit_profile_Passenger extends AppCompatActivity {
         MainActivity.databaseReference.child("bDate").setValue(dateOfBirth.getText().toString());
         MainActivity.databaseReference.child("wilaya").setValue(wilaya.getText().toString());
 
-        startActivity(new Intent(getApplicationContext(),ProfileConductorFragment.class));
+        startActivity(new Intent(carpoolingappv1.getAppContext(),ProfilePassengerFragment.class));
+        finish();
     }
 
 

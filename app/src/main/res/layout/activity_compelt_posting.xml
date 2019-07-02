@@ -3,123 +3,177 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:background="@drawable/pop_backg"
+    android:gravity="center"
     tools:context=".CompeltPosting">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
 
         <LinearLayout
+            android:paddingTop="20dp"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="7">
+
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SAT"/>
+                    android:text="SAT" />
+
                 <android.support.v7.widget.AppCompatCheckBox
+                    android:buttonTint="@color/colorText"
                     android:id="@+id/saturdayCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUN"/>
+                    android:text="SUN" />
+
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/sundayCB"
+                    android:buttonTint="@color/colorText"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MON"/>
+                    android:text="MON" />
+
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/mondayCB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TUE"/>
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:id="@+id/tuesdayCB"
+                    android:buttonTint="@color/colorText"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WED"/>
+                    android:text="TUE" />
+
                 <android.support.v7.widget.AppCompatCheckBox
-                    android:id="@+id/wednesdayCB"
+                    android:id="@+id/tuesdayCB"
+                    android:buttonTint="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="THU"
-                    />
+                    android:text="WED" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/wednesdayCB"
+                    android:buttonTint="@color/colorText"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorText"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="THU" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/thursdayCB"
+                    android:buttonTint="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textColor="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FRI"/>
+                    android:text="FRI" />
+
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/fridayCB"
+                    android:buttonTint="@color/colorText"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -127,38 +181,97 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_margin="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/input_bg2"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:weightSum="3">
+
             <TextView
-                android:textSize="20sp"
-                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HOUR"/>
+                android:layout_weight="1"
+                android:text="HOUR"
+                android:textSize="15dp" />
+
             <Spinner
-                android:scrollbarSize="50dp"
-                android:layout_weight="2"
                 android:id="@+id/hourCompletePosting"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:inputType="text"
+                android:scrollbarSize="50dp"
                 tools:ignore="Autofill" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Places :"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"/>
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/places_cp"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:finalNumber="7"
+                app:initialNumber="1"
+                app:textSize="10dp"
+                android:gravity="center"
+                app:backGroundColor="@color/generalTextCol"
+                app:textColor="@color/colorAccent"
+                android:clickable="true">
+            </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price :"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"/>
+                    <EditText
+                        android:drawableTint="@color/colorAccent"
+                        android:drawableRight="@drawable/ic_map_black_24dp"
+                        android:id="@+id/price_cp"
+                        android:inputType="numberDecimal"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/input_white_bg"/>
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_margin="20dp"
+            android:textColor="@color/colorText"
+            android:background="@drawable/button_bg_white"
+            android:id="@+id/conferme_date_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Confirme"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/conferme_date_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirme"
-        android:textSize="18sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"/>
 </RelativeLayout>

@@ -81,7 +81,8 @@ public class Edit_profile_Conductor extends AppCompatActivity {
 
 
 
-        startActivity(new Intent(getApplicationContext(),ProfileConductorFragment.class));
+        //startActivity(new Intent(carpoolingappv1.getAppContext(),MainActivity.class));
+        finish();
     }
 
 

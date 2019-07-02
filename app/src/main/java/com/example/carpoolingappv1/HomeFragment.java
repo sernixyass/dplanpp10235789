@@ -64,7 +64,6 @@ import static com.example.carpoolingappv1.util.Constants.MAPVIEW_BUNDLE_KEY;
 public class HomeFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 
 
-    private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter ;
     private List<ListItem> mListItems;
@@ -72,7 +71,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     //private MyAdapter adapter;
     private FirebaseRecyclerAdapter adapterFire;
-    private FirebaseRecyclerAdapter adapterFireS;
 
     public static String selectedTripID;
     public static Integer selectedPlacesTrip;
@@ -80,14 +78,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     //MAP
     public MapView mMapView;
     GoogleMap mapH;
-    //public static RelativeLayout mMapContainer;
-    //public static RelativeLayout mPostsContainer;
-
-    private EditText searchField ;
-    private DatabaseReference mRideReference ;
 
 
-    public boolean exist;
 
 
     /*
@@ -197,6 +189,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("startingPoint").getValue().toString(),
                                         snapshot.child("endingPoint").getValue().toString(),
                                         snapshot.child("places").getValue(Integer.class),
+                                        snapshot.child("totalPlaces").getValue(Integer.class),
                                         snapshot.child("id").getValue().toString(),
                                         snapshot.child("tripPos").getValue(LatLng.class),
                                         snapshot.child("tripDesPos").getValue(LatLng.class),
@@ -221,7 +214,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("accountIDJoining3").getValue().toString(),
                                         snapshot.child("accountIDJoining4").getValue().toString(),
 
-                                        snapshot.child("hourTrip").getValue().toString()
+                                        snapshot.child("hourTrip").getValue().toString(),
+                                        snapshot.child("price").getValue(Integer.class)
                                         );
                             }
                         })
@@ -246,9 +240,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             protected void onBindViewHolder(final MyAdapter.ViewHolder holder, final int position, final ListItem model) {
                 holder.setStartPiont(model.getStartingPoint());
                 holder.setArrivePoint(model.getEndPoint());
-                holder.setPlaces(model.getPlaces());
+                holder.setPlaces(model.getPlaces(),model.getTotalPlaces());
                 holder.setHourTrip(model.getHourTrip());
-
 /*
                 //boolean alreadyJoined = false;
                 DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts.child(model.getPostID());
@@ -553,7 +546,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public void onResume() {
         super.onResume();
         //mMapView.onResume();
-
+/*
         //onBackPressed
         if (getView() == null){
             return;
@@ -570,14 +563,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     //remove post fragment opened at the top of the home Fragment
                     Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_Post_container);
                     if (fragment != null){
-                        getFragmentManager().beginTransaction().remove(fragment).commit();
+                        getFragmentManager().beginTransaction().hide(fragment).commit();
+                        MainActivity.ridePostIsDisplaying = false;
                     }
 
                     return true;
                 }
                 return false;
             }
-        });
+        });*/
     }
 
     @Override

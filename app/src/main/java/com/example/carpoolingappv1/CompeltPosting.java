@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +62,15 @@ public class CompeltPosting extends Activity {
 
     private String hourTrip;
 
+    ElegantNumberButton places;
+
+    EditText price;
+
+    public Integer maxPrice;
+    public Integer pricePerkiloMetre = 45;
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +91,19 @@ public class CompeltPosting extends Activity {
 
 
 
-        //placesText = findViewById(R.id.C_P_places);
+        places = findViewById(R.id.places_cp);
 
+        price = findViewById(R.id.price_cp);
+
+        //String dis = (MapSearchPointsFragment.distance.substring(0,MapSearchPointsFragment.distance.length()-3)).trim();
+        //maxPrice = (Integer.valueOf((String) dis.toString())) * pricePerkiloMetre;
+
+        //price.setHint("Max :" + maxPrice.toString() +" DA");
 
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.7));
+        getWindow().setLayout((int)(width*1),(int)(height*1));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -99,7 +115,6 @@ public class CompeltPosting extends Activity {
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-
 
 
 
@@ -167,8 +182,10 @@ public class CompeltPosting extends Activity {
         String startP = AddPostActivity.startingPointText;
         String endP = AddPostActivity.endingPointText;
         //Integer places = Integer.valueOf(placesText.getText().toString());
-        LatLng tripPos = AddPostActivity.startingPointLL;
+        LatLng tripPos =    AddPostActivity.startingPointLL;
         LatLng tripDesPos = AddPostActivity.endingPointLL;
+        String estimatedTime = MapSearchPointsFragment.estimatedTime;
+        String distance = MapSearchPointsFragment.distance;
 
         if(satCB.isChecked()){
             saturday = true;
@@ -213,6 +230,8 @@ public class CompeltPosting extends Activity {
         }else {
             map.put("places", 1);
         }
+        map.put("totalPlaces",Integer.parseInt(places.getNumber()));
+
         map.put("tripPosition", tripPos);
         map.put("tripDestinationPosition", tripDesPos);
         map.put("accountIDPostedIt",MainActivity.mAuth.getCurrentUser().getUid());
@@ -246,14 +265,18 @@ public class CompeltPosting extends Activity {
         map.put("accountIDJoining4","");
 
         map.put("hourTrip",hourTrip);
+        map.put("distance",distance);
+        map.put("estimatedTime",estimatedTime);
 
-
+        map.put("price",Integer.parseInt(price.getText().toString()));
 
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
 
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
+                    Intent intent = new Intent(carpoolingappv1.getAppContext(),MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }else {
                     return;

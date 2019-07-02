@@ -49,6 +49,9 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
     public static Polyline mPolyline;
 
 
+    public static String distance,estimatedTime;
+
+
     //
     public static HashMap<String,Marker> hashMapMarker = new HashMap<>();
 
@@ -227,6 +230,11 @@ public class MapSearchPointsFragment extends Fragment implements OnMapReadyCallb
                 //Log.d(TAG, "calculateDirections: routes: " + result.routes[0].toString());
                 //Log.d(TAG, "calculateDirections: duration: " + result.routes[0].legs[0].duration);
                 //Log.d("DURATION  ******       ",result.routes[0].legs[0].duration.toString());
+
+                distance = result.routes[0].legs[0].distance.toString();
+                //distanceInt = result.routes[0].legs[0].distance.toString();
+
+                estimatedTime = result.routes[0].legs[0].duration.toString();
 
                 //Log.d(TAG, "calculateDirections: distance: " + result.routes[0].legs[0].distance);
                 //Log.d(TAG, "calculateDirections: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());

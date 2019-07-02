@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
@@ -27,12 +29,13 @@ import java.util.List;
 
 public class AddPostActivity extends AppCompatActivity  {
 
-    public static String startingPointText;
-    public static String endingPointText;
+    public static String startingPointText = "";
+    public static String endingPointText = "";
 
 
     public static LatLng endingPointLL;
     public static LatLng startingPointLL;
+
 
     private FloatingActionButton confermeAdd;
 
@@ -61,7 +64,11 @@ public class AddPostActivity extends AppCompatActivity  {
         confermeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setingDate();
+                if (!startingPointText.equals("")&& !endingPointText.equals("")){
+                    setingDate();
+                }else {
+                    Toast.makeText(AddPostActivity.this, "Please set start and destination Trip", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

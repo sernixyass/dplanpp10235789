@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +25,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
@@ -76,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
     public Fragment fragment4;
     public Fragment activeFragment;
 
+    public boolean startOperating = false;
+
+    boolean doubleBackExitPressed = false;
+
+    public static boolean ridePostIsDisplaying=false;
 
 
     @Override
@@ -99,13 +106,14 @@ public class MainActivity extends AppCompatActivity {
         userID = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         databaseReferencePosts = FirebaseDatabase.getInstance().getReference().child("posts");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 isConductor = dataSnapshot.child("isConductor").getValue(Boolean.class);
                 currentUserFullName = dataSnapshot.child("fullName").getValue().toString();
                 iconSender = dataSnapshot.child("profilePic").getValue().toString();
+                startOperating=true;
+                startOperatingFra();
             }
 
             @Override
@@ -120,9 +128,17 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //default fragment to start at the beginning
 
+        if (startOperating){
+        }
+    }
+
+
+
+    public void startOperatingFra(){
         fragment1 = new HomeFragment();
         fragment2=new SearchFragment();
         fragment3=new ChatNotfFragment();
+
         if (isConductor){
             fragment4=new ProfileConductorFragment();
         }
@@ -139,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().show(fragment1).commit();
         activeFragment = fragment1;
     }
-
-
 
 
 
@@ -328,7 +342,32 @@ public class MainActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!ridePostIsDisplaying){
+            if (doubleBackExitPressed){
+                super.onBackPressed();
+                return;
+            }
 
+            this.doubleBackExitPressed = true;
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackExitPressed = false;
+                }
+            },2000);
+        }else {
+            //onBackPressed
 
+                        //remove post fragment opened at the top of the home Fragment
+                        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_Post_container);
+                        if (fragment != null) {
+                            getSupportFragmentManager().beginTransaction().hide(fragment).commit();
+                            MainActivity.ridePostIsDisplaying = false;
+                        }
+        }
 
+    }
 }

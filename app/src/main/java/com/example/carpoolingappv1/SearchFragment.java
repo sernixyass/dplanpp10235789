@@ -156,6 +156,7 @@ public class SearchFragment extends Fragment {
                                 return new ListItem(snapshot.child("startingPoint").getValue().toString(),
                                         snapshot.child("endingPoint").getValue().toString(),
                                         snapshot.child("places").getValue(Integer.class),
+                                        snapshot.child("totalPlaces").getValue(Integer.class),
                                         snapshot.child("id").getValue().toString(),
                                         snapshot.child("tripPos").getValue(LatLng.class),
                                         snapshot.child("tripDesPos").getValue(LatLng.class),
@@ -180,7 +181,8 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("accountIDJoining3").getValue().toString(),
                                         snapshot.child("accountIDJoining4").getValue().toString(),
 
-                                        snapshot.child("hourTrip").getValue().toString()
+                                        snapshot.child("hourTrip").getValue().toString(),
+                                        snapshot.child("price").getValue(Integer.class)
                                 );
                             }
                         })

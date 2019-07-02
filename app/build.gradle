@@ -47,6 +47,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-storage:17.0.0'
 
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+
     //Material Rating Bar
     implementation 'com.stepstone.apprating:app-rating:2.0.0'
 

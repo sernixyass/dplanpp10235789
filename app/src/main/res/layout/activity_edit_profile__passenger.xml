@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Edit_profile_Passenger">
+    tools:context=".Edit_profile_Passenger"
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -128,7 +129,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Old Password:"
+                        android:text="Password:"
                         android:layout_weight="0.4"
                         android:textStyle="bold"/>
                     <EditText
@@ -142,54 +143,6 @@
                         />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="1"
-                    android:layout_margin="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="New Password:"
-                        android:layout_weight="0.4"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/pass_new_edit_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/input_white_bg"
-                        android:padding="20dp"
-                        android:layout_weight="0.6"
-                        />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="1"
-                    android:layout_margin="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Confirm Password:"
-                        android:layout_weight="0.4"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/pass_edit_confirm_new_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/input_white_bg"
-                        android:padding="20dp"
-                        android:layout_weight="0.6"
-                        />
-                </LinearLayout>
         </LinearLayout>
         </ScrollView>
 
