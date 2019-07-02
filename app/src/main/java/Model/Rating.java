@@ -6,14 +6,18 @@ public class Rating {
     private double rateValue;
     private String comment;
 
+    //private String tripInfo;
+
     public Rating() {
     }
 
-    public Rating(String userId,/* String conductorId,*/ double rateValue, String comment) {
+    public Rating(String userId, double rateValue, String comment/*,String tripInfo*/) {
+
        this.userId = userId;
 //        this.conductorId = conductorId;
         this.rateValue = rateValue;
         this.comment = comment;
+        //this.tripInfo = tripInfo;
     }
 
 

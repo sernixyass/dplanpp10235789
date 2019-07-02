@@ -399,6 +399,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     }else {
                         driverName.setText("No Driver available");
                         carModel.setText("No car");
+                        driverIcon.setBackgroundColor(R.drawable.profile_circular_border_imageview);
 
                         MainActivity.selectedDriverAccountID = "";
                     }

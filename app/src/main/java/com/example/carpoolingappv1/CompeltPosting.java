@@ -95,6 +95,9 @@ public class CompeltPosting extends Activity {
 
         price = findViewById(R.id.price_cp);
 
+
+
+
         //String dis = (MapSearchPointsFragment.distance.substring(0,MapSearchPointsFragment.distance.length()-3)).trim();
         //maxPrice = (Integer.valueOf((String) dis.toString())) * pricePerkiloMetre;
 
@@ -108,7 +111,7 @@ public class CompeltPosting extends Activity {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x= 0 ;
-        params.y=-20;
+        params.y=0;
 
         params.dimAmount=0.0f;
 
@@ -140,35 +143,27 @@ public class CompeltPosting extends Activity {
         conferm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePoste();
+                //savePoste();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(CompeltPosting.this);
+                builder.setMessage("Create this ride ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                savePoste();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).setTitle("Confirmation")
+                        .show();
 
-
-
-//
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                builder.setMessage("Do you really want to create this ride ?")
-//                        .setCancelable(false)
-//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                savePoste();
-//                            }
-//                        })
-//                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        }).setTitle("Confermation !!")
-//                        .show();
-//
-//                AlertDialog alertDialog = builder.create();
-//
-
-                Intent intent = new Intent(getApplicationContext(),AddPostActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(),AddPostActivity.class);
+                //startActivity(intent);
             }
         });
 
@@ -288,4 +283,8 @@ public class CompeltPosting extends Activity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

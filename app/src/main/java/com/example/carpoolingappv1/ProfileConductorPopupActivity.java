@@ -45,6 +45,8 @@ import static com.example.carpoolingappv1.MainActivity.databaseReference;
 
 public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
+
+
     DatabaseReference databaseReferenceCon;
     TextView fullNameGrand,phone,willaya,carModel,carNumber;
     ImageView profilPicC;
@@ -61,6 +63,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
     DatabaseReference ratingTbl;
 
 
+    public Double totaleRates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.95),(int)(height*.8));
+        getWindow().setLayout((int)(width*.95),(int)(height*.7));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -83,7 +86,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
         getWindow().setAttributes(params);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
 
         //LINK
@@ -102,6 +105,8 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
         ratingBarProfile=findViewById(R.id.rating_bar_profile);
 
 
+        mainLayout.setVisibility(View.GONE);
+
 
 
         //GET and SHOW DATA
@@ -112,7 +117,6 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
         ratingTbl = databaseReferenceCon.child("Rating");
 
-
         databaseReferenceCon.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshotCon) {
@@ -122,13 +126,16 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
                 carModel.setText(dataSnapshotCon.child("carModel").getValue().toString());
                 carNumber.setText(dataSnapshotCon.child("carKey").getValue().toString());
 
+                totaleRates = dataSnapshotCon.child("totalRates").getValue(Double.class);
+
+                ratingBarProfile.setRating(totaleRates.floatValue());
+
                 if (!Objects.equals(dataSnapshotCon.child("profilePic").getValue(), "") ){
                     //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
                     if (carpoolingappv1.getAppContext()!=null){
                         Glide.with(carpoolingappv1.getAppContext()).load(dataSnapshotCon.child("profilePic").getValue())
                                 .apply(RequestOptions.circleCropTransform())
                                 .into(profilPicC);
-
                     }
                 }
             }
@@ -155,40 +162,32 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
                         //Get Rating ,Create rating obj and upload to firebase
                         String comment=commentField.getText().toString();
-                        float value = rateConBar.getNumStars();
+                        final float value = rateConBar.getRating();
 
 
 
                         final Rating rating = new Rating(
-                        MainActivity.mAuth.getCurrentUser().getUid(),   //id user
+                        MainActivity.currentUserID,   //id user
                         value,     //nbr stars
                         comment);  //comment
 
 
-                        ratingTbl.addValueEventListener(new ValueEventListener() {
+                        ratingTbl.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
-                                if (dataSnapshot.child(MainActivity.mAuth.getCurrentUser().getUid()).exists()){
+                                //Update new Value
+                                ratingTbl.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(getApplicationContext(), "Rating saved", Toast.LENGTH_SHORT).show();
 
-//                               //Remove old Value
-//                                  ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).removeValue();
-
-                                    //Update new Value
-                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (!task.isSuccessful()){
-                                                Toast.makeText(getApplicationContext(), "Rating saved", Toast.LENGTH_SHORT).show();
-                                            }
+                                            totaleRates = ((totaleRates * dataSnapshot.getChildrenCount()) + value)/ (dataSnapshot.getChildrenCount() + 1);
+                                            databaseReferenceCon.child("totalRates").setValue(totaleRates);
                                         }
-                                    });
-
-                                }else{
-                                    //Update new Value
-                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
-                                }
-
+                                    }
+                                });
                             }
 
                             @Override
@@ -201,6 +200,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
                         //set the profile rating bar
                         ratingBarProfile.setRating(rateConBar.getRating());
 
+                        mainLayout.setVisibility(View.GONE);
                     }
                 });
             }
