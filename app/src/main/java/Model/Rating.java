@@ -17,21 +17,13 @@ public class Rating {
     }
 
 
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
-//
-//    public String getConductorId() {
-//        return conductorId;
-//    }
-//
-//    public void setConductorId(String conductorId) {
-//        this.conductorId = conductorId;
-//    }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public double getRateValue() {
         return rateValue;

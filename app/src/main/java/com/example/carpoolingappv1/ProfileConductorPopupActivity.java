@@ -20,6 +20,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.internal.service.Common;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,13 +106,11 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
         //GET and SHOW DATA
         mDatabase = FirebaseDatabase.getInstance();
+
+
         databaseReferenceCon = mDatabase.getReference().child("Users").child(MainActivity.selectedDriverAccountID);
 
         ratingTbl = databaseReferenceCon.child("Rating");
-//        .child(MainActivity.currentUserID)
-
-
-//        mDatabase.getReference().child("Users").child(MainActivity.selectedDriverAccountID)
 
 
         databaseReferenceCon.addValueEventListener(new ValueEventListener() {
@@ -142,54 +144,62 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
         rateBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainLayout.setVisibility(View.VISIBLE);
 
+                mainLayout.setVisibility(View.VISIBLE);
 
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         //getRatingConductor(databaseReferenceCon);
+
                         //Get Rating ,Create rating obj and upload to firebase
-                        //String comment=commentField.getText().toString();
-                        //float value = rateConBar.getNumStars();
-                        Toast.makeText(ProfileConductorPopupActivity.this, "nbr = "+rateConBar.getRating(), Toast.LENGTH_SHORT).show();
+                        String comment=commentField.getText().toString();
+                        float value = rateConBar.getNumStars();
+
+
+
+                        final Rating rating = new Rating(
+                        MainActivity.mAuth.getCurrentUser().getUid(),   //id user
+                        value,     //nbr stars
+                        comment);  //comment
+
+
+                        ratingTbl.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (dataSnapshot.child(MainActivity.mAuth.getCurrentUser().getUid()).exists()){
+
+//                               //Remove old Value
+//                                  ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).removeValue();
+
+                                    //Update new Value
+                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (!task.isSuccessful()){
+                                                Toast.makeText(getApplicationContext(), "Rating saved", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                }else{
+                                    //Update new Value
+                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        //sna dir el hsab hadek w affichih
                         //set the profile rating bar
                         ratingBarProfile.setRating(rateConBar.getRating());
-
-
-
-
-//                        final Rating rating = new Rating(
-//                        MainActivity.mAuth.getCurrentUser().getUid(),//id user
-////                      MainActivity.selectedDriverAccountID,//id Con
-//                        value,
-//                        comment);
-//
-//
-//                        ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                                if (dataSnapshot.child(MainActivity.mAuth.getCurrentUser().getUid()).exists()){
-//
-////                               //Remove old Value
-////                                  ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).removeValue();
-//                                    //Update new Value
-//                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
-//
-//                                }else{
-//                                    //Update new Value
-//                                    ratingTbl.child(MainActivity.mAuth.getCurrentUser().getUid()).setValue(rating);
-//                                }
-//
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
 
                     }
                 });
@@ -197,25 +207,6 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
         });
     }
 
-    private void getRatingConductor(DatabaseReference databaseReferenceCon) {
-//
-////        Query foodRating = ratingTbl.orderByChild("databaseReferenceCon").equalTo(String.valueOf(databaseReferenceCon));
-//
-//        double foodRating =
-////                dataSnapshot.child("fullName").getValue().toString();
-    }
-
-
-    private void saveNewConducProfile() {
-        //savng to database
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Rating").push();
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("idPassager", );
-//        map.put("id", databaseReference.getKey());
-//        map.put("note", startP);
-//        map.put("Comment", endP);
-
-    }
 
 
 }

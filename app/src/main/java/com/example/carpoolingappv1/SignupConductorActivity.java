@@ -234,13 +234,13 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (!task.isSuccessful()){
-                                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (!task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
 
                             //SEND EMAIL VERIFICATION
                             mAuth.getCurrentUser().sendEmailVerification()
