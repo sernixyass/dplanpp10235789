@@ -47,6 +47,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
 
 
+
     DatabaseReference databaseReferenceCon;
     TextView fullNameGrand,phone,willaya,carModel,carNumber;
     ImageView profilPicC;
@@ -115,7 +116,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
         databaseReferenceCon = mDatabase.getReference().child("Users").child(MainActivity.selectedDriverAccountID);
 
-        ratingTbl = databaseReferenceCon.child("Rating");
+        ratingTbl = databaseReferenceCon.child("rates");
 
         databaseReferenceCon.addValueEventListener(new ValueEventListener() {
             @Override
@@ -164,12 +165,14 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
                         String comment=commentField.getText().toString();
                         final float value = rateConBar.getRating();
 
-
+                        String tripInfo = RidePostFragment.startTrip + " TO " + RidePostFragment.destinationTrip;
 
                         final Rating rating = new Rating(
                         MainActivity.currentUserID,   //id user
                         value,     //nbr stars
-                        comment);  //comment
+                        comment,    //comment
+                        tripInfo,
+                        MainActivity.iconSender);
 
 
                         ratingTbl.addListenerForSingleValueEvent(new ValueEventListener() {

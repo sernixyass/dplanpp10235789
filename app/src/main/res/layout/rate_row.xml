@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/rateCardView"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:paddingVertical="3dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:background="#F1F1F1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=  "0.8"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/rateIcon"
+                    android:background="@drawable/profile_circular_border_imageview"
+                    android:scaleType="centerCrop"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=  "4.2"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <RatingBar
+                    android:id="@+id/rateStars"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center|start"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:layout_weight="0.4"
+                    android:progressTint="@color/colorPrimary"
+                    android:secondaryProgressTint="@color/colorPrimary"/>
+
+
+
+                <TextView
+                    android:id="@+id/rateComment"
+                    android:textSize="13sp"
+                    android:text="this is the best conductor i have meet here"
+                    android:layout_weight="0.4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center|start" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center|start"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rateInfo"
+                        android:textSize="12sp"
+                        android:text="Alger TO Constantine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thu at 18:02"
+                        android:textSize="10sp"
+                        android:textColor="#546E7A"
+                        android:gravity="center|end"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

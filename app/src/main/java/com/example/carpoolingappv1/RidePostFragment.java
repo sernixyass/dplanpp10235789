@@ -1,6 +1,8 @@
 package com.example.carpoolingappv1;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -70,6 +72,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public LatLng tripPos,tripDestPos;
     MarkerOptions optionsPos,optionDestPos;
     public static GeoApiContext mGeoApiContext = null;
+
+    public static String startTrip,destinationTrip;
 
 
 
@@ -206,6 +210,9 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     estimatedTime.setText(dataSnapshot.child("estimatedTime").getValue().toString());
 
                     price.setText(dataSnapshot.child("price").getValue().toString());
+
+                    startTrip = dataSnapshot.child("startingPoint").getValue().toString();
+                    destinationTrip = dataSnapshot.child("endingPoint").getValue().toString();
 
                     //LATLNG
                     //tripPos = dataSnapshot.child("tripPosition").getValue(LatLng.class);
@@ -399,12 +406,10 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     }else {
                         driverName.setText("No Driver available");
                         carModel.setText("No car");
-                        driverIcon.setBackgroundColor(R.drawable.profile_circular_border_imageview);
+                        driverIcon.setImageDrawable(getResources().getDrawable(R.drawable.profile_circular_border_imageview));
 
                         MainActivity.selectedDriverAccountID = "";
                     }
-
-
 
 
 
@@ -844,9 +849,28 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
     private void takeTrip() {
         //MainActivity.databaseReference.child("places").get;
-        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
+        /*MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
                 .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);
+        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);*/
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("please confirm taking this trip ?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
+                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
+                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setTitle("Confirmation")
+                .show();
     }
 
     private void cancelTakingTrip() {
