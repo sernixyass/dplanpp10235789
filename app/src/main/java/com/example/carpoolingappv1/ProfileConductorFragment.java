@@ -143,10 +143,7 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
 
     }
 
-    private void setUpViewPageAdapter(ViewPager viewPager) {
-        PagerAdapteurRatingsTrips Adapter = new PagerAdapteurRatingsTrips(getActivity().getSupportFragmentManager(),tabLayoutProfileConductor.getTabCount());
-        viewPager.setAdapter(Adapter);
-    }
+
 
     public void chooseImg(){
         Intent galleryIntent = new Intent();
@@ -270,5 +267,12 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         MainActivity.mAuth.getInstance().signOut();
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
+    }
+
+
+
+    private void setUpViewPageAdapter(ViewPager viewPager) {
+        PagerAdapteurRatingsTrips Adapter = new PagerAdapteurRatingsTrips(getActivity().getSupportFragmentManager(),tabLayoutProfileConductor.getTabCount());
+        viewPager.setAdapter(Adapter);
     }
 }

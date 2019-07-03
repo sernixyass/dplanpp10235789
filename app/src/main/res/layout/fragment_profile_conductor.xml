@@ -159,8 +159,6 @@
             app:tabGravity="fill"
             app:tabMode="fixed">
 
-
-
             <android.support.design.widget.TabItem
                 android:icon="@drawable/ic_trips"
                 android:id="@+id/trips_tab"
