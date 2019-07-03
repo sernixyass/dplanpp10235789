@@ -11,7 +11,9 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,9 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.Objects;
 
+import Adapter.PagerAdapterChatNotification;
+import Adapter.PagerAdapteurRatingsTrips;
+
 public class ProfileConductorFragment extends Fragment implements View.OnClickListener{
 
     private FloatingActionButton buttonConducEditProfile;
@@ -49,6 +54,9 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
     TextView fullNameGrand,phone,willaya,carModel,carNumber;
     ImageButton profilPicC;
 
+
+    private TabLayout tabLayoutProfileConductor;
+    private ViewPager mViewPager ;
 
     public StorageReference userProfileImageRef;
     Uri imageUri;
@@ -77,6 +85,14 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         carNumber = view.findViewById(R.id.con_car_unique_nbe);
 
         profilPicC = view.findViewById(R.id.con_profile_pic);
+
+        //ViewPager
+        tabLayoutProfileConductor = view.findViewById(R.id.tab_layout_profile_conductor);
+        mViewPager=view.findViewById(R.id.view_pager_profile_conductor_tab);
+
+
+        setUpViewPageAdapter(mViewPager);
+        tabLayoutProfileConductor.setupWithViewPager(mViewPager);
 
 
        // view.findViewById(R.id.add_friend).setOnClickListener(this);
@@ -125,6 +141,11 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
 
         return view ;
 
+    }
+
+    private void setUpViewPageAdapter(ViewPager viewPager) {
+        PagerAdapteurRatingsTrips Adapter = new PagerAdapteurRatingsTrips(getActivity().getSupportFragmentManager(),tabLayoutProfileConductor.getTabCount());
+        viewPager.setAdapter(Adapter);
     }
 
     public void chooseImg(){

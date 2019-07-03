@@ -2,6 +2,7 @@ package com.example.carpoolingappv1;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,7 +21,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +36,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +66,7 @@ public class CompeltPosting extends Activity {
     private Boolean friday=false;
 
     private String hourTrip;
+    private String dateExtracted;
 
     ElegantNumberButton places;
 
@@ -68,6 +74,14 @@ public class CompeltPosting extends Activity {
 
     public Integer maxPrice;
     public Integer pricePerkiloMetre = 45;
+
+
+    //date
+    public TextView gDate;
+    private DatePickerDialog.OnDateSetListener gDateSetListener;
+    private RadioGroup mRadioGroup ;
+    private LinearLayout checkDaysLayout;
+    private LinearLayout setDaysLayout;
 
 
 
@@ -97,9 +111,86 @@ public class CompeltPosting extends Activity {
 
 
 
+        mRadioGroup =findViewById(R.id.radio_group);
+        checkDaysLayout= findViewById(R.id.daily_layout);
+        setDaysLayout= findViewById(R.id.set_date_layout);
 
-        //String dis = (MapSearchPointsFragment.distance.substring(0,MapSearchPointsFragment.distance.length()-3)).trim();
-        //maxPrice = (Integer.valueOf((String) dis.toString())) * pricePerkiloMetre;
+
+        checkDaysLayout.setVisibility(View.VISIBLE);
+        setDaysLayout.setVisibility(View.GONE);
+
+
+
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.radio_daily:
+                        // do operations specific to this selection
+                        checkDaysLayout.setVisibility(View.VISIBLE);
+                        setDaysLayout.setVisibility(View.GONE);
+                        break;
+                    case R.id.radio_set_date:
+                        checkDaysLayout.setVisibility(View.GONE);
+                        setDaysLayout.setVisibility(View.VISIBLE);
+                        break;
+                }
+
+
+
+            }
+        });
+
+
+        gDate = findViewById(R.id.set_date_edit_text);
+
+        //date displays widget
+        gDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CompeltPosting.this,
+                        android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
+                        gDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+
+        //get the date and put it in the textField
+        gDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                //
+                //Log.d("onDate set: mm/dd/yy" + month + "/" + dayOfMonth + "/" + year);
+
+                String date ="Date of birth: " + month + "/" + dayOfMonth + "/" + year;
+
+                int age = (int) ((Calendar.getInstance().get(Calendar.YEAR)) - year);
+
+                if (age<=0) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                gDate.setText(date);
+                gDate.setTextColor(Color.BLACK);
+
+                dateExtracted=gDate.getText().toString();
+
+            }
+        };
+
+
+
 
         //price.setHint("Max :" + maxPrice.toString() +" DA");
 
@@ -213,6 +304,7 @@ public class CompeltPosting extends Activity {
             //this return without executing any code below
         }
 
+
         //save to firebase table .............................
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts").push();
@@ -238,6 +330,10 @@ public class CompeltPosting extends Activity {
         map.put("wednesday",wednesday);
         map.put("thursday",thursday);
         map.put("friday",friday);
+
+
+        ///adding the full date
+        map.put("FullDate",dateExtracted);
 
         if (MainActivity.isConductor){
             map.put("isTaken",true);

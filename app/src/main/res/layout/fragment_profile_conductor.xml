@@ -147,6 +147,42 @@
 
         </android.support.v7.widget.CardView>
 
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout_profile_conductor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/White"
+            app:tabIndicatorColor="@color/tabIndicatorColor"
+            app:tabTextColor="#D4E0F8"
+            app:tabGravity="fill"
+            app:tabMode="fixed">
+
+
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/ic_trips"
+                android:id="@+id/trips_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/rating_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_stars"/>
+
+        </android.support.design.widget.TabLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager_profile_conductor_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
