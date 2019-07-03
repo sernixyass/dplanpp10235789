@@ -356,6 +356,27 @@
                 android:scaleType="centerCrop"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
+            <ImageButton
+                android:id="@+id/passenger_joining5"
+                android:layout_margin="5dp"
+                android:background="@drawable/profile_circular_border_imageview"
+                android:scaleType="centerCrop"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <ImageButton
+                android:id="@+id/passenger_joining6"
+                android:layout_margin="5dp"
+                android:background="@drawable/profile_circular_border_imageview"
+                android:scaleType="centerCrop"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <ImageButton
+                android:id="@+id/passenger_joining7"
+                android:layout_margin="5dp"
+                android:background="@drawable/profile_circular_border_imageview"
+                android:scaleType="centerCrop"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>

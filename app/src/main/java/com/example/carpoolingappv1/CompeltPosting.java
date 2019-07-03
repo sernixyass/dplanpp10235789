@@ -354,6 +354,9 @@ public class CompeltPosting extends Activity {
         map.put("accountIDJoining2","");
         map.put("accountIDJoining3","");
         map.put("accountIDJoining4","");
+        map.put("accountIDJoining5","");
+        map.put("accountIDJoining6","");
+        map.put("accountIDJoining7","");
 
         map.put("hourTrip",hourTrip);
         map.put("distance",distance);
