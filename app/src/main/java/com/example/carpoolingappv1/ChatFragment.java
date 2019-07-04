@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class ChatFragment extends Fragment {
         mInputText =  view.findViewById(R.id.messageInput);
         mChatListView =  view.findViewById(R.id.list_msg);
 
-
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
 
 
@@ -79,31 +80,32 @@ public class ChatFragment extends Fragment {
 
     private void sendMessage() {
 
-//        //Grab the text the user typed in and push the message to Firebase
-//        String input = mInputText.getText().toString();
-//        if (!input.equals("")) {
-//            InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime);
-//            mDatabaseReference.child("messages").push().setValue(chat);
-//            mInputText.setText("");
-//        }
+        //Grab the text the user typed in and push the message to Firebase
+        String input = mInputText.getText().toString();
+        mDisplayName = MainActivity.currentUserFullName;
+        if (!input.equals("")) {
+            InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime);
+            mDatabaseReference.child("messages").push().setValue(chat);
+            mInputText.setText("");
+        }
     }
 
 
-//    //Override the onStart() lifecycle method. Setup the adapter here.
-//    @Override
-//    public void onStart(){
-//        super.onStart();
-//        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName);
-//        mChatListView.setAdapter(mAdapter);
-//
-//    }
+    //Override the onStart() lifecycle method. Setup the adapter here.
+    @Override
+    public void onStart(){
+        super.onStart();
+        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName);
+        mChatListView.setAdapter(mAdapter);
 
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        //Remove the Firebase event listener on the adapter.
-//        mAdapter.cleanup();
-//
-//    }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //Remove the Firebase event listener on the adapter.
+        mAdapter.cleanup();
+
+    }
 
 }

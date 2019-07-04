@@ -89,8 +89,8 @@ public class ChatListAdapter  extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView=  inflater.inflate(R.layout.fragment_chat,parent,false) ;
-            //convertView = inflater.inflate(R.layout.chat_msg_row, parent, false);
+            //convertView=  inflater.inflate(R.layout.fragment_chat,parent,false) ;
+            convertView = inflater.inflate(R.layout.chat_msg_row, parent, false);
 
             final ViewHolder holder = new ViewHolder();
             holder.authorName = convertView.findViewById(R.id.author);
