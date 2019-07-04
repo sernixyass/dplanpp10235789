@@ -287,6 +287,23 @@ public class MainActivity extends AppCompatActivity {
         databaseReferenceNot.setValue(notifMap);
     }
 
+    public static void sendPostReport(String userSender, String postID,String message){
+        DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("admin").child("reports").child("posts").push();
+        Map<String, Object> reportMap = new HashMap<>();
+        reportMap.put("userSender",userSender);
+        reportMap.put("message",message);
+        reportMap.put("postID",postID);
+        databaseReferenceNot.setValue(reportMap);
+    }
+    public static void sendUserReport(String userSender, String userID,String message){
+        DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("admin").child("reports").child("users").push();
+        Map<String, Object> reportMap = new HashMap<>();
+        reportMap.put("userSender",userSender);
+        reportMap.put("message",message);
+        reportMap.put("userID",userID);
+        databaseReferenceNot.setValue(reportMap);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

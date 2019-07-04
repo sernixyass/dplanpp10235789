@@ -29,7 +29,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -865,6 +864,20 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             });
 
         }
+
+
+        view.findViewById(R.id.reportBtnP).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =  new Intent(getContext(), ReportPopupActivity.class);
+                intent.putExtra("whichReport","post");
+                startActivity(intent);            }
+        });
+
+
+
+
         return view;
     }
 

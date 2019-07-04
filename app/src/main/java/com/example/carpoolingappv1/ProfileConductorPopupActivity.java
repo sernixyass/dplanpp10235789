@@ -1,5 +1,6 @@
 package com.example.carpoolingappv1;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -65,6 +66,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
 
     public Double totaleRates;
+    public static String selectedConductor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +209,17 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
                         mainLayout.setVisibility(View.GONE);
                     }
                 });
+            }
+        });
+
+
+
+        findViewById(R.id.negativeBtnU).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getApplicationContext(), ReportPopupActivity.class);
+                intent.putExtra("whichReport","user");
+                startActivity(intent);
             }
         });
     }

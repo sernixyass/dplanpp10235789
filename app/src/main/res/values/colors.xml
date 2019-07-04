@@ -5,6 +5,8 @@
     <color name="colorAccent">#0F1518</color>
 
     <color name="red">#D62842</color>
+    <color name="redReport">#68D62842</color>
+
     <color name="blue">#2196F3</color>
     <color name="gris">#424141</color>
     <color name="White">#EEEEEE</color>
