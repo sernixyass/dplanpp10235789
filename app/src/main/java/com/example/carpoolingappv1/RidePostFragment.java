@@ -76,6 +76,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public static String startTrip,destinationTrip;
 
     public Integer tripPlaces;
+    public Integer tripTotalPlaces;
 
 
 
@@ -203,6 +204,27 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
             }
         });
+        view.findViewById(R.id.passenger_joining5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join5AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+        view.findViewById(R.id.passenger_joining6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join6AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
+        view.findViewById(R.id.passenger_joining7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.selectedJoinAccountID=join7AccountID;
+                startActivity(new Intent(getContext(),ProfilePassengerPopupActivity.class));
+            }
+        });
 
         if (!isOperating){
             databaseReferenceModel.addValueEventListener(new ValueEventListener() {
@@ -220,7 +242,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     startTrip = dataSnapshot.child("startingPoint").getValue().toString();
                     destinationTrip = dataSnapshot.child("endingPoint").getValue().toString();
 
-                    tripPlaces = dataSnapshot.child("place").getValue(Integer.class);
+                    tripPlaces = dataSnapshot.child("places").getValue(Integer.class);
+                    tripTotalPlaces = dataSnapshot.child("totalPlaces").getValue(Integer.class);
                     //LATLNG
                     //tripPos = dataSnapshot.child("tripPosition").getValue(LatLng.class);
                     //tripDestPos = dataSnapshot.child("tripDestinationPosition").getValue(LatLng.class);
@@ -529,6 +552,13 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                         places++;
                     }
                     HomeFragment.selectedPlacesTrip=places;
+
+                    if      ((tripTotalPlaces)<=tripPlaces){
+                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(true);
+                    }else {
+                        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(false);
+                    }
+
 
                     if (!MainActivity.isConductor){
                         //A C T I O N   B U T T O N
@@ -992,6 +1022,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        if      ((tripTotalPlaces)<=tripPlaces){
+            MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(true);
+        }else {
+            MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(false);
+        }
+
         isOperating=false;
     }
 
@@ -1059,7 +1095,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                         MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("places")
                                 .setValue((HomeFragment.selectedPlacesTrip+1));
 
-                        if      ((HomeFragment.selectedPlacesTrip+1)>=tripPlaces){
+                        if      ((tripTotalPlaces)<=tripPlaces){
                             MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(true);
                         }else {
                             MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isFull").setValue(false);
