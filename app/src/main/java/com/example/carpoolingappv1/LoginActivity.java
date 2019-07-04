@@ -1,19 +1,13 @@
 package com.example.carpoolingappv1;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,9 +18,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public EditText emailLogin, passwordLogin;
 
     private FirebaseAuth mAuth;
-    private CheckBox mCheckBox;
-    private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
 
 
     @Override
@@ -42,11 +33,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
 
-        //shared preference
-        //mCheckBox = (CheckBox) findViewById(R.id.remember_email_pass);
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mPreferences.edit();
-        //checkSharedPreferences();
 
     }
 
@@ -58,11 +44,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.SignUpTxtBtnId:
-                //startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-                //finish();
-
-                //Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                //startActivity(intent);
                 signUpButton();
                 break;
         }
@@ -107,26 +88,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //EMAIL SHOULD BE VERIFIED
                     if (mAuth.getCurrentUser().isEmailVerified()) {
 
-                        //save or don't save the information tayped in
-                        /*if (mCheckBox.isChecked()) {
-
-                            mEditor.putString(getString(R.string.checkBoxSH), "True");
-                            mEditor.commit();
-
-                            mEditor.putString(getString(R.string.emailSH), emailL);
-                            mEditor.commit();
-                            mEditor.putString(getString(R.string.passwordSH), passwordL);
-                            mEditor.commit();
-
-                        } else {
-                            mEditor.putString(getString(R.string.checkBoxSH), "false");
-                            mEditor.commit();
-
-                            mEditor.putString(getString(R.string.emailSH), "");
-                            mEditor.commit();
-                            mEditor.putString(getString(R.string.passwordSH), "");
-                            mEditor.commit();
-                        }*/
 
                         //GO TO THE ACCOUNT PAGE
 
@@ -155,21 +116,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    //Shared Preferences
-    /*private void checkSharedPreferences() {
-        String checkboxSP = mPreferences.getString(getString(R.string.checkBoxSH), "false");
-        String emailSP = mPreferences.getString(getString(R.string.emailSH), "");
-        String passwordSP = mPreferences.getString(getString(R.string.passwordSH), "");
-
-        emailLogin.setText(emailSP);
-        passwordLogin.setText(passwordSP);
-
-        if (checkboxSP.equals("true")) {
-            mCheckBox.setChecked(true);
-        } else {
-            mCheckBox.setChecked(false);
-        }
-    }*/
 
 
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Edit_profile_Conductor"
     android:layout_gravity="center"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    tools:context=".Edit_profile_Conductor">
 
 
     <RelativeLayout
@@ -20,188 +19,190 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="15dp"
                     android:orientation="vertical"
-                    android:weightSum="1"
-                    android:layout_margin="15dp">
+                    android:weightSum="1">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Full Name:"
                         android:layout_weight="0.4"
-                        android:textStyle="bold"/>
+                        android:text="Full Name:"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/con_edit_full_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/input_white_bg"
-                        android:padding="15dp"
                         android:layout_weight="0.6"
-                        />
+                        android:background="@drawable/input_white_bg"
+                        android:padding="15dp" />
                 </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_margin="15dp">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_margin="15dp"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:weightSum="1">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Date of birth: "
-                    android:layout_weight="0.4"
-                    android:textStyle="bold"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="0.4"-->
+                        <!--android:text="Date of birth: "-->
+                        <!--android:textStyle="bold" />-->
 
-                <EditText
-                    android:id="@+id/con_edit_birth_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_white_bg"
-                    android:padding="15dp"
-                    android:layout_weight="0.6"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Phone Number: "
-                    android:layout_weight="0.4"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:id="@+id/con_edit_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_white_bg"
-                    android:padding="15dp"
-                    android:layout_weight="0.6"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Wilaya: "
-                    android:layout_weight="0.4"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:id="@+id/con_edit_wilaya"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_white_bg"
-                    android:padding="15dp"
-                    android:layout_weight="0.6"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Car Model: "
-                    android:layout_weight="0.4"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:id="@+id/con_edit_car_model"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_white_bg"
-                    android:padding="15dp"
-                    android:layout_weight="0.6"/>
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Car unique Number: "
-                    android:layout_weight="0.4"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:id="@+id/con_edit_car_unique_nbe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_white_bg"
-                    android:padding="15dp"
-                    android:layout_weight="0.6"/>
-
-            </LinearLayout>
+                    <!--<EditText-->
+                        <!--android:id="@+id/con_edit_birth_date"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:layout_weight="0.6"-->
+                        <!--android:background="@drawable/input_white_bg"-->
+                        <!--android:padding="15dp" />-->
+                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="15dp"
                     android:orientation="vertical"
-                    android:weightSum="1"
-                    android:layout_margin="15dp">
+                    android:weightSum="1">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Password : "
                         android:layout_weight="0.4"
-                        android:textStyle="bold"/>
+                        android:text="Phone Number: "
+                        android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/con_edit_OldPassword"
+                        android:id="@+id/con_edit_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:layout_weight="0.6"
                         android:background="@drawable/input_white_bg"
-                        android:padding="15dp"
-                        android:layout_weight="0.6" />
+                        android:padding="15dp" />
 
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:text="Wilaya: "
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/con_edit_wilaya"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/input_white_bg"
+                        android:padding="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:text="Car Model: "
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/con_edit_car_model"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/input_white_bg"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:text="Car unique Number: "
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/con_edit_car_unique_nbe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/input_white_bg"
+                        android:padding="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:text="Password : "
+                        android:textStyle="bold" />
+
+
+                    <Button
+                        android:id="@+id/change_pass_con"
+                        android:text="Change Pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.6"
+                        android:drawableLeft="@drawable/ic_lock_black_24dp"
+                        android:background="@drawable/button_bg_white"
+                        android:padding="15dp"/>
+
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -212,14 +213,13 @@
 
         <android.support.design.widget.FloatingActionButton
 
+            android:id="@+id/save_con_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_save"
             android:layout_margin="32dp"
-            android:id="@+id/save_con_profile"
-            />
+            android:src="@drawable/ic_save" />
 
 
     </RelativeLayout>
