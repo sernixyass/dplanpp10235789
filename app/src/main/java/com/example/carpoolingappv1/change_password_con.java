@@ -19,6 +19,7 @@ public class change_password_con extends AppCompatActivity {
 
     private EditText oldPassword , newPassword , retypePassword ;
     private Button saveBut;
+    private FirebaseUser userCon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class change_password_con extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveNewPassword();
-                finish();
+
             }
         });
 
@@ -44,7 +45,7 @@ public class change_password_con extends AppCompatActivity {
 
 
         String passwordOld = oldPassword.getText().toString().trim();
-        String passwordS = newPassword.getText().toString().trim();
+        final String passwordS = newPassword.getText().toString().trim();
         String passwordS2 = retypePassword.getText().toString().trim();
 
         //password check
@@ -63,13 +64,11 @@ public class change_password_con extends AppCompatActivity {
             retypePassword.requestFocus();
             return;
         }
-
         if(passwordS.length()>6){
             newPassword.setError("password should be < 6 characters");
             newPassword.requestFocus();
             return;
         }
-
         if (passwordOld.isEmpty()) {
             oldPassword.setError("password required");
             oldPassword.requestFocus();
@@ -77,30 +76,29 @@ public class change_password_con extends AppCompatActivity {
         }
 
         String mEmail= MainActivity.mAuth.getCurrentUser().getEmail();
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userCon = FirebaseAuth.getInstance().getCurrentUser();
 
         AuthCredential credential = EmailAuthProvider.getCredential(mEmail,passwordOld);
-        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+        userCon.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    user.updatePassword(String.valueOf(newPassword)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    userCon.updatePassword(passwordS).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (!task.isSuccessful()){
                                 Toast.makeText(change_password_con.this,"Something went wrong  ",Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(change_password_con.this,"Password Successfully Changed ",Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
                     });
                 }else{
-                    Toast.makeText(change_password_con.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(change_password_con.this,"Wrong old password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
 
     }
 }

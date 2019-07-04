@@ -19,6 +19,8 @@ public class change_password_pass extends AppCompatActivity {
     private EditText oldPassword, newPassword, retypePassword;
     private Button saveBut;
 
+    private FirebaseUser userPass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class change_password_pass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveNewPassword();
-                finish();
+
 
 
             }
@@ -46,7 +48,7 @@ public class change_password_pass extends AppCompatActivity {
 
 
         String passwordOld = oldPassword.getText().toString().trim();
-        String passwordS = newPassword.getText().toString().trim();
+        final String passwordS = newPassword.getText().toString().trim();
         String passwordS2 = retypePassword.getText().toString().trim();
 
         //password check
@@ -79,30 +81,29 @@ public class change_password_pass extends AppCompatActivity {
         }
 
         String mEmail= MainActivity.mAuth.getCurrentUser().getEmail();
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+         userPass = FirebaseAuth.getInstance().getCurrentUser();
 
         AuthCredential credential = EmailAuthProvider.getCredential(mEmail,passwordOld);
-        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+        userPass.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    user.updatePassword(String.valueOf(newPassword)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    userPass.updatePassword(passwordS).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (!task.isSuccessful()){
                                 Toast.makeText(change_password_pass.this,"Something went wrong  ",Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(change_password_pass.this,"Password Successfully Changed ",Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
                     });
                 }else{
-                    Toast.makeText(change_password_pass.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(change_password_pass.this,"Wrong old password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
 
     }
 
