@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -49,7 +50,8 @@ public class ChatFragment extends Fragment {
         mInputText =  view.findViewById(R.id.messageInput);
         mChatListView =  view.findViewById(R.id.list_msg);
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("messages").child(HomeFragment.selectedTripID);
 
 
 
@@ -70,9 +72,6 @@ public class ChatFragment extends Fragment {
         });
 
 
-
-
-
         return view ;
     }
 
@@ -85,7 +84,7 @@ public class ChatFragment extends Fragment {
         mDisplayName = MainActivity.currentUserFullName;
         if (!input.equals("")) {
             InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime);
-            mDatabaseReference.child("messages").push().setValue(chat);
+            mDatabaseReference.push().setValue(chat);
             mInputText.setText("");
         }
     }
@@ -97,6 +96,7 @@ public class ChatFragment extends Fragment {
         super.onStart();
         mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName);
         mChatListView.setAdapter(mAdapter);
+        MainActivity.messagePostIsDisplaying = true;
 
     }
 
@@ -105,7 +105,11 @@ public class ChatFragment extends Fragment {
         super.onStop();
         //Remove the Firebase event listener on the adapter.
         mAdapter.cleanup();
-
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity.messagePostIsDisplaying = true;
+    }
 }

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.carpoolingappv1.HomeFragment;
 import com.example.carpoolingappv1.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +56,7 @@ public class ChatListAdapter  extends BaseAdapter {
 
         mActivity = activity;
         mDisplayName = name;
-        mDatabaseReference = ref.child("messages");
+        mDatabaseReference = ref;
         mDatabaseReference.addChildEventListener(mListener);
 
         mDataSnapshots = new ArrayList<>();

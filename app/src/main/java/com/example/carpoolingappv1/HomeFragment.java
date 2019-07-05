@@ -347,7 +347,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                         selectedTripID = model.getPostID();
                         Fragment fra;
                         fra = new RidePostFragment();
-
                         getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
                                 fra).commit();
                     }

@@ -878,6 +878,18 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
 
 
+        view.findViewById(R.id.fMessageBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fra2;
+                fra2 = new ChatFragment();
+                getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,
+                        fra2).commit();
+            }
+        });
+
+
         return view;
     }
 
@@ -1241,6 +1253,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+        MainActivity.ridePostIsDisplaying = true;
 
     }
 
@@ -1273,6 +1286,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+        MainActivity.ridePostIsDisplaying = true;
     }
 
 

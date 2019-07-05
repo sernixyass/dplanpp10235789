@@ -39,7 +39,7 @@ public class ChatRoomsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat_rooms, container, false);
 
-        mRecyclerView = view.findViewById(R.id.chatRoomRecyclerViewId);
+        /*mRecyclerView = view.findViewById(R.id.chatRoomRecyclerViewId);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
@@ -49,14 +49,16 @@ public class ChatRoomsFragment extends Fragment {
 
 
         fetch();
-
+*/
         return view;
+
     }
 
 
 
 
     private void fetch() {
+    /*
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("messages").child(MainActivity.currentUserID).child("notification");
@@ -99,7 +101,7 @@ public class ChatRoomsFragment extends Fragment {
 
         };
         mRecyclerView.setAdapter(notAdapterFire);
-
+*/
     }
 
 

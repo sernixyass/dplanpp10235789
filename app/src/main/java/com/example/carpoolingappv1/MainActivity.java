@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     public static String iconSender = "";
 
 
-
     private boolean mLocationPermissionGranted = false;
 
 
@@ -82,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     boolean doubleBackExitPressed = false;
 
-    public static boolean ridePostIsDisplaying=false;
+    public static boolean ridePostIsDisplaying = false;
+    public static boolean messagePostIsDisplaying = false;
 
 
     @Override
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         //for getting witch activity to run first
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() == null || !mAuth.getCurrentUser().isEmailVerified()){
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        if (mAuth.getCurrentUser() == null || !mAuth.getCurrentUser().isEmailVerified()) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
             //** login activity first
             return;
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 isConductor = dataSnapshot.child("isConductor").getValue(Boolean.class);
                 currentUserFullName = dataSnapshot.child("fullName").getValue().toString();
                 iconSender = dataSnapshot.child("profilePic").getValue().toString();
-                startOperating=true;
+                startOperating = true;
                 startOperatingFra();
             }
 
@@ -128,42 +128,38 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //default fragment to start at the beginning
 
-        if (startOperating){
+        if (startOperating) {
         }
     }
 
 
-
-    public void startOperatingFra(){
+    public void startOperatingFra() {
         fragment1 = new HomeFragment();
-        fragment2=new SearchFragment();
-        fragment3=new ChatNotfFragment();
+        fragment2 = new SearchFragment();
+        fragment3 = new NotificationFragment();
 
-        if (isConductor){
-            fragment4=new ProfileConductorFragment();
+        if (isConductor) {
+            fragment4 = new ProfileConductorFragment();
+        } else {
+            fragment4 = new ProfilePassengerFragment();
         }
-        else{
-            fragment4=new ProfilePassengerFragment();
-        }
 
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment1,"1").hide(fragment1).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment2,"2").hide(fragment2).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment3,"3").hide(fragment3).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment4,"4").hide(fragment4).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment1, "1").hide(fragment1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment2, "2").hide(fragment2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment3, "3").hide(fragment3).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment4, "4").hide(fragment4).commit();
 
         getSupportFragmentManager().beginTransaction().show(fragment1).commit();
         activeFragment = fragment1;
     }
 
 
-
-
     //for gps permission
     //copied
-    private boolean checkMapServices(){
-        if(isServicesOK()){
-            if(isMapsEnabled()){
+    private boolean checkMapServices() {
+        if (isServicesOK()) {
+            if (isMapsEnabled()) {
                 return true;
             }
         }
@@ -188,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     //is gps enabled*
-    public boolean isMapsEnabled(){
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+    public boolean isMapsEnabled() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
             return false;
         }
@@ -219,24 +215,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //is device able to use google services*
-    public boolean isServicesOK(){
+    public boolean isServicesOK() {
         //Log.d("isServicesOK: checking google services version");
 
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
 
-        if(available == ConnectionResult.SUCCESS){
+        if (available == ConnectionResult.SUCCESS) {
             //everything is fine and the user can make map requests
             //Log.d(TAG, "isServicesOK: Google Play Services is working");
             return true;
-        }
-        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
             //an error occured but we can resolve it
             //Log.d(TAG, "isServicesOK: an error occured but we can fix it");
             //help user to installe it*
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-        }else{
+        } else {
             Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
         }
         return false;
@@ -264,11 +259,10 @@ public class MainActivity extends AppCompatActivity {
         //Log.d(TAG, "onActivityResult: called.");
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
-                if(mLocationPermissionGranted){
+                if (mLocationPermissionGranted) {
                     //the result*
                     //getChatrooms();
-                }
-                else{
+                } else {
                     getLocationPermission();
                 }
             }
@@ -278,29 +272,30 @@ public class MainActivity extends AppCompatActivity {
     //end the copied area
 
 
-    public static void sendNotification(String userReciver, String title,String message,String iconeUserID){
+    public static void sendNotification(String userReciver, String title, String message, String iconeUserID) {
         DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("Users").child(userReciver).child("notification").push();
         Map<String, Object> notifMap = new HashMap<>();
-        notifMap.put("title",title);
-        notifMap.put("message",message);
-        notifMap.put("iconUserID",iconeUserID);
+        notifMap.put("title", title);
+        notifMap.put("message", message);
+        notifMap.put("iconUserID", iconeUserID);
         databaseReferenceNot.setValue(notifMap);
     }
 
-    public static void sendPostReport(String userSender, String postID,String message){
+    public static void sendPostReport(String userSender, String postID, String message) {
         DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("admin").child("reports").child("posts").push();
         Map<String, Object> reportMap = new HashMap<>();
-        reportMap.put("userSender",userSender);
-        reportMap.put("message",message);
-        reportMap.put("postID",postID);
+        reportMap.put("userSender", userSender);
+        reportMap.put("message", message);
+        reportMap.put("postID", postID);
         databaseReferenceNot.setValue(reportMap);
     }
-    public static void sendUserReport(String userSender, String userID,String message){
+
+    public static void sendUserReport(String userSender, String userID, String message) {
         DatabaseReference databaseReferenceNot = FirebaseDatabase.getInstance().getReference().child("admin").child("reports").child("users").push();
         Map<String, Object> reportMap = new HashMap<>();
-        reportMap.put("userSender",userSender);
-        reportMap.put("message",message);
-        reportMap.put("userID",userID);
+        reportMap.put("userSender", userSender);
+        reportMap.put("message", message);
+        reportMap.put("userID", userID);
         databaseReferenceNot.setValue(reportMap);
     }
 
@@ -309,11 +304,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //the result*
         //getgetChatrooms();
-        if (checkMapServices()){
-            if(mLocationPermissionGranted){
+        if (checkMapServices()) {
+            if (mLocationPermissionGranted) {
                 //the result*
                 //getChatrooms();
-            }else {
+            } else {
                 getLocationPermission();
             }
 
@@ -326,23 +321,23 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     //Fragment selectedFragment = null;
 
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_home:
                             getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment1).commit();
-                            activeFragment=fragment1;
+                            activeFragment = fragment1;
                             break;
                         case R.id.nav_chat:
                             getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment2).commit();
-                            activeFragment=fragment2;
+                            activeFragment = fragment2;
                             break;
                         case R.id.nav_carte:
 
                             getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment3).commit();
-                            activeFragment=fragment3;
+                            activeFragment = fragment3;
                             break;
                         case R.id.nav_profile:
                             getSupportFragmentManager().beginTransaction().hide(activeFragment).show(fragment4).commit();
-                            activeFragment=fragment4;
+                            activeFragment = fragment4;
                             break;
                     }
 
@@ -353,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-    public Boolean isNetworkAvailable(){
+    public Boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) carpoolingappv1.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
@@ -361,8 +356,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!ridePostIsDisplaying){
-            if (doubleBackExitPressed){
+        if (!ridePostIsDisplaying && !messagePostIsDisplaying) {
+            if (doubleBackExitPressed) {
                 super.onBackPressed();
                 return;
             }
@@ -374,17 +369,36 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     doubleBackExitPressed = false;
                 }
-            },2000);
-        }else {
-            //onBackPressed
+            }, 2000);
+        } else {
+            Fragment fragment2 = getSupportFragmentManager().findFragmentById(R.id.fragment_Post_container);
+            if (messagePostIsDisplaying) {
+                //onBackPressed
 
-                        //remove post fragment opened at the top of the home Fragment
-                        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_Post_container);
-                        if (fragment != null) {
-                            getSupportFragmentManager().beginTransaction().hide(fragment).commit();
-                            MainActivity.ridePostIsDisplaying = false;
-                        }
+                if (fragment2 != null) {
+                    Fragment fra = new RidePostFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_Post_container,fra).commit();
+                    MainActivity.messagePostIsDisplaying = false;
+                    //Fragment fra = new RidePostFragment();
+                    //getSupportFragmentManager().beginTransaction().add(R.id.fragment_Post_container, fra).commit();
+                    MainActivity.ridePostIsDisplaying = true;
+                }
+
+
+
+                //remove post fragment opened at the top of the home Fragment
+            } else {
+
+                if (ridePostIsDisplaying){
+                    //Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_Post_container);
+                    if (fragment2 != null) {
+                        getSupportFragmentManager().beginTransaction().hide(fragment2).commit();
+                        MainActivity.ridePostIsDisplaying = false;
+                    }
+                }
+
+            }
+
         }
-
     }
 }
