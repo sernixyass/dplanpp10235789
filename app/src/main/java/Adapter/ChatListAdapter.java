@@ -3,6 +3,7 @@ package Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.carpoolingappv1.HomeFragment;
+import com.example.carpoolingappv1.MainActivity;
 import com.example.carpoolingappv1.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import Model.InstantMessage;
 
 public class ChatListAdapter  extends BaseAdapter {
@@ -58,7 +64,6 @@ public class ChatListAdapter  extends BaseAdapter {
         mDisplayName = name;
         mDatabaseReference = ref;
         mDatabaseReference.addChildEventListener(mListener);
-
         mDataSnapshots = new ArrayList<>();
     }
 
@@ -108,17 +113,17 @@ public class ChatListAdapter  extends BaseAdapter {
 
         //holder.params.gravity = Gravity.CENTER;
 
+        boolean isMe = message.getAuthor().equals(MainActivity.currentUserFullName);
 
-        //String author = message.getAuthor() ;
+
+
         holder.authorName.setText(message.getAuthor());
 
-        //String msg =message.getMessage() ;
         holder.body.setText(message.getMessage());
-
+        Log.d("fuckingMSG", "the msg is "+message.getMessage());
         holder.mTime.setText(message.getTime());
+        Log.d("fuckingTime", "the time is "+message.getTime());
 
-
-        boolean isMe = message.getAuthor().equals(mDisplayName);
         setChatRowAppearance(isMe, holder);
 
         return convertView;
@@ -127,19 +132,18 @@ public class ChatListAdapter  extends BaseAdapter {
     private void setChatRowAppearance(boolean isItMe, ViewHolder holder) {
 
         if (isItMe) {
+
             holder.authorName.setTextColor(Color.GREEN);
             holder.params.gravity = Gravity.END;
-//            holder.body.setBackgroundResource(R.drawable.right_msg);
+            holder.body.setBackgroundResource(R.drawable.bubble2);
+            holder.mTime.setGravity(Gravity.END);
 
-        } else {
-
+        } else{
             holder.authorName.setTextColor(Color.BLUE);
             holder.params.gravity = Gravity.START;
-//            holder.body.setBackgroundResource(R.drawable.left_msg);
-            //llayout.setBackgroundResource(R.drawable.left_msg);
-
+            holder.body.setBackgroundResource(R.drawable.bubble1);
+            holder.mTime.setGravity(Gravity.START);
         }
-
 
         holder.authorName.setLayoutParams(holder.params);
         holder.body.setLayoutParams(holder.params);

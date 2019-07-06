@@ -14,7 +14,6 @@ public class InstantMessage {
         this.message = message;
         this.author = author;
         this.mTime=mTime;
-
     }
 
     public InstantMessage() {
@@ -30,8 +29,6 @@ public class InstantMessage {
 
 
     public String getTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
-        return currentDateandTime;
+        return mTime;
     }
 }

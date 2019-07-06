@@ -1,5 +1,6 @@
 package com.example.carpoolingappv1;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +22,10 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 import Adapter.ChatListAdapter;
 import Model.InstantMessage;
@@ -35,7 +39,6 @@ public class ChatFragment extends Fragment {
     private ImageButton mSendButton;
     private DatabaseReference mDatabaseReference ;
     private ChatListAdapter mAdapter ;
-
     public ChatFragment (){}
 
     @Nullable
@@ -45,6 +48,8 @@ public class ChatFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_chat,container,false);
 
         final View view = inflater.inflate(R.layout.fragment_chat,container,false);
+
+
 
         mSendButton=view.findViewById(R.id.sendButton);
         mInputText =  view.findViewById(R.id.messageInput);
@@ -58,7 +63,6 @@ public class ChatFragment extends Fragment {
         mInputText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
                 sendMessage();
                 return true;
             }
@@ -77,15 +81,23 @@ public class ChatFragment extends Fragment {
 
 
 
+
+
     private void sendMessage() {
 
-        //Grab the text the user typed in and push the message to Firebase
+
+        //Grab the text the user typed in ,and push the message to Firebase
         String input = mInputText.getText().toString();
         mDisplayName = MainActivity.currentUserFullName;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        mTime = sdf.format(new Date());
+
         if (!input.equals("")) {
             InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime);
             mDatabaseReference.push().setValue(chat);
             mInputText.setText("");
+
         }
     }
 
