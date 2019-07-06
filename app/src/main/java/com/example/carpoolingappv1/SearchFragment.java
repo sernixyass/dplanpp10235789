@@ -180,9 +180,14 @@ public class SearchFragment extends Fragment {
                                         snapshot.child("accountIDJoining2").getValue().toString(),
                                         snapshot.child("accountIDJoining3").getValue().toString(),
                                         snapshot.child("accountIDJoining4").getValue().toString(),
+                                        snapshot.child("accountIDJoining5").getValue().toString(),
+                                        snapshot.child("accountIDJoining6").getValue().toString(),
+                                        snapshot.child("accountIDJoining7").getValue().toString(),
 
                                         snapshot.child("hourTrip").getValue().toString(),
-                                        snapshot.child("price").getValue(Integer.class)
+                                        snapshot.child("tripDate").getValue().toString(),
+                                        snapshot.child("price").getValue(Integer.class),
+                                        snapshot.child("weeklyTrip").getValue(Boolean.class)
                                 );
                             }
                         })

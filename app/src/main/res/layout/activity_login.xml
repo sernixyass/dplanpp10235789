@@ -11,6 +11,12 @@
     android:background="@color/colorPrimaryDark">
 
 
+    <ImageView
+        android:layout_marginBottom="60dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:background="@drawable/logo_mustash_carpool"/>
+
         <EditText
             android:layout_width="300dp"
             android:layout_height="50dp"
@@ -53,21 +59,11 @@
         android:textColor="@color/generalTextCol"
         android:text="@string/loginTxt" />
 
-    <TextView
-        android:id="@+id/sSignUpTxtBtnId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:gravity="center"
-        android:textColor="@color/generalTextCol"
-        android:text="@string/sign_up_txt_btn"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
-
     <Button
         android:id="@+id/SignUpTxtBtnId"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_margin="15dp"
+        android:layout_margin="0dp"
         android:background="@drawable/button_bg_white"
         android:textColor="@color/generalTextCol"
         android:text="Sign Up" />

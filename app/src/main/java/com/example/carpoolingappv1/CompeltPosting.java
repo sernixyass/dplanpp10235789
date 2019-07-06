@@ -10,12 +10,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,6 +55,8 @@ public class CompeltPosting extends Activity {
     CheckBox thuCB;
     CheckBox friCB;
 
+    public Boolean weeklyTrip=true;
+
     private Boolean saturday=false;
     private Boolean sunday=false;
     private Boolean monday=false;
@@ -66,7 +66,7 @@ public class CompeltPosting extends Activity {
     private Boolean friday=false;
 
     private String hourTrip;
-    private String dateExtracted;
+    private String tripDate;
 
     ElegantNumberButton places;
 
@@ -82,6 +82,7 @@ public class CompeltPosting extends Activity {
     private RadioGroup mRadioGroup ;
     private LinearLayout checkDaysLayout;
     private LinearLayout setDaysLayout;
+
 
 
 
@@ -110,7 +111,6 @@ public class CompeltPosting extends Activity {
         price = findViewById(R.id.price_cp);
 
 
-
         mRadioGroup =findViewById(R.id.radio_group);
         checkDaysLayout= findViewById(R.id.daily_layout);
         setDaysLayout= findViewById(R.id.set_date_layout);
@@ -129,14 +129,14 @@ public class CompeltPosting extends Activity {
                         // do operations specific to this selection
                         checkDaysLayout.setVisibility(View.VISIBLE);
                         setDaysLayout.setVisibility(View.GONE);
+                        weeklyTrip = true;
                         break;
                     case R.id.radio_set_date:
                         checkDaysLayout.setVisibility(View.GONE);
                         setDaysLayout.setVisibility(View.VISIBLE);
+                        weeklyTrip = false;
                         break;
                 }
-
-
 
             }
         });
@@ -155,10 +155,10 @@ public class CompeltPosting extends Activity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         CompeltPosting.this,
-                        android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth,
                         gDateSetListener,
                         year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -168,15 +168,14 @@ public class CompeltPosting extends Activity {
         gDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month+1;
                 //
                 //Log.d("onDate set: mm/dd/yy" + month + "/" + dayOfMonth + "/" + year);
 
-                String date ="Date of birth: " + month + "/" + dayOfMonth + "/" + year;
+                String date = month + " / " + dayOfMonth + " / " + year;
 
                 int age = (int) ((Calendar.getInstance().get(Calendar.YEAR)) - year);
 
-                if (age<=0) {
+                if (age>0) {
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -184,7 +183,7 @@ public class CompeltPosting extends Activity {
                 gDate.setText(date);
                 gDate.setTextColor(Color.BLACK);
 
-                dateExtracted=gDate.getText().toString();
+                tripDate =gDate.getText().toString();
 
             }
         };
@@ -262,8 +261,6 @@ public class CompeltPosting extends Activity {
     }
 
 
-
-
     private void savePoste() {
         String startP = AddPostActivity.startingPointText;
         String endP = AddPostActivity.endingPointText;
@@ -273,28 +270,37 @@ public class CompeltPosting extends Activity {
         String estimatedTime = MapSearchPointsFragment.estimatedTime;
         String distance = MapSearchPointsFragment.distance;
 
-        if(satCB.isChecked()){
-            saturday = true;
-        }
-
-
-        if(sunCB.isChecked()){
-            sunday = true;
-        }
-        if(monCB.isChecked()){
-            monday = true;
-        }
-        if(tueCB.isChecked()){
-            tuesday = true;
-        }
-        if(wedCB.isChecked()){
-            wednesday = true;
-        }
-        if(thuCB.isChecked()){
-            thursday = true;
-        }
-        if(friCB.isChecked()){
-            friday = true;
+        if (weeklyTrip){
+            if(satCB.isChecked()){
+                saturday = true;
+            }
+            if(sunCB.isChecked()){
+                sunday = true;
+            }
+            if(monCB.isChecked()){
+                monday = true;
+            }
+            if(tueCB.isChecked()){
+                tuesday = true;
+            }
+            if(wedCB.isChecked()){
+                wednesday = true;
+            }
+            if(thuCB.isChecked()){
+                thursday = true;
+            }
+            if(friCB.isChecked()){
+                friday = true;
+            }
+            tripDate ="";
+        }else {
+            saturday=false;
+            sunday=false;
+            monday=false;
+            tuesday=false;
+            wednesday=false;
+            thursday=false;
+            friday=false;
         }
 
 
@@ -333,7 +339,7 @@ public class CompeltPosting extends Activity {
 
 
         ///adding the full date
-        map.put("FullDate",dateExtracted);
+        map.put("tripDate", tripDate);
 
         if (MainActivity.isConductor){
             map.put("isTaken",true);
@@ -341,7 +347,6 @@ public class CompeltPosting extends Activity {
         }else {
             map.put("isTaken",false);
             map.put("accountIDTakedIt"," ");
-
         }
 
         map.put("isFull",false);
@@ -362,7 +367,13 @@ public class CompeltPosting extends Activity {
         map.put("distance",distance);
         map.put("estimatedTime",estimatedTime);
 
-        map.put("price",Integer.parseInt(price.getText().toString()));
+        String pricedata = price.getText().toString();
+        if (price.getText().toString().equals(null) || price.getText().toString().equals("")){
+            pricedata = "0";
+        }
+        map.put("price",Integer.parseInt(pricedata));
+        map.put("weeklyTrip",weeklyTrip);
+
 
         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -378,8 +389,6 @@ public class CompeltPosting extends Activity {
 
             }
         });
-
-
     }
 
     @Override

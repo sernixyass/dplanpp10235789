@@ -24,6 +24,9 @@ public class ListItem {
  private String accountIDJoining2;
  private String accountIDJoining3;
  private String accountIDJoining4;
+    private String accountIDJoining5;
+    private String accountIDJoining6;
+    private String accountIDJoining7;
 
 
  private Boolean saturday;
@@ -43,11 +46,13 @@ public class ListItem {
     private LatLng tripDestinationPosition;
     private String accountIDTakedIt;
 
-    private String hourTrip;
+    private String hourTrip,tripDate;
 
     private Integer price;
+    private boolean weeklyTrip;
 
- //private String rideType;
+
+//private String rideType;
  //private Date dateOfPosting;
 
 /*
@@ -162,9 +167,14 @@ public class ListItem {
                     String accountIDJoining2,
                     String accountIDJoining3,
                     String accountIDJoining4,
+                    String accountIDJoining5,
+                    String accountIDJoining6,
+                    String accountIDJoining7,
 
                     String hourTrip,
-                    Integer price) {
+                    String tripDate,
+                    Integer price,
+                    boolean weeklyTrip) {
         this.startingPoint = startingPoint;
         this.endPoint = endPoint;
         this.places = places;
@@ -191,10 +201,14 @@ public class ListItem {
         this.accountIDJoining2 = accountIDJoining2;
         this.accountIDJoining3 = accountIDJoining3;
         this.accountIDJoining4 = accountIDJoining4;
+        this.accountIDJoining4 = accountIDJoining5;
+        this.accountIDJoining4 = accountIDJoining6;
+        this.accountIDJoining4 = accountIDJoining7;
 
         this.hourTrip=hourTrip;
+        this.tripDate=tripDate;
         this.price = price;
-
+        this.weeklyTrip = weeklyTrip;
     }
 
     public String getHourTrip() {
@@ -285,6 +299,13 @@ public class ListItem {
         return accountIDPostedIt;
     }
 
+    public boolean isWeeklyTrip() {
+        return weeklyTrip;
+    }
+
+    public void setWeeklyTrip(boolean weeklyTrip) {
+        this.weeklyTrip = weeklyTrip;
+    }
     public void setAccountIDPostedIt(String accountIDPostedIt) {
         this.accountIDPostedIt = accountIDPostedIt;
     }
@@ -326,5 +347,13 @@ public class ListItem {
 
     public void setPostID(String postID) {
         this.postID = postID;
+    }
+
+    public String getTripDate() {
+        return tripDate;
+    }
+
+    public void setTripDate(String tripDate) {
+        this.tripDate = tripDate;
     }
 }

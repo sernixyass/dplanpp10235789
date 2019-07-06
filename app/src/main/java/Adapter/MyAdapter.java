@@ -77,6 +77,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         viewHolder.arrivePoint.setText(item.getEndPoint());
         viewHolder.places.setText(item.getPlaces());
 
+        viewHolder.tripDate.setText(item.getTripDate());
+
         if (item.isTaken()){
             viewHolder.conductor.setText("TAKEN");
         }else
@@ -171,6 +173,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public CardView cardViewRow;
         public TextView conductor;
         public TextView hourTrip;
+        public TextView tripDate;
 
         public TextView satTxt,sunTxt,monTxt,tueTxt,wedTxt,thuTxt,friTxt;
 
@@ -186,6 +189,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             cardViewRow = itemView.findViewById(R.id.cardView);
             conductor = itemView.findViewById(R.id.conductorSign);
             hourTrip = itemView.findViewById(R.id.hourTripID);
+            tripDate = itemView.findViewById(R.id.trip_date);
 
             satTxt = itemView.findViewById(R.id.satID);
             sunTxt = itemView.findViewById(R.id.sunID);
@@ -251,6 +255,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             this.hourTrip.setText(hourTrip);
         }
 
+        public void setTripDate(String tripDate) {
+            this.tripDate.setText(tripDate);
+        }
+
 
         public Button getTakeButton() {
             return ActionButton;
@@ -296,5 +304,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             placesNbe.setText(places);
 
         }
+
+        public void DateTripNeeds(){
+            itemView.findViewById(R.id.weekLL).setVisibility(View.GONE);
+            itemView.findViewById(R.id.dateLL).setVisibility(View.VISIBLE);
+        }
+
     }
 }

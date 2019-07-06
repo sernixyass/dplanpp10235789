@@ -213,9 +213,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         snapshot.child("accountIDJoining2").getValue().toString(),
                                         snapshot.child("accountIDJoining3").getValue().toString(),
                                         snapshot.child("accountIDJoining4").getValue().toString(),
+                                        snapshot.child("accountIDJoining5").getValue().toString(),
+                                        snapshot.child("accountIDJoining6").getValue().toString(),
+                                        snapshot.child("accountIDJoining7").getValue().toString(),
 
                                         snapshot.child("hourTrip").getValue().toString(),
-                                        snapshot.child("price").getValue(Integer.class)
+                                        snapshot.child("tripDate").getValue().toString(),
+                                        snapshot.child("price").getValue(Integer.class),
+                                        snapshot.child("weeklyTrip").getValue(Boolean.class)
                                         );
                             }
                         })
@@ -242,66 +247,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 holder.setArrivePoint(model.getEndPoint());
                 holder.setPlaces(model.getPlaces(),model.getTotalPlaces());
                 holder.setHourTrip(model.getHourTrip());
-/*
-                //boolean alreadyJoined = false;
-                DatabaseReference databaseReferenceModel = MainActivity.databaseReferencePosts.child(model.getPostID());
-                databaseReferenceModel.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
-                                || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
-                                || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
-                                || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
-                        {
-                            //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
-
-                            holder.ActionButton.setText("CANCEL JOINING");
-                            holder.ActionButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    selectedTripID = model.getPostID();
-                                    selectedPlacesTrip = model.getPlaces();
-                                    //Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
-                                    cancelJoiningTrip();
-                                }
-                            });
-
-                        }else {
-                            if (MainActivity.isConductor){
-                                holder.ActionButton.setText("TAKE");
-                                holder.ActionButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        selectedTripID = model.getPostID();
-                                        selectedPlacesTrip = model.getPlaces();
-                                        takeTrip();
-
-                                    }
-                                });
-                                return;
-                            }else {
-                                    holder.ActionButton.setText("JOIN");
-                                    holder.ActionButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                    public void onClick(View v) {
-                                    selectedTripID = model.getPostID();
-                                    selectedPlacesTrip = model.getPlaces();
-                                    Toast.makeText(getContext(),"kk   "+model.getPostID(),Toast.LENGTH_SHORT).show();
-                                    joinTrip();
-                                }
-                                });
-                            }
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-*/
 
 
                 if (model.isTaken()){
@@ -310,33 +255,41 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     holder.conductor.setText("NOT taken.");
                 }
 
-                if (model.getSaturday()){
-                    holder.setSatTxt(getResources().getColor(R.color.colorPrimary));
+                if (model.isWeeklyTrip()){
+                    if (model.getSaturday()){
+                        holder.setSatTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getSunday()){
+                        holder.setSunTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getMonday()){
+                        holder.setMonTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getTuesday()){
+                        holder.setTueTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getWednesday()){
+                        holder.setWedTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getThursday()){
+                        holder.setThuTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+
+                    if (model.getFriday()){
+                        holder.setFriTxt(getResources().getColor(R.color.colorPrimary));
+                    }
+                }else {
+                    holder.DateTripNeeds();
+
+                    holder.setTripDate(model.getTripDate());
                 }
 
-                if (model.getSunday()){
-                    holder.setSunTxt(getResources().getColor(R.color.colorPrimary));
-                }
 
-                if (model.getMonday()){
-                    holder.setMonTxt(getResources().getColor(R.color.colorPrimary));
-                }
-
-                if (model.getTuesday()){
-                    holder.setTueTxt(getResources().getColor(R.color.colorPrimary));
-                }
-
-                if (model.getWednesday()){
-                    holder.setWedTxt(getResources().getColor(R.color.colorPrimary));
-                }
-
-                if (model.getThursday()){
-                    holder.setThuTxt(getResources().getColor(R.color.colorPrimary));
-                }
-
-                if (model.getFriday()){
-                    holder.setFriTxt(getResources().getColor(R.color.colorPrimary));
-                }
 
 
                 holder.cardViewRow.setOnClickListener(new View.OnClickListener() {
@@ -358,132 +311,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 
 
-    /*
-    private void cancelJoiningTrip(){
-        final DatabaseReference databaseReferencePC = MainActivity.databaseReferencePosts.child(selectedTripID);
-        databaseReferencePC.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID))
-                {
-                    databaseReferencePC.child("accountIDJoining1").setValue("");
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
-                }
-                if (dataSnapshot.child("accountIDJoining2").getValue().equals( MainActivity.currentUserID))
-                {
-                    databaseReferencePC.child("accountIDJoining2").setValue("");
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
-                }
-                if (dataSnapshot.child("accountIDJoining3").getValue().equals( MainActivity.currentUserID))
-                {
-                    databaseReferencePC.child("accountIDJoining3").setValue("");
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
-                }
-                if (dataSnapshot.child("accountIDJoining4").getValue().equals( MainActivity.currentUserID))
-                {
-                    databaseReferencePC.child("accountIDJoining4").setValue("");
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip-1);
-                }
-                return;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void joinTrip() {
-
-
-        DatabaseReference databaseReferencePjt = MainActivity.databaseReferencePosts.child(selectedTripID);
-        databaseReferencePjt.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
-                    || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
-                    || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
-                    || dataSnapshot.child("accountIDJoining4").getValue().equals(MainActivity.currentUserID))
-                {
-                    //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
-                    exist = true;
-                    return;
-
-                }
-
-
-
-                    if (dataSnapshot.child("isFull").getValue(Boolean.class)){
-                    Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
-                }else {
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("places").setValue(selectedPlacesTrip+1);
-
-
-
-                    if (dataSnapshot.child("accountIDJoining1").getValue().equals("")){
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining1")
-                                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                    }else{
-                        if (dataSnapshot.child("accountIDJoining2").getValue().equals("")){
-                            MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining2")
-                                    .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                        }else{
-                            if (dataSnapshot.child("accountIDJoining3").getValue().equals("")){
-                                MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining3")
-                                        .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                            }else{
-                                if (dataSnapshot.child("accountIDJoining4").getValue().equals("")){
-                                    MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDJoining4")
-                                            .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                                }
-                            }
-                        }
-                    }
-
-
-
-                    if      ((selectedPlacesTrip+1)>=4){
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(true);
-                    }else {
-                        MainActivity.databaseReferencePosts.child(selectedTripID).child("isFull").setValue(false);
-                    }
-                }
-                    return;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void takeTrip() {
-        //MainActivity.databaseReference.child("places").get;
-        DatabaseReference databaseReferenceP = MainActivity.databaseReferencePosts.child(selectedTripID);
-        databaseReferenceP.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("isTaken").getValue(Boolean.class)){
-                    Toast.makeText(getContext(),"already taken",Toast.LENGTH_SHORT).show();
-                }else {
-
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("isTaken").setValue(true);
-                    MainActivity.databaseReferencePosts.child(selectedTripID).child("accountIDTakedIt").setValue(MainActivity.mAuth.getCurrentUser().getUid());
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-*/
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
