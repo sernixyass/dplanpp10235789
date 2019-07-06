@@ -121,7 +121,14 @@ public class ChatListAdapter  extends BaseAdapter {
 
         holder.body.setText(message.getMessage());
         Log.d("fuckingMSG", "the msg is "+message.getMessage());
+
+
+
+
+
+
         holder.mTime.setText(message.getTime());
+        Log.d("fuckingTime", "the time is "+message.getTime());
         Log.d("fuckingTime", "the time is "+message.getTime());
 
         setChatRowAppearance(isMe, holder);
