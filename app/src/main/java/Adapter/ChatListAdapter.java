@@ -29,7 +29,7 @@ import Model.InstantMessage;
 public class ChatListAdapter  extends BaseAdapter {
     private Activity mActivity ;
     private DatabaseReference mDatabaseReference ;
-    private String mDisplayName ;
+    private String mDisplayName,mDisplayTime ;
     private ArrayList <DataSnapshot> mDataSnapshots ;
     //private LinearLayout llayout = mActivity.findViewById(R.id.singleMessageContainer);
     //singleMessageContainer
@@ -58,10 +58,11 @@ public class ChatListAdapter  extends BaseAdapter {
         }
     };
 
-    public ChatListAdapter(Activity activity, DatabaseReference ref, String name) {
+    public ChatListAdapter(Activity activity, DatabaseReference ref, String name,String time) {
 
         mActivity = activity;
         mDisplayName = name;
+        mDisplayTime = time;
         mDatabaseReference = ref;
         mDatabaseReference.addChildEventListener(mListener);
         mDataSnapshots = new ArrayList<>();
@@ -120,16 +121,8 @@ public class ChatListAdapter  extends BaseAdapter {
         holder.authorName.setText(message.getAuthor());
 
         holder.body.setText(message.getMessage());
-        Log.d("fuckingMSG", "the msg is "+message.getMessage());
-
-
-
-
-
 
         holder.mTime.setText(message.getTime());
-        Log.d("fuckingTime", "the time is "+message.getTime());
-        Log.d("fuckingTime", "the time is "+message.getTime());
 
         setChatRowAppearance(isMe, holder);
 
@@ -143,13 +136,13 @@ public class ChatListAdapter  extends BaseAdapter {
             holder.authorName.setTextColor(Color.GREEN);
             holder.params.gravity = Gravity.END;
             holder.body.setBackgroundResource(R.drawable.bubble2);
-            holder.mTime.setGravity(Gravity.END);
+            //holder.mTime.setGravity(Gravity.END);
 
         } else{
             holder.authorName.setTextColor(Color.BLUE);
             holder.params.gravity = Gravity.START;
             holder.body.setBackgroundResource(R.drawable.bubble1);
-            holder.mTime.setGravity(Gravity.START);
+            //holder.mTime.setGravity(Gravity.START);
         }
 
         holder.authorName.setLayoutParams(holder.params);

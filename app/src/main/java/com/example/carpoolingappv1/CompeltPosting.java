@@ -386,10 +386,11 @@ public class CompeltPosting extends Activity {
                 }else {
                     return;
                 }
-
             }
         });
     }
+
+
 
     @Override
     protected void onDestroy() {

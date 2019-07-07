@@ -106,7 +106,7 @@ public class ChatFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName);
+        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName,mTime);
         mChatListView.setAdapter(mAdapter);
         MainActivity.messagePostIsDisplaying = true;
 

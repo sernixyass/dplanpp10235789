@@ -3,6 +3,7 @@ package com.example.carpoolingappv1;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,7 +66,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
     DatabaseReference ratingTbl;
 
 
-    public Double totaleRates;
+    public Double totaleRates= 0.0;
     public static String selectedConductor;
 
     @Override
@@ -131,6 +132,9 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
                 totaleRates = dataSnapshotCon.child("totalRates").getValue(Double.class);
 
+                if (totaleRates == (null)){
+                    totaleRates=0.0;
+                }
                 ratingBarProfile.setRating(totaleRates.floatValue());
 
                 if (!Objects.equals(dataSnapshotCon.child("profilePic").getValue(), "") ){
@@ -222,8 +226,22 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+
+
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callNumber(phone.getText().toString());
+            }
+        });
     }
 
+    public void callNumber(String phoneNumber){
 
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+phoneNumber));
+        startActivity(intent);
+    }
 
 }

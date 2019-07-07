@@ -6,18 +6,17 @@ import java.util.Date;
 public class InstantMessage {
     private String message ;
     private String author;
-    private String mTime ;
+    private String time ;
 
 
 
-    public InstantMessage(String message, String author ,String mTime) {
+    public InstantMessage(String message, String author ,String time) {
         this.message = message;
         this.author = author;
-        this.mTime=mTime;
+        this.time=time;
     }
 
-    public InstantMessage() {
-    }
+    public InstantMessage() { }
 
     public String getMessage() {
         return message;
@@ -27,8 +26,7 @@ public class InstantMessage {
         return author;
     }
 
-
     public String getTime() {
-        return mTime;
+        return time;
     }
 }
