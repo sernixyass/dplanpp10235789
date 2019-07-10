@@ -72,8 +72,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     //private MyAdapter adapter;
     private FirebaseRecyclerAdapter adapterFire;
 
-    public static String selectedTripID;
-    public static Integer selectedPlacesTrip;
+
 
     //MAP
     public MapView mMapView;
@@ -296,8 +295,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     @Override
                     public void onClick(View view) {
 
-                        selectedPlacesTrip = model.getPlaces();
-                        selectedTripID = model.getPostID();
+                        MainActivity.selectedPlacesTrip = model.getPlaces();
+                        MainActivity.selectedTripID = model.getPostID();
                         Fragment fra;
                         fra = new RidePostFragment();
                         getFragmentManager().beginTransaction().add(R.id.fragment_Post_container,

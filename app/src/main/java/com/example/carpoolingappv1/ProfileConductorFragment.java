@@ -87,13 +87,13 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         profilPicC = view.findViewById(R.id.con_profile_pic);
 
         //ViewPager
-        tabLayoutProfileConductor = view.findViewById(R.id.tab_layout_profile_conductor);
+        /*tabLayoutProfileConductor = view.findViewById(R.id.tab_layout_profile_conductor);
         mViewPager=view.findViewById(R.id.view_pager_profile_conductor_tab);
 
 
         setUpViewPageAdapter(mViewPager);
         tabLayoutProfileConductor.setupWithViewPager(mViewPager);
-
+*/
 
        // view.findViewById(R.id.add_friend).setOnClickListener(this);
          mAuth = FirebaseAuth.getInstance();

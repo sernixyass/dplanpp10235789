@@ -85,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
     public static boolean messagePostIsDisplaying = false;
 
 
+    public static String selectedTripID;
+    public static Integer selectedPlacesTrip;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

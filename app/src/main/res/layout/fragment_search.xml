@@ -12,14 +12,22 @@
 
 
         <EditText
+            android:gravity="center"
+            android:hint="search with starting place"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_white_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchText"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="search"
-            android:id="@+id/searchBtn"/>
+            android:layout_height="45dp"
+            android:id="@+id/searchTextStart"/>
+
+        <EditText
+            android:gravity="center"
+            android:hint="search with destination place"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_white_bg"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/searchTextEnd"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

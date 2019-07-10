@@ -56,7 +56,7 @@ public class ChatFragment extends Fragment {
         mChatListView =  view.findViewById(R.id.list_msg);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference()
-                .child("messages").child(HomeFragment.selectedTripID);
+                .child("messages").child(MainActivity.selectedTripID);
 
 
 

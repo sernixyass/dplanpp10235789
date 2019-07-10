@@ -155,66 +155,78 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
 
 
 
-        rateBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                mainLayout.setVisibility(View.VISIBLE);
+        if (MainActivity.currentUserID.equals(MainActivity.selectedDriverAccountID)){
+            //Toast.makeText(ProfileConductorPopupActivity.this, "you can't rate your self", Toast.LENGTH_SHORT).show();
+            //return;
+            rateBut.setVisibility(View.GONE);
+        }else
+            {
+                rateBut.setVisibility(View.VISIBLE);
+            rateBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                confirmBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    mainLayout.setVisibility(View.VISIBLE);
 
-                        //getRatingConductor(databaseReferenceCon);
+                    confirmBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                        //Get Rating ,Create rating obj and upload to firebase
-                        String comment=commentField.getText().toString();
-                        final float value = rateConBar.getRating();
+                            //getRatingConductor(databaseReferenceCon);
 
-                        String tripInfo = RidePostFragment.startTrip + " TO " + RidePostFragment.destinationTrip;
+                            //Get Rating ,Create rating obj and upload to firebase
+                            String comment=commentField.getText().toString();
+                            final float value = rateConBar.getRating();
 
-                        final Rating rating = new Rating(
-                        MainActivity.currentUserID,   //id user
-                        value,     //nbr stars
-                        comment,    //comment
-                        tripInfo,
-                        MainActivity.iconSender);
+                            String tripInfo = RidePostFragment.startTrip + " TO " + RidePostFragment.destinationTrip;
 
+                            final Rating rating = new Rating(
+                                    MainActivity.currentUserID,   //id user
+                                    value,     //nbr stars
+                                    comment,    //comment
+                                    tripInfo,
+                                    MainActivity.iconSender);
 
+                            if (MainActivity.currentUserID.equals(MainActivity.selectedDriverAccountID)){
+                                Toast.makeText(ProfileConductorPopupActivity.this, "you can't rate your self", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            ratingTbl.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
-                        ratingTbl.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                                    //Update new Value
+                                    ratingTbl.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(getApplicationContext(), "Rating saved", Toast.LENGTH_SHORT).show();
 
-                                //Update new Value
-                                ratingTbl.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-                                            Toast.makeText(getApplicationContext(), "Rating saved", Toast.LENGTH_SHORT).show();
-
-                                            totaleRates = ((totaleRates * dataSnapshot.getChildrenCount()) + value)/ (dataSnapshot.getChildrenCount() + 1);
-                                            databaseReferenceCon.child("totalRates").setValue(totaleRates);
+                                                totaleRates = ((totaleRates * dataSnapshot.getChildrenCount()) + value)/ (dataSnapshot.getChildrenCount() + 1);
+                                                databaseReferenceCon.child("totalRates").setValue(totaleRates);
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                                }
+                            });
 
-                        //sna dir el hsab hadek w affichih
-                        //set the profile rating bar
-                        ratingBarProfile.setRating(rateConBar.getRating());
+                            //sna dir el hsab hadek w affichih
+                            //set the profile rating bar
+                            ratingBarProfile.setRating(rateConBar.getRating());
 
-                        mainLayout.setVisibility(View.GONE);
-                    }
-                });
-            }
-        });
+                            mainLayout.setVisibility(View.GONE);
+                        }
+                    });
+                }
+            });
+
+        }
 
 
 

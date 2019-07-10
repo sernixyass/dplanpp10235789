@@ -50,7 +50,7 @@ public class ReportPopupActivity extends AppCompatActivity {
                 if (hint.equals("user")){
                     MainActivity.sendUserReport(MainActivity.currentUserID,MainActivity.selectedDriverAccountID,messageReport.getText().toString());
                 }else {
-                    MainActivity.sendPostReport(MainActivity.currentUserID,HomeFragment.selectedTripID,messageReport.getText().toString());
+                    MainActivity.sendPostReport(MainActivity.currentUserID,MainActivity.selectedTripID,messageReport.getText().toString());
                 }
                 finish();
             }
