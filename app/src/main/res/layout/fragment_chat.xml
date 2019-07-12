@@ -12,7 +12,9 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:layout_marginBottom="55dp"
-        android:transcriptMode="alwaysScroll" />
+        android:transcriptMode="alwaysScroll"
+        android:paddingHorizontal="10dp"
+        android:scrollbars="none"/>
     <LinearLayout
         android:id="@+id/listFooter"
         android:layout_width="fill_parent"
@@ -22,15 +24,17 @@
         android:gravity="bottom"
         android:background="@color/White">
 
+
         <EditText
+            android:background="@drawable/input_white_bg"
             android:id="@+id/messageInput"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:textColor="@color/Black"
-            android:textColorHint="#524E4E"
+            android:textColor="#000"
+            android:textColorHint="@color/grisEdited"
             android:hint="Write a message here"
-            android:gravity="center"
+            android:gravity="start|center"
             android:imeActionLabel="action_send"
             android:imeOptions="actionUnspecified"
             android:inputType="textCapSentences|textAutoCorrect"
@@ -39,10 +43,11 @@
         <ImageButton
             android:id="@+id/sendButton"
             android:padding="10dp"
-            android:background="@drawable/circle_shape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_send_green"
+            android:background="#fff"
+            android:tint="@color/colorPrimaryDark"
             android:contentDescription="action_send"/>
     </LinearLayout>
 

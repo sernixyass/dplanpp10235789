@@ -14,7 +14,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-public class Edit_profile_Conductor extends AppCompatActivity {
+public class
+Edit_profile_Conductor extends AppCompatActivity {
 
     private FloatingActionButton saveNewConProfile;
 

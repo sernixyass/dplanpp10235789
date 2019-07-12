@@ -32,7 +32,7 @@ import Model.InstantMessage;
 
 public class ChatFragment extends Fragment {
 
-    private String mDisplayName;
+    private String mDisplayName,mMsgIcon;
     private String mTime ;
     private ListView mChatListView;
     private EditText mInputText;
@@ -89,12 +89,13 @@ public class ChatFragment extends Fragment {
         //Grab the text the user typed in ,and push the message to Firebase
         String input = mInputText.getText().toString();
         mDisplayName = MainActivity.currentUserFullName;
+        mMsgIcon = MainActivity.iconSender;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         mTime = sdf.format(new Date());
 
         if (!input.equals("")) {
-            InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime);
+            InstantMessage chat = new InstantMessage(input, mDisplayName ,mTime,mMsgIcon);
             mDatabaseReference.push().setValue(chat);
             mInputText.setText("");
 
@@ -106,7 +107,7 @@ public class ChatFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName,mTime);
+        mAdapter = new ChatListAdapter(getActivity(), mDatabaseReference, mDisplayName,mTime,mMsgIcon);
         mChatListView.setAdapter(mAdapter);
         MainActivity.messagePostIsDisplaying = true;
 

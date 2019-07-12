@@ -2,7 +2,7 @@
 
     <string name="google_map_api_key">AIzaSyCeR8wLbc-RS-D_fDfpyTdU8SPMTMMga2A</string>
 
-    <string name="app_name">CarPoolingAppV1</string>
+    <string name="app_name">Mustash Carpool</string>
     <string name="logout">Logout</string>
 
     <string name="loginTxt">Login</string>

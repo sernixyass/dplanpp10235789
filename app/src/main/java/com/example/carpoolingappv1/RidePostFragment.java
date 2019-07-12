@@ -579,7 +579,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                         {
                             //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
                             actionButton.setText("CANCEL JOINING");
-                            view.findViewById(R.id.fMessageBtn).setVisibility(View.GONE);
+                            view.findViewById(R.id.fMessageBtn).setVisibility(View.VISIBLE);
                             actionButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -657,7 +657,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
                         }else {
                             actionButton.setText("JOIN");
-                            view.findViewById(R.id.fMessageBtn).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.fMessageBtn).setVisibility(View.GONE);
                             actionButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -1070,13 +1070,10 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void joinTrip() {
-
         DatabaseReference databaseReferencePjt = MainActivity.databaseReferencePosts.child(MainActivity.selectedTripID);
         databaseReferencePjt.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
                 if (dataSnapshot.child("accountIDJoining1").getValue().equals( MainActivity.currentUserID)
                         || dataSnapshot.child("accountIDJoining2").getValue().equals(MainActivity.currentUserID)
                         || dataSnapshot.child("accountIDJoining3").getValue().equals(MainActivity.currentUserID)
@@ -1085,16 +1082,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                         || dataSnapshot.child("accountIDJoining6").getValue().equals(MainActivity.currentUserID)
                         || dataSnapshot.child("accountIDJoining7").getValue().equals(MainActivity.currentUserID))
                 {
-                    //Toast.makeText(getContext(),"Already Joined",Toast.LENGTH_SHORT).show();
-
                     return;
 
                 }else{
-
                     if (dataSnapshot.child("isFull").getValue(Boolean.class)){
                         Toast.makeText(getContext(),"FULL",Toast.LENGTH_SHORT).show();
                     }else {
-
                         if (dataSnapshot.child("accountIDJoining1").getValue().equals("")){
                             MainActivity.databaseReferencePosts.child(MainActivity.selectedTripID).child("accountIDJoining1")
                                     .setValue(MainActivity.mAuth.getCurrentUser().getUid());
@@ -1145,19 +1138,12 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-
         isOperating=false;
     }
 
     private void takeTrip() {
-        //MainActivity.databaseReference.child("places").get;
-        /*MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("accountIDTakedIt")
-                .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-        MainActivity.databaseReferencePosts.child(HomeFragment.selectedTripID).child("isTaken").setValue(true);*/
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("please confirm taking this trip ?")
                 .setCancelable(false)
@@ -1166,7 +1152,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     public void onClick(DialogInterface dialog, int which) {
                         MainActivity.databaseReferencePosts.child(MainActivity.selectedTripID).child("accountIDTakedIt")
                                 .setValue(MainActivity.mAuth.getCurrentUser().getUid());
-                        MainActivity.databaseReferencePosts.child(MainActivity.selectedTripID).child("isTaken").setValue(true);
+                        MainActivity.databaseReferencePosts.child(MainActivity.selectedTripID)
+                                .child("isTaken").setValue(true);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

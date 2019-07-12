@@ -2,35 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".ChoosingUserType"
     android:background="@drawable/pop_backg"
-    android:layout_gravity="center"
-    android:gravity="center">
+
+    android:layout_gravity="bottom"
+    android:gravity="bottom">
 
     <LinearLayout
+        android:background="@color/White"
+        android:paddingVertical="30dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center"
-        android:weightSum="2"
-        android:layout_marginHorizontal="10dp"
+        android:paddingHorizontal="10dp"
         >
 
         <Button
+            android:layout_marginVertical="10dp"
+            android:textColor="@color/White"
+            android:background="@drawable/button_bg_white"
             android:id="@+id/typeConductorBtn"
             android:text="CONDUCTOR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            />
         <Button
+            android:layout_marginVertical="10dp"
+            android:textColor="@color/White"
             android:id="@+id/typePassengerBtn"
-
+            android:background="@drawable/button_bg_white"
             android:text="PASSENGER"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            />
 
     </LinearLayout>
 
