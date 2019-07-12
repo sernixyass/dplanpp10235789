@@ -61,7 +61,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
     public Polyline mPolyline;
 
     //post data
-    TextView startPoint,endPoint,rideHour,rideDay,driverName,carModel,distance,estimatedTime,price;
+    TextView startPoint,endPoint,rideHour,rideDate,rideDay,driverName,carModel,distance,estimatedTime,price;
     Button actionButton;
     TextView saturday,sunday,monday,tuesday,wednesday,thursday,friday;
     ImageButton driverIcon,passengerIcon1,passengerIcon2,passengerIcon3,passengerIcon4,passengerIcon5,passengerIcon6,passengerIcon7;
@@ -97,6 +97,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
         actionButton = view.findViewById(R.id.fActionBtn);
 
         rideHour=view.findViewById(R.id.hour_ride);
+        rideDate=view.findViewById(R.id.date_ridePost);
         rideDay=view.findViewById(R.id.day_ride);
         driverName=view.findViewById(R.id.driver_full_name);
         carModel=view.findViewById(R.id.car_model_in_ride);
@@ -239,7 +240,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     startPoint.setText(dataSnapshot.child("startingPoint").getValue().toString());
                     endPoint.setText(dataSnapshot.child("endingPoint").getValue().toString());
                     rideHour.setText(dataSnapshot.child("hourTrip").getValue().toString());
-
+                    rideDate.setText(dataSnapshot.child("tripDate").getValue().toString());
                     distance.setText(dataSnapshot.child("distance").getValue().toString());
                     estimatedTime.setText(dataSnapshot.child("estimatedTime").getValue().toString());
 
