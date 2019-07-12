@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -78,6 +79,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public MapView mMapView;
     GoogleMap mapH;
 
+    ProgressBar progressBar;
+
 
 
 
@@ -103,6 +106,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mListItems=new ArrayList<>();
+
 
 
 

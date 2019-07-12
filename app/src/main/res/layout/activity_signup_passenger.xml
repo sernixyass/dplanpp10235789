@@ -241,13 +241,19 @@
                 android:paddingVertical="10dp"
                 android:text="@string/signup_txt"
                 android:textColor="@color/generalTextCol" />
-
+            <ProgressBar
+                android:id="@+id/signupP_progresbar"
+                android:visibility="gone"
+                android:indeterminateTint="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/LogInPTxtBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="60dp"
                 android:text="@string/login_txt_btn" />
+
 
 
         </LinearLayout>

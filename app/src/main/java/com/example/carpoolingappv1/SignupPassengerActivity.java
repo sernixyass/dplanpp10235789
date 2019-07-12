@@ -177,7 +177,7 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
 
 
         final Integer phoneS;
-        if (phone.getText().toString() == ""){
+        if (phone.getText().toString().equals("")){
             phoneS = 0 ;
         }else {
             phoneS = Integer.parseInt(phone.getText().toString().trim()) ;
@@ -232,6 +232,8 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
             return;
         }
 
+        findViewById(R.id.signupP_progresbar).setVisibility(View.VISIBLE);
+        findViewById(R.id.SignUpPBtnId).setClickable(false);
         //CREATING USER
         mAuth.createUserWithEmailAndPassword(emailS, passwordS)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -248,6 +250,8 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (!task.isSuccessful()){
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                findViewById(R.id.signupP_progresbar).setVisibility(View.GONE);
+                                                findViewById(R.id.SignUpPBtnId).setClickable(true);
                                             }
                                         }
                                     });
@@ -259,8 +263,9 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
 
-                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_LONG).show();
 
+                                                finish();
                                             }else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
@@ -271,6 +276,8 @@ public class SignupPassengerActivity extends AppCompatActivity implements View.O
 
                         }else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            findViewById(R.id.signupP_progresbar).setVisibility(View.GONE);
+                            findViewById(R.id.SignUpPBtnId).setClickable(true);
                         }
                     }
                 });

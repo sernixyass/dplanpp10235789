@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:gravity="center"
     android:layout_gravity="center"
     android:background="@color/colorPrimaryDark">
 
-    <ImageView
-        android:layout_marginBottom="60dp"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:background="@drawable/logo_mustash_carpool"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginBottom="60dp"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:background="@drawable/logo_mustash_carpool"/>
 
         <EditText
             android:layout_width="300dp"
@@ -49,23 +52,35 @@
             android:textColor="@color/textInEditText"/>
 
 
-    <Button
-        android:id="@+id/LoginBtnId"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/button_bg"
-        android:textColor="@color/generalTextCol"
-        android:text="@string/loginTxt" />
 
-    <Button
-        android:id="@+id/SignUpTxtBtnId"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_bg_white"
-        android:textColor="@color/generalTextCol"
-        android:text="Sign Up" />
+        <Button
+            android:id="@+id/LoginBtnId"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_bg"
+            android:textColor="@color/generalTextCol"
+            android:text="@string/loginTxt" />
+
+        <Button
+            android:id="@+id/SignUpTxtBtnId"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="0dp"
+            android:background="@drawable/button_bg_white"
+            android:textColor="@color/generalTextCol"
+            android:text="Sign Up" />
+    </LinearLayout>
 
 
-</LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/login_progresbar"
+        android:visibility="gone"
+        android:indeterminateTint="#fff"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

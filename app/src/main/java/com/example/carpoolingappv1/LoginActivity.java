@@ -80,12 +80,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
+        findViewById(R.id.login_progresbar).setVisibility(View.VISIBLE);
+        findViewById(R.id.LoginBtnId).setClickable(false);
+        findViewById(R.id.SignUpTxtBtnId).setClickable(false);
         mAuth.signInWithEmailAndPassword(emailL, passwordL).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //PASSWORD AND EMAIL ARE MATCHES
                     //EMAIL SHOULD BE VERIFIED
+                    findViewById(R.id.login_progresbar).setVisibility(View.GONE);
                     if (mAuth.getCurrentUser().isEmailVerified()) {
 
 
@@ -100,6 +104,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 } else {
+                    findViewById(R.id.login_progresbar).setVisibility(View.GONE);
+                    findViewById(R.id.LoginBtnId).setClickable(true);
+                    findViewById(R.id.SignUpTxtBtnId).setClickable(true);
                     showErrorDialog(task.getException().getMessage());
                 }
             }

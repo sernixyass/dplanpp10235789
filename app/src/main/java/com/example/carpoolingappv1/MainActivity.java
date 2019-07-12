@@ -29,6 +29,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -89,10 +90,11 @@ public class MainActivity extends AppCompatActivity {
     public static Integer selectedPlacesTrip;
 
 
+    public static ProgressBar mainProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         //for getting witch activity to run first
         mAuth = FirebaseAuth.getInstance();
@@ -104,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
         }
         //** or main activity directly
         setContentView(R.layout.activity_main);
+
+        mainProgress = findViewById(R.id.main_progressbar);
+        activeMainProgressbar();
 
         //
         currentUserID = mAuth.getCurrentUser().getUid();
@@ -156,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().show(fragment1).commit();
         activeFragment = fragment1;
+        unactiveMainProgressbar();
     }
 
 
@@ -351,6 +357,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
+    public static void activeMainProgressbar(){
+        mainProgress.setVisibility(View.VISIBLE);
+    }
+
+
+    public static void unactiveMainProgressbar(){
+        mainProgress.setVisibility(View.GONE);
+    }
 
     public Boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) carpoolingappv1.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);

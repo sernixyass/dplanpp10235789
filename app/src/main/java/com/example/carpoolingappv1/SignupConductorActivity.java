@@ -222,6 +222,10 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
             return;
         }
 
+
+        findViewById(R.id.signupC_progresbar).setVisibility(View.VISIBLE);
+        findViewById(R.id.SignUpCBtnId).setClickable(false);
+
         //CREATING USER
         mAuth.createUserWithEmailAndPassword(emailS, passwordS)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -238,6 +242,8 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (!task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        findViewById(R.id.signupC_progresbar).setVisibility(View.GONE);
+                                        findViewById(R.id.SignUpCBtnId).setClickable(true);
                                     }
                                 }
                             });
@@ -249,9 +255,15 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
 
-                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Please verify your email address to complete registration", Toast.LENGTH_LONG).show();
+                                                findViewById(R.id.signupC_progresbar).setVisibility(View.GONE);
+                                                findViewById(R.id.SignUpCBtnId).setClickable(false);
+
+                                                finish();
                                             }else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                findViewById(R.id.SignUpCBtnId).setClickable(false);
+
                                             }
                                         }
                                     });
@@ -260,6 +272,8 @@ public class SignupConductorActivity extends AppCompatActivity implements View.O
 
                         }else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            findViewById(R.id.signupC_progresbar).setVisibility(View.GONE);
+                            findViewById(R.id.SignUpCBtnId).setClickable(true);
                         }
                     }
                 });
