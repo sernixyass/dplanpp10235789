@@ -14,8 +14,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +24,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +32,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -45,14 +39,10 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import Adapter.PagerAdapterChatNotification;
 import Adapter.PagerAdapteurRatingsTrips;
-import Adapter.RatesAdapter;
-import Model.Rating;
 
 public class ProfileConductorFragment extends Fragment implements View.OnClickListener{
 
@@ -65,13 +55,13 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
     ImageButton profilPicC;
 
 
+    private TabLayout tabLayoutProfileConductor;
+    private ViewPager mViewPager ;
+
     public StorageReference userProfileImageRef;
     Uri imageUri;
+    StorageTask uploadTask;
 
-
-    public RecyclerView mRecyclerView;
-    public List<Rating> mRatesItems;
-    public FirebaseRecyclerAdapter rateAdapterFire;
 
     final static int Gallery_Pick = 1;
 
@@ -149,71 +139,10 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         });
 
 
-
-
-        mRecyclerView = view.findViewById(R.id.ratesRecyclerViewId);
-        mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-
-        mRatesItems = new ArrayList<>();
-
-
-        fetchRates();
-
         return view ;
 
     }
 
-
-    private void fetchRates() {
-        Query query = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("Users").child(MainActivity.currentUserID).child("rates");
-
-
-        FirebaseRecyclerOptions<Rating> options =
-                new FirebaseRecyclerOptions.Builder<Rating>()
-                        .setQuery(query, new SnapshotParser<Rating>() {
-                            @NonNull
-                            @Override
-                            public Rating parseSnapshot(@NonNull DataSnapshot snapshot) {
-                                return new Rating(
-                                        snapshot.child("userId").getValue().toString(),
-                                        snapshot.child("rateValue").getValue(double.class),
-                                        snapshot.child("comment").getValue().toString(),
-                                        snapshot.child("tripInfo").getValue().toString(),
-                                        snapshot.child("iconSender").getValue().toString()
-                                );
-                            }
-                        })
-                        .build();
-
-
-        rateAdapterFire = new FirebaseRecyclerAdapter<Rating, RatesAdapter.ViewHolder>(options) {
-
-            @Override
-            public RatesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.rate_row, parent, false);
-
-                return new RatesAdapter.ViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull RatesAdapter.ViewHolder holder, int position, @NonNull Rating model) {
-                holder.setComment(model.getComment());
-                holder.setRate(model.getRateValue());
-                holder.setTripInfo(model.getTripInfo());
-                holder.setIcon(model.getIconSender());
-            }
-
-
-
-        };
-        mRecyclerView.setAdapter(rateAdapterFire);
-
-    }
 
 
     public void chooseImg(){
@@ -332,17 +261,7 @@ public class ProfileConductorFragment extends Fragment implements View.OnClickLi
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        rateAdapterFire.startListening();
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        rateAdapterFire.stopListening();
-    }
 
     private void logout() {
         MainActivity.mAuth.getInstance().signOut();

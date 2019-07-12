@@ -131,6 +131,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
             }
         });*/
 
+
         messagebtn = view.findViewById(R.id.fMessageBtn);
         view.findViewById(R.id.fMessageBtn).setVisibility(View.GONE);
 
@@ -242,7 +243,7 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     distance.setText(dataSnapshot.child("distance").getValue().toString());
                     estimatedTime.setText(dataSnapshot.child("estimatedTime").getValue().toString());
 
-                    price.setText(dataSnapshot.child("price").getValue().toString());
+                    price.setText(dataSnapshot.child("price").getValue().toString() + " DA");
 
                     startTrip = dataSnapshot.child("startingPoint").getValue().toString();
                     destinationTrip = dataSnapshot.child("endingPoint").getValue().toString();
@@ -253,6 +254,13 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                     //tripPos = dataSnapshot.child("tripPosition").getValue(LatLng.class);
                     //tripDestPos = dataSnapshot.child("tripDestinationPosition").getValue(LatLng.class);
 
+                    if (dataSnapshot.child("weeklyTrip").getValue(boolean.class)){
+                        view.findViewById(R.id.week_ridePost).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.date_ridePost).setVisibility(View.GONE);
+                    }else {
+                        view.findViewById(R.id.week_ridePost).setVisibility(View.GONE);
+                        view.findViewById(R.id.date_ridePost).setVisibility(View.VISIBLE);
+                    }
 
                     if (isMapReady){
                         calculateDirections(tripPos,tripDestPos);
@@ -507,6 +515,23 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
                                 carModel.setText(dataSnapshot1.child("carModel").getValue().toString());
                                 driverName.setText(dataSnapshot1.child("fullName").getValue().toString());
+
+
+                                if(dataSnapshot.child("accountIDTakedIt").getValue().toString().equals(MainActivity.currentUserID)){
+                                    price.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intentPrice =  new Intent(getContext(), PriceSetterActivity.class);
+                                            startActivity(intentPrice);
+                                        }
+                                    });
+                                }else {
+                                    price.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                        }
+                                    });
+                                }
 
                                 if (!Objects.equals(dataSnapshot1.child("profilePic").getValue(), "") ){
                                     //Glide.with(getContext().load(dataSnapshot.child("profilPic").getValue().into(profilPicC));
@@ -887,6 +912,8 @@ public class RidePostFragment extends Fragment implements OnMapReadyCallback {
                 intent.putExtra("whichReport","post");
                 startActivity(intent);            }
         });
+
+
 
 
 

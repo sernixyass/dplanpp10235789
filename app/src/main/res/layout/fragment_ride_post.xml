@@ -38,13 +38,18 @@
                 android:background="@color/colorPrimaryDark">
 
                 <LinearLayout
-                    android:gravity="center_vertical"
+                    android:layout_marginVertical="3.5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/time"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:orientation="horizontal" >
+
                     <TextView
+                        android:layout_marginHorizontal="8dp"
+                        android:background="@drawable/button_bg"
+                        android:gravity="center"
                         android:id="@+id/ride_price"
                         android:textColor="@color/generalTextCol"
                         android:textStyle="bold"
@@ -55,6 +60,7 @@
                         android:textSize="30dp"/>
 
                     <TextView
+                        android:gravity="center"
                         android:layout_weight="0.3"
                         android:id="@+id/hour_ride"
                         android:layout_width="0dp"
@@ -66,7 +72,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/linearLayout2"
+                        android:visibility="gone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -96,7 +102,19 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/date_ridePost"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20 Dec Saturday"
+                    android:textColor="@color/generalTextCol"
+                    android:textSize="24sp" />
+
                 <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/week_ridePost"
                     android:layout_marginVertical="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,7 +129,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="SAT"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/sunIDf"
@@ -120,7 +138,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="SUN"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/monIDf"
@@ -129,7 +147,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="MON"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/tueIDf"
@@ -138,7 +156,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TUE"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/wedIDf"
@@ -147,7 +165,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="WED"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/thuIDf"
@@ -156,7 +174,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="THU"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/friIDf"
@@ -165,7 +183,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FRI"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -347,7 +365,7 @@
                 android:id="@+id/fMessageBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Msg"
+                android:text="CHAT"
                 android:background="@drawable/button_bg"
                 android:textColor="@color/generalTextCol"/>
         </LinearLayout>

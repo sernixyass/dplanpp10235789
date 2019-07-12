@@ -110,6 +110,11 @@ public class CompeltPosting extends Activity {
 
         price = findViewById(R.id.price_cp);
 
+        if (MainActivity.isConductor){
+            price.setVisibility(View.VISIBLE);
+        }else {
+            price.setVisibility(View.GONE);
+        }
 
         mRadioGroup =findViewById(R.id.radio_group);
         checkDaysLayout= findViewById(R.id.daily_layout);
