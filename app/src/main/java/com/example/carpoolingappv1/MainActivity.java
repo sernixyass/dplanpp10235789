@@ -43,7 +43,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Constants;
 import com.google.firebase.database.core.Tag;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -288,6 +290,12 @@ public class MainActivity extends AppCompatActivity {
         notifMap.put("title", title);
         notifMap.put("message", message);
         notifMap.put("iconUserID", iconeUserID);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd HH:mm");
+        String time = sdf.format(new Date());
+
+        notifMap.put("time",time);
+
         databaseReferenceNot.setValue(notifMap);
     }
 

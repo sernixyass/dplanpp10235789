@@ -80,7 +80,7 @@ public class ProfileConductorPopupActivity extends AppCompatActivity  {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int)(width*.95),(int)(height*.7));
+        getWindow().setLayout((int)(width*.95),(int)(height*.9));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;

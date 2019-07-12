@@ -78,8 +78,8 @@ public class NotificationFragment extends Fragment {
                                 return new NotificationModel(
                                         snapshot.child("title").getValue().toString(),
                                         snapshot.child("message").getValue().toString(),
-                                        snapshot.child("iconUserID").getValue().toString()
-                                );
+                                        snapshot.child("iconUserID").getValue().toString(),
+                                        snapshot.child("time").getValue().toString()                                );
                             }
                         })
                         .build();
@@ -100,6 +100,7 @@ public class NotificationFragment extends Fragment {
                 holder.setTitle(model.getTitle());
                 holder.setMessage(model.getBodyMessage());
                 holder.setIcon(model.getIconUserID());
+                holder.setTime(model.getTime());
             }
 
 

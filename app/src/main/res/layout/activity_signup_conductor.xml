@@ -328,7 +328,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
         <Button
             android:id="@+id/SignUpCBtnId"
             android:layout_width="300dp"
@@ -337,8 +336,6 @@
             android:text="@string/signup_txt"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
-
-
             android:textColor="@color/generalTextCol"
             android:background="@drawable/button_bg"
             />

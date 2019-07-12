@@ -91,7 +91,7 @@ public class ChatFragment extends Fragment {
         mDisplayName = MainActivity.currentUserFullName;
         mMsgIcon = MainActivity.iconSender;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd HH:mm");
         mTime = sdf.format(new Date());
 
         if (!input.equals("")) {

@@ -87,7 +87,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView title,message;
+        public TextView title,message,time;
         public ImageView icon;
 
         public ViewHolder(@NonNull View view)
@@ -97,6 +97,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             title = view.findViewById(R.id.notTitle);
             message = view.findViewById(R.id.notMessage);
             icon = view.findViewById(R.id.notIcon);
+            time = view.findViewById(R.id.notTime);
         }
 
         public TextView getTitle() {
@@ -112,6 +113,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             .into(icon);
                 }
             }
+        }
+
+        public void setTime(String timeS) {
+            this.time.setText(timeS);
         }
 
         public void setTitle(String title) {
